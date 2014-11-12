@@ -439,7 +439,7 @@ punctuation-marks and white-space characters.
 Determine the complexity of an example by counting the spaces in a string. This
 is used to determine if one should be expected to enter the english equivalent
 of a selected Chinese text sample.
-#+BEGIN_SRC lisp :session :eval yes :tangle cl-csv.lisp
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun count-spaces (str)
     (let ((space-count 0))
       (iterate (for chr in-string str)
@@ -527,10 +527,10 @@ Update the score stored in a =vocab-entry= instance based on the results of
 The =export-vocab= function arose out of a finding that hash-table objects
 differ slightly between Common Lisp implementations.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (defun export-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw"))
-    (labels ((destructure-vocab (x y)
-               (push (list x y) the-alist)))
-      (let (the-alist)
+  (defun export-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw")) 
+    (let (the-alist)
+      (labels ((destructure-vocab (x y)
+                 (push (list x y) the-alist)))
         (maphash #'destructure-vocab vocab-table)
         (with-open-file (out filename
                              :direction :output

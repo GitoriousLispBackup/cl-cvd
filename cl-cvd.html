@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Common Lisp Chinese Vocabulary Drill.</title>
-<!-- 2014-11-11 Tue 14:49 -->
+<!-- 2014-11-12 Wed 13:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Riley E." />
@@ -291,7 +291,11 @@ provides support for them.
   <span style="color: #f9b529;">:description</span> <span style="color: #a9dc69;">"Chinese Vocabulary Drill"</span>
   <span style="color: #f9b529;">:author</span> <span style="color: #a9dc69;">"Riley E."</span>
   <span style="color: #f9b529;">:license</span> <span style="color: #a9dc69;">"GPLv3 or Later"</span>
-  <span style="color: #f9b529;">:depends-on</span> (<span style="color: #f9b529;">:iterate</span> <span style="color: #f9b529;">:cl-ppcre</span> <span style="color: #f9b529;">:cl-csv</span> <span style="color: #f9b529;">:external-program</span> <span style="color: #f9b529;">:bordeaux-threads</span>)
+  <span style="color: #f9b529;">:depends-on</span> (<span style="color: #f9b529;">:iterate</span>
+                <span style="color: #f9b529;">:cl-ppcre</span>
+                <span style="color: #f9b529;">:cl-csv</span>
+                <span style="color: #f9b529;">:external-program</span>
+                <span style="color: #f9b529;">:bordeaux-threads</span>)
   <span style="color: #f9b529;">:components</span> ((<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"package"</span>)
                (<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"cl-cvd"</span>)
                (<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"csv-import"</span>)))
@@ -940,10 +944,10 @@ differ slightly between Common Lisp implementations.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">export-vocab</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (vocab-table *zh-hash-table*) (filename <span style="color: #a9dc69;">"zh-portable.raw"</span>))
-  (<span style="color: #f9b529; font-weight: bold;">labels</span> ((destructure-vocab (x y)
-             (push (list x y) the-alist)))
-    (<span style="color: #f9b529; font-weight: bold;">let</span> (the-alist)
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">export-vocab</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (vocab-table *zh-hash-table*) (filename <span style="color: #a9dc69;">"zh-portable.raw"</span>)) 
+  (<span style="color: #f9b529; font-weight: bold;">let</span> (the-alist)
+    (<span style="color: #f9b529; font-weight: bold;">labels</span> ((destructure-vocab (x y)
+               (push (list x y) the-alist)))
       (maphash #'destructure-vocab vocab-table)
       (<span style="color: #f9b529; font-weight: bold;">with-open-file</span> (out filename
                            <span style="color: #f9b529;">:direction</span> <span style="color: #f9b529;">:output</span>
@@ -1571,7 +1575,7 @@ Loop through a set of tests where the test type is indeterminate.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Riley E.</p>
-<p class="date">Created: 2014-11-11 Tue 14:49</p>
+<p class="date">Created: 2014-11-12 Wed 13:23</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

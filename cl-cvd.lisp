@@ -148,6 +148,13 @@
   (defun get-punctuation ()
     punctuations))
 
+(defun count-spaces (str)
+  (let ((space-count 0))
+    (iterate (for chr in-string str)
+      (when (char= chr #\SPACE)
+        (incf space-count))
+      (finally (return space-count)))))
+
 (defun add-entry (&key hanzi pinyin english (hsk 0) (hash-table *zh-hash-table*))
   (puthash (gen-ht-key 'zh-index)
            hash-table
@@ -185,10 +192,10 @@
     (with-standard-io-syntax
       (pprint vocab-table out))))
 
-(defun export-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw"))
-  (labels ((destructure-vocab (x y)
-             (push (list x y) the-alist)))
-    (let (the-alist)
+(defun export-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw")) 
+  (let (the-alist)
+    (labels ((destructure-vocab (x y)
+               (push (list x y) the-alist)))
       (maphash #'destructure-vocab vocab-table)
       (with-open-file (out filename
                            :direction :output
