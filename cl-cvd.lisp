@@ -185,13 +185,6 @@
           (get-universal-time))
     (incf (vocab-entry-reps vocab-entry))))
 
-(defun save-ht-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-save.raw"))
-  (with-open-file (out filename
-                       :direction :output
-                       :if-exists :supersede)
-    (with-standard-io-syntax
-      (pprint vocab-table out))))
-
 (defun export-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw")) 
   (let (the-alist)
     (labels ((destructure-vocab (x y)
@@ -202,12 +195,6 @@
                            :if-exists :supersede)
         (with-standard-io-syntax
           (pprint the-alist out))))))
-
-(defun load-ht-vocab (&optional (filename "zh-save.raw") (vocab-variable *zh-hash-table*))
-  (with-open-file (in filename)
-    (with-standard-io-syntax
-      (setf vocab-variable (read in))))
-  (setf *vocab-key-count* (hash-table-count *zh-hash-table*)))
 
 (defun import-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw"))
   (labels ((structure-vocab (l)

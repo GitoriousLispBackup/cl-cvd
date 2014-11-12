@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Common Lisp Chinese Vocabulary Drill.</title>
-<!-- 2014-11-12 Wed 13:23 -->
+<!-- 2014-11-12 Wed 13:39 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Riley E." />
@@ -185,9 +185,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#sec-6">6. Storage</a>
 <ul>
-<li><a href="#sec-6-1">6.1. Saving</a></li>
-<li><a href="#sec-6-2">6.2. Loading</a></li>
-<li><a href="#sec-6-3">6.3. Converting</a></li>
+<li><a href="#sec-6-1">6.1. Saving and Loading</a></li>
+<li><a href="#sec-6-2">6.2. Converting</a></li>
 </ul>
 </li>
 <li><a href="#sec-7">7. MP3 file Matching and Playback</a>
@@ -915,29 +914,11 @@ Update the score stored in a <code>vocab-entry</code> instance based on the resu
 <h2 id="sec-6"><span class="section-number-2">6</span> Storage</h2>
 <div class="outline-text-2" id="text-6">
 </div><div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Saving</h3>
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Saving and Loading</h3>
 <div class="outline-text-3" id="text-6-1">
 </div><div id="outline-container-sec-6-1-1" class="outline-4">
-<h4 id="sec-6-1-1">save-ht-vocab</h4>
+<h4 id="sec-6-1-1">export-vocab</h4>
 <div class="outline-text-4" id="text-6-1-1">
-<p>
-<code>save-ht-vocab</code> dumps the raw hash-table to a file, pretty printed for nicer viewing.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">save-ht-vocab</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (vocab-table *zh-hash-table*) (filename <span style="color: #a9dc69;">"zh-save.raw"</span>))
-  (<span style="color: #f9b529; font-weight: bold;">with-open-file</span> (out filename
-                       <span style="color: #f9b529;">:direction</span> <span style="color: #f9b529;">:output</span>
-                       <span style="color: #f9b529;">:if-exists</span> <span style="color: #f9b529;">:supersede</span>)
-    (<span style="color: #f9b529; font-weight: bold;">with-standard-io-syntax</span>
-      (pprint vocab-table out))))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-6-1-2" class="outline-4">
-<h4 id="sec-6-1-2">export-vocab</h4>
-<div class="outline-text-4" id="text-6-1-2">
 <p>
 The <code>export-vocab</code> function arose out of a finding that hash-table objects
 differ slightly between Common Lisp implementations.
@@ -958,31 +939,9 @@ differ slightly between Common Lisp implementations.
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Loading</h3>
-<div class="outline-text-3" id="text-6-2">
-</div><div id="outline-container-sec-6-2-1" class="outline-4">
-<h4 id="sec-6-2-1">load-ht-vocab</h4>
-<div class="outline-text-4" id="text-6-2-1">
-<p>
-This function reads in a file and sets the <code>*zh-hash-table*</code> to the value of the
-contents of that file.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">load-ht-vocab</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;optional</span> (filename <span style="color: #a9dc69;">"zh-save.raw"</span>) (vocab-variable *zh-hash-table*))
-  (<span style="color: #f9b529; font-weight: bold;">with-open-file</span> (in filename)
-    (<span style="color: #f9b529; font-weight: bold;">with-standard-io-syntax</span>
-      (setf vocab-variable (read in))))
-  (setf *vocab-key-count* (hash-table-count *zh-hash-table*)))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-6-2-2" class="outline-4">
-<h4 id="sec-6-2-2">import-vocab</h4>
-<div class="outline-text-4" id="text-6-2-2">
+<div id="outline-container-sec-6-1-2" class="outline-4">
+<h4 id="sec-6-1-2">import-vocab</h4>
+<div class="outline-text-4" id="text-6-1-2">
 <p>
 The obvious counterpart to <code>export-vocab</code>.
 </p>
@@ -1000,9 +959,9 @@ The obvious counterpart to <code>export-vocab</code>.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-3" class="outline-3">
-<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Converting</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Converting</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 When moving between Lisp implementations, you cannot keep the same hash-table
 object in plain-text format and expect to be able to load it, so this must be
@@ -1575,7 +1534,7 @@ Loop through a set of tests where the test type is indeterminate.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Riley E.</p>
-<p class="date">Created: 2014-11-12 Wed 13:23</p>
+<p class="date">Created: 2014-11-12 Wed 13:39</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

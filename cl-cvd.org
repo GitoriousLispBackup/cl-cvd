@@ -509,20 +509,7 @@ Update the score stored in a =vocab-entry= instance based on the results of
 : UPDATE-SCORE
 
 * Storage
-** Saving
-*** save-ht-vocab
-=save-ht-vocab= dumps the raw hash-table to a file, pretty printed for nicer viewing.
-#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (defun save-ht-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-save.raw"))
-    (with-open-file (out filename
-                         :direction :output
-                         :if-exists :supersede)
-      (with-standard-io-syntax
-        (pprint vocab-table out))))
-#+END_SRC
-#+RESULTS:
-: SAVE-HT-VOCAB
-
+** Saving and Loading
 *** export-vocab
 The =export-vocab= function arose out of a finding that hash-table objects
 differ slightly between Common Lisp implementations.
@@ -540,20 +527,6 @@ differ slightly between Common Lisp implementations.
 #+END_SRC
 #+RESULTS:
 : EXPORT-VOCAB
-
-** Loading
-*** load-ht-vocab
-This function reads in a file and sets the =*zh-hash-table*= to the value of the
-contents of that file.
-#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (defun load-ht-vocab (&optional (filename "zh-save.raw") (vocab-variable *zh-hash-table*))
-    (with-open-file (in filename)
-      (with-standard-io-syntax
-        (setf vocab-variable (read in))))
-    (setf *vocab-key-count* (hash-table-count *zh-hash-table*)))
-#+END_SRC
-#+RESULTS:
-: LOAD-HT-VOCAB
 
 *** import-vocab
 The obvious counterpart to =export-vocab=.
