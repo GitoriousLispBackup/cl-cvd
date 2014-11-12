@@ -1,0 +1,1579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Common Lisp Chinese Vocabulary Drill.</title>
+<!-- 2014-11-11 Tue 14:49 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Riley E." />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Common Lisp Chinese Vocabulary Drill.</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Headers, Variables, Parameters</a>
+<ul>
+<li><a href="#sec-1-1">1.1. System description</a></li>
+<li><a href="#sec-1-2">1.2. System Definition</a></li>
+<li><a href="#sec-1-3">1.3. Package Definition</a></li>
+<li><a href="#sec-1-4">1.4. Global variables, and setting the package</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Structures</a></li>
+<li><a href="#sec-3">3. Comma-separated value import utilities</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Header info</a></li>
+<li><a href="#sec-3-2">3.2. preprocess-english</a></li>
+<li><a href="#sec-3-3">3.3. collect-measures</a></li>
+<li><a href="#sec-3-4">3.4. clean-measures</a></li>
+<li><a href="#sec-3-5">3.5. flatten</a></li>
+<li><a href="#sec-3-6">3.6. finalize-measures</a></li>
+<li><a href="#sec-3-7">3.7. collect-see-also</a></li>
+<li><a href="#sec-3-8">3.8. clean-english</a></li>
+<li><a href="#sec-3-9">3.9. eleml-to-struct</a></li>
+<li><a href="#sec-3-10">3.10. batch-add-table</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Data-store utility functions</a>
+<ul>
+<li><a href="#sec-4-1">4.1. element-of-truth</a></li>
+<li><a href="#sec-4-2">4.2. gen-ht-key</a></li>
+<li><a href="#sec-4-3">4.3. key-exists-p</a></li>
+<li><a href="#sec-4-4">4.4. puthash</a></li>
+<li><a href="#sec-4-5">4.5. hash-table searching functions</a></li>
+<li><a href="#sec-4-6">4.6. count-spaces</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Entry manipulation</a>
+<ul>
+<li><a href="#sec-5-1">5.1. add-entry</a></li>
+<li><a href="#sec-5-2">5.2. revise-entry</a></li>
+<li><a href="#sec-5-3">5.3. append-english</a></li>
+<li><a href="#sec-5-4">5.4. update-score</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Storage</a>
+<ul>
+<li><a href="#sec-6-1">6.1. Saving</a></li>
+<li><a href="#sec-6-2">6.2. Loading</a></li>
+<li><a href="#sec-6-3">6.3. Converting</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">7. MP3 file Matching and Playback</a>
+<ul>
+<li><a href="#sec-7-1">7.1. fill-mp3-paths</a></li>
+<li><a href="#sec-7-2">7.2. matching vocab entries to mp3s</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8. Testing Facilities</a>
+<ul>
+<li><a href="#sec-8-1">8.1. set comparisons</a></li>
+<li><a href="#sec-8-2">8.2. load-from-hsk</a></li>
+<li><a href="#sec-8-3">8.3. add-vocabs</a></li>
+<li><a href="#sec-8-4">8.4. enumerate-qualified-elements</a></li>
+<li><a href="#sec-8-5">8.5. refil-testing-pool</a></li>
+<li><a href="#sec-8-6">8.6. hsk-spillover</a></li>
+<li><a href="#sec-8-7">8.7. Vocab element qualification</a></li>
+<li><a href="#sec-8-8">8.8. Presentation</a></li>
+<li><a href="#sec-8-9">8.9. List construction</a></li>
+<li><a href="#sec-8-10">8.10. Scoring</a></li>
+<li><a href="#sec-8-11">8.11. display-and-play</a></li>
+<li><a href="#sec-8-12">8.12. test-loop</a></li>
+<li><a href="#sec-8-13">8.13. random-test</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #232533;">;; </span><span style="color: #696e92;">Copyright (C) 2014 Riley E.</span>
+
+<span style="color: #232533;">;; </span><span style="color: #696e92;">This program is free software: you can redistribute it and/or</span>
+<span style="color: #232533;">;; </span><span style="color: #696e92;">modify it under the terms of the GNU General Public License as</span>
+<span style="color: #232533;">;; </span><span style="color: #696e92;">published by the Free Software Foundation, either version 3 of</span>
+<span style="color: #232533;">;; </span><span style="color: #696e92;">the License, or (at your option) any later version.</span>
+
+<span style="color: #232533;">;; </span><span style="color: #696e92;">This program is distributed in the hope that it will be useful,</span>
+<span style="color: #232533;">;; </span><span style="color: #696e92;">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span style="color: #232533;">;; </span><span style="color: #696e92;">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
+<span style="color: #232533;">;; </span><span style="color: #696e92;">GNU General Public License for more details.</span>
+
+<span style="color: #232533;">;; </span><span style="color: #696e92;">You should have received a copy of the GNU General Public</span>
+<span style="color: #232533;">;; </span><span style="color: #696e92;">License along with this program. If not, see</span>
+<span style="color: #232533;">;; </span><span style="color: #696e92;"><a href="http://www.gnu.org/licenses/">&lt;http://www.gnu.org/licenses/&gt;</a>.</span>
+</pre>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Headers, Variables, Parameters</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> System description</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The Chinese Vocab Drill software is written largely out of a desire for learning
+more Common Lisp, better programming techniques, and the Chinese Mandarin
+language. All editing is done in the .ORG file, and exported to .PDF, and the
+source code is "tangled" from the code blocks into the appropriate .LISP
+files. This package takes advantage of several libraries:
+</p>
+<ul class="org-ul">
+<li><a href="http://common-lisp.net/project/iterate/">iterate</a>:
+<ul class="org-ul">
+<li>The iterate package was written as a more Lispy and extensible alternative to
+the standard LOOP macro.
+</li>
+</ul>
+</li>
+<li><a href="http://weitz.de/cl-ppcre/">cl-ppcre</a>:
+<ul class="org-ul">
+<li>A fast regular expression library, allows for sophisticated methods for
+pattern matching, including creating of Scanners.
+</li>
+</ul>
+</li>
+<li><a href="http://common-lisp.net/project/external-program/">external-program</a>:
+<ul class="org-ul">
+<li>Allows an implementation-neutral access to external programs.
+</li>
+</ul>
+</li>
+<li><a href="http://common-lisp.net/project/bordeaux-threads/">bordeaux-threads</a>
+<ul class="org-ul">
+<li>a system for launching and managing threads as long as your Lisp system
+provides support for them.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> System Definition</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(asdf:defsystem #<span style="color: #f9b529;">:cl-cvd</span>
+  <span style="color: #f9b529;">:serial</span> t
+  <span style="color: #f9b529;">:description</span> <span style="color: #a9dc69;">"Chinese Vocabulary Drill"</span>
+  <span style="color: #f9b529;">:author</span> <span style="color: #a9dc69;">"Riley E."</span>
+  <span style="color: #f9b529;">:license</span> <span style="color: #a9dc69;">"GPLv3 or Later"</span>
+  <span style="color: #f9b529;">:depends-on</span> (<span style="color: #f9b529;">:iterate</span> <span style="color: #f9b529;">:cl-ppcre</span> <span style="color: #f9b529;">:cl-csv</span> <span style="color: #f9b529;">:external-program</span> <span style="color: #f9b529;">:bordeaux-threads</span>)
+  <span style="color: #f9b529;">:components</span> ((<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"package"</span>)
+               (<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"cl-cvd"</span>)
+               (<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"csv-import"</span>)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Package Definition</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defpackage</span> #<span style="color: #f9b529;">:chinese-vocab-drill</span>
+  (<span style="color: #f9b529;">:nicknames</span> #<span style="color: #f9b529;">:cl-cvd</span>)
+  (<span style="color: #f9b529;">:use</span> <span style="color: #f9b529;">:common-lisp</span>
+        <span style="color: #f9b529;">:iterate</span>
+        <span style="color: #f9b529;">:bordeaux-threads</span>
+        <span style="color: #f9b529;">:cl-ppcre</span>
+        <span style="color: #f9b529;">:cl-csv</span>
+        <span style="color: #f9b529;">:external-program</span>))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Global variables, and setting the package</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Initialize the hash-table, and the hash-table element counter, which is used for
+generating the keys used to identify hash-table entries.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">  (<span style="color: #f9b529; font-weight: bold;">in-package</span> <span style="color: #f9b529;">:cl-cvd</span>)
+
+<span style="color: #232533;">;;; </span><span style="color: #696e92;">The constant PHI is used for spaced-repetition timing</span>
+  (<span style="color: #f9b529; font-weight: bold;">defconstant</span> <span style="color: #8aa6bc;">phi</span> 1.618033988749895d0
+    <span style="color: #a9dc69;">"The constant PHI, The golden ratio."</span>)
+
+  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*zh-hash-table*</span> (make-hash-table)
+    <span style="color: #9c71a5; font-style: italic;">"Hash table for storing data of, and</span>
+<span style="color: #9c71a5; font-style: italic;">  metadata about the vocabulary listing"</span>)
+
+  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*mp3dir*</span> nil)
+
+  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*mp3-alist*</span> nil)
+
+  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*vocab-key-count*</span> 0
+    <span style="color: #9c71a5; font-style: italic;">"Counter for the list of vocabulary entries,</span>
+<span style="color: #9c71a5; font-style: italic;">  is incremented on addition of elements, or set</span>
+<span style="color: #9c71a5; font-style: italic;">  when a data-set is loaded into the hash-table."</span>)
+
+  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*test-pool*</span> nil
+    <span style="color: #9c71a5; font-style: italic;">"Words that have been seen during a practice session"</span>)
+
+  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*current-hsk-level*</span> 1)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Structures</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Vocab Entry:
+<ul class="org-ul">
+<li>The <code>vocab-entry</code> data-structure houses each vocabulary item, as well as the
+metadata about each item, such as times correct, time incorrect, last
+practice date, and repetitions.
+</li>
+</ul>
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defstruct</span> <span style="color: #9dbbd3; font-weight: bold;">vocab-entry</span>
+  (hsk     1                    <span style="color: #f9b529;">:type</span> integer)
+  (hanzi   <span style="color: #a9dc69;">""</span>                   <span style="color: #f9b529;">:type</span> string)
+  (pinyin  <span style="color: #a9dc69;">""</span>                   <span style="color: #f9b529;">:type</span> string)
+  (english '(<span style="color: #a9dc69;">""</span>)                <span style="color: #f9b529;">:type</span> list)
+  (seealso '(<span style="color: #a9dc69;">""</span>)                <span style="color: #f9b529;">:type</span> list)
+  (units   '(<span style="color: #a9dc69;">""</span>)                <span style="color: #f9b529;">:type</span> list)
+  (score   (complex 0.0 0.0)    <span style="color: #f9b529;">:type</span> complex)
+  (date    (get-universal-time) <span style="color: #f9b529;">:type</span> integer)
+  (reps    1                    <span style="color: #f9b529;">:type</span> integer))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Comma-separated value import utilities</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Header info</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #232533;">;; </span><span style="color: #696e92;">This file is a part of the CL-CVD package, and contains the functionality for</span>
+<span style="color: #232533;">;; </span><span style="color: #696e92;">parsing CSV input.</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> preprocess-english</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Break up the generic English description rendered from the CSV by
+splitting it at each semicolon.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">preprocess-english</span> (desc-string)
+  (car (cl-csv:read-csv desc-string
+                        <span style="color: #f9b529;">:separator</span> #\SEMICOLON)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> collect-measures</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Collect all applicable notes concerning units of measurement related to words
+and generate a list of them. First checking to see if the object is a string at
+all, then if the length is greater than four (to prevent errors, and because it
+is a waste of time to scan such strings), then if the string begins with the
+characters which designate a unit (in this case, "CL:".)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">collect-measures</span> (l)
+  (iterate (for s in l)
+    (<span style="color: #f9b529; font-weight: bold;">when</span> (and (stringp s)
+               (&lt; 4 (length s))
+               (string= (subseq s 0 3) <span style="color: #a9dc69;">"CL:"</span>))
+      (collect s))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> clean-measures</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Prune the "CL:" from the head of measures to make displaying nicer.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">clean-measures</span> (s)
+  (regex-replace <span style="color: #a9dc69;">"CL:"</span> s <span style="color: #a9dc69;">""</span>))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> flatten</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Flatten nested lists. Pulled from <a href="http://letoverlambda.com">Let Over Lambda</a> Credit goes to Doug Hoyte.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">flatten</span> (x)
+  (<span style="color: #f9b529; font-weight: bold;">labels</span> ((rec (x acc)
+             (<span style="color: #f9b529; font-weight: bold;">cond</span> ((null x) acc)
+                   ((atom x) (cons x acc))
+                   (t (rec (car x)
+                           (rec (cdr x) acc))))))
+    (rec x nil)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> finalize-measures</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+Take the collected measures, split them by commas into separate
+strings, and flatten the resulting structure.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">finalize-measures</span> (l)
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((objet-petit-a (collect-measures l)))
+    (<span style="color: #f9b529; font-weight: bold;">unless</span> (zerop (length objet-petit-a))
+      (flatten
+       (mapcar #'cl-csv:read-csv
+               (mapcar #'clean-measures objet-petit-a))))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> collect-see-also</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+Collect strings from the results of <code>preprocess-english</code> that begin with "see
+also".
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">collect-see-also</span> (l)
+  (iterate (for s in l)
+    (<span style="color: #f9b529; font-weight: bold;">when</span> (and (stringp s)
+               (&lt; 8 (length s))
+               (string= (subseq s 0 8) <span style="color: #a9dc69;">"see also"</span>))
+      (collect s))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-8" class="outline-3">
+<h3 id="sec-3-8"><span class="section-number-3">3.8</span> clean-english</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+Remove all entries that are not themselves translations of the term,
+but relate to either units of measurement, or hint to related terms.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">clean-english</span> (l)
+  (remove-if (<span style="color: #f9b529; font-weight: bold;">lambda</span> (s)
+               (or
+                (and (&lt; 8 (length s))
+                     (or (string= (subseq s 0 8) <span style="color: #a9dc69;">"see also"</span>)
+                         (string= (subseq s 0 9) <span style="color: #a9dc69;">"(see also"</span>)))
+                (and (&lt; 4 (length s))
+                     (string= (subseq s 0 3) <span style="color: #a9dc69;">"CL:"</span>))))
+             l))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-9" class="outline-3">
+<h3 id="sec-3-9"><span class="section-number-3">3.9</span> eleml-to-struct</h3>
+<div class="outline-text-3" id="text-3-9">
+<p>
+Break up the s-expressionized CSV line and name the elements, then perform
+various operations on each elements, including further breaking up into
+references to other items,
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">eleml-to-struct</span> (l)
+  (<span style="color: #f9b529; font-weight: bold;">destructuring-bind</span> (hsk hanzi pinyin description) l
+    (<span style="color: #f9b529; font-weight: bold;">let*</span> ((pre-english (preprocess-english description))
+           (units       (finalize-measures  pre-english))
+           (see-also    (collect-see-also   pre-english))
+           (english     (clean-english      pre-english)))
+      (make-vocab-entry <span style="color: #f9b529;">:hsk</span>     (read-from-string hsk)
+                        <span style="color: #f9b529;">:hanzi</span>   hanzi
+                        <span style="color: #f9b529;">:pinyin</span>  pinyin
+                        <span style="color: #f9b529;">:english</span> english
+                        <span style="color: #f9b529;">:units</span>   units
+                        <span style="color: #f9b529;">:seealso</span> see-also))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-10" class="outline-3">
+<h3 id="sec-3-10"><span class="section-number-3">3.10</span> batch-add-table</h3>
+<div class="outline-text-3" id="text-3-10">
+<p>
+Copy the entire result of a <code>parse-csv</code> operation into a hash table using the
+predefined functions above.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">batch-add-table</span> (l)
+  (<span style="color: #f9b529; font-weight: bold;">dolist</span> (lx l)
+    (puthash (gen-ht-key 'zh-index)
+             *zh-hash-table*
+             (eleml-to-struct lx))))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Data-store utility functions</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> element-of-truth</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Check a list for any non-nil values.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">element-of-truth</span> (l)
+  (member t (mapcar (<span style="color: #f9b529; font-weight: bold;">lambda</span> (x)
+                      (<span style="color: #f9b529; font-weight: bold;">when</span> x t))
+                    l)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> gen-ht-key</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<code>gen-ht-key</code> creates the keys used for labeling objects in the hash table.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">gen-ht-key</span> (prefix)
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((the-sym-name (format nil <span style="color: #a9dc69;">"~D-~D"</span> prefix (incf *vocab-key-count*))))
+    (intern the-sym-name <span style="color: #f9b529;">:cl-cvd</span>)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> key-exists-p</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Test to see if a key is already assigned within a hash-table
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">key-exists-p</span> (key table)
+  (<span style="color: #f9b529; font-weight: bold;">if</span> (gethash key table)
+      t
+      nil))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> puthash</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+Wrap the <code>setf</code> clause in a function for adding/modifying entries in a hash-table
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">puthash</span> (key table object)
+  (setf (gethash key table) object))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> hash-table searching functions</h3>
+<div class="outline-text-3" id="text-4-5">
+</div><div id="outline-container-sec-4-5-1" class="outline-4">
+<h4 id="sec-4-5-1">hsk-apropos</h4>
+<div class="outline-text-4" id="text-4-5-1">
+<p>
+Search for and collect items that match a specified <a href="http://en.wikipedia.org/wiki/Hanyu_Shuiping_Kaoshi">HSK</a> level.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">hsk-apropos</span> (level)
+  (<span style="color: #f9b529; font-weight: bold;">declare</span> (fixnum level))
+  (<span style="color: #f9b529; font-weight: bold;">loop</span> <span style="color: #f9b529;">:for</span> key <span style="color: #f9b529;">:being</span> the hash-keys <span style="color: #f9b529;">:of</span> *zh-hash-table*
+        <span style="color: #f9b529;">:for</span> val <span style="color: #f9b529;">:being</span> the hash-value <span style="color: #f9b529;">:of</span> *zh-hash-table*
+        <span style="color: #f9b529;">:when</span> (= level (<span style="color: #f9b529; font-weight: bold;">the</span> fixnum (vocab-entry-hsk val)))
+          <span style="color: #f9b529;">:collect</span> key))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-5-2" class="outline-4">
+<h4 id="sec-4-5-2">zh-apropos</h4>
+<div class="outline-text-4" id="text-4-5-2">
+<p>
+Search the hash table for a matching Hanzi entry and return it with the hash key
+associated with the vocabulary entry found in a list in the form <code>(&lt;key&gt;
+&lt;vocab-entry&gt;)</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">zh-apropos</span> (zh-string)
+  (<span style="color: #f9b529; font-weight: bold;">declare</span> (string zh-string))
+  (<span style="color: #f9b529; font-weight: bold;">loop</span> <span style="color: #f9b529;">:for</span> key <span style="color: #f9b529;">:being</span> the hash-keys <span style="color: #f9b529;">:of</span> *zh-hash-table*
+        <span style="color: #f9b529;">:for</span> val <span style="color: #f9b529;">:being</span> the hash-value <span style="color: #f9b529;">:of</span> *zh-hash-table*
+        <span style="color: #f9b529;">:when</span> (scan zh-string (vocab-entry-hanzi val))
+          <span style="color: #f9b529;">:collect</span> (list key val)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-5-3" class="outline-4">
+<h4 id="sec-4-5-3">zh-apropos-key</h4>
+<div class="outline-text-4" id="text-4-5-3">
+<p>
+Find vocabulary entries where the provided <code>zh-string</code> is at least a subset of
+the string stored in the entry's <code>:hanzi</code> slot. Return a list of hash-keys of
+the relevant vocabulary entries.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">zh-apropos-key</span> (zh-string)
+  (<span style="color: #f9b529; font-weight: bold;">declare</span> (string zh-string))
+  (<span style="color: #f9b529; font-weight: bold;">loop</span> <span style="color: #f9b529;">:for</span> key <span style="color: #f9b529;">:being</span> the hash-keys  <span style="color: #f9b529;">:of</span> *zh-hash-table*
+        <span style="color: #f9b529;">:for</span> val <span style="color: #f9b529;">:being</span> the hash-value <span style="color: #f9b529;">:of</span> *zh-hash-table*
+        <span style="color: #f9b529;">:when</span> (scan zh-string (vocab-entry-hanzi val))
+          <span style="color: #f9b529;">:collect</span> key))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-5-4" class="outline-4">
+<h4 id="sec-4-5-4">en-apropos</h4>
+<div class="outline-text-4" id="text-4-5-4">
+<p>
+Find a vocab entry which contains a specified substring within its <code>:english</code> slot.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">en-apropos</span> (en-string)
+  (<span style="color: #f9b529; font-weight: bold;">declare</span> (string en-string))
+  (<span style="color: #f9b529; font-weight: bold;">loop</span> <span style="color: #f9b529;">:for</span> key <span style="color: #f9b529;">:being</span> the hash-keys <span style="color: #f9b529;">:of</span> *zh-hash-table*
+        <span style="color: #f9b529;">:for</span> val <span style="color: #f9b529;">:being</span> the hash-value <span style="color: #f9b529;">:of</span> *zh-hash-table*
+        <span style="color: #f9b529;">:when</span> (element-of-truth
+               (mapcar (<span style="color: #f9b529; font-weight: bold;">lambda</span> (s)
+                         (scan en-string s))
+                       (vocab-entry-english val)))
+          <span style="color: #f9b529;">:collect</span> (list key val)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-5-5" class="outline-4">
+<h4 id="sec-4-5-5">en-apropos-word</h4>
+<div class="outline-text-4" id="text-4-5-5">
+<p>
+Find a vocab entry which contains a discreet word, separated by punctuation on
+either side, or at either end of the whole sequence.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">en-apropos-word</span> (en-word)
+  (<span style="color: #f9b529; font-weight: bold;">declare</span> (string en-word))
+  (<span style="color: #f9b529; font-weight: bold;">loop</span> <span style="color: #f9b529;">:for</span> key <span style="color: #f9b529;">:being</span> the hash-keys <span style="color: #f9b529;">:of</span> *zh-hash-table*
+        <span style="color: #f9b529;">:for</span> val <span style="color: #f9b529;">:being</span> the hash-value <span style="color: #f9b529;">:of</span> *zh-hash-table*
+        <span style="color: #f9b529;">:when</span> (element-of-truth
+               (mapcar (<span style="color: #f9b529; font-weight: bold;">lambda</span> (s)
+                         (find-word-in-string en-word s))
+                       (vocab-entry-english val)))
+          <span style="color: #f9b529;">:collect</span> (list key val)))
+</pre>
+</div>
+</div>
+<ul class="org-ul"><li><a id="sec-4-5-5-1" name="sec-4-5-5-1"></a>find-word-in-string<br  /><div class="outline-text-5" id="text-4-5-5-1">
+<p>
+Find a whole word within a provided string, delineated by an end of the
+<code>target-string</code> or any predefined punctuation mark as defined within the
+<code>punctuation-p</code> enclosed functions.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">find-word-in-string</span> (word target-string)
+  (<span style="color: #f9b529; font-weight: bold;">declare</span> (string word target-string))
+  (<span style="color: #f9b529; font-weight: bold;">multiple-value-bind</span> (word-begin word-end) (scan word target-string)
+    (<span style="color: #f9b529; font-weight: bold;">when</span> (and word-begin word-end)
+      (<span style="color: #f9b529; font-weight: bold;">cond</span> ((string= word target-string) word)
+            ((and (or (zerop word-begin)
+                      (punctuation-p (char target-string (- word-begin 1))))
+                  (or (= (length target-string) word-end)
+                      (punctuation-p (char target-string word-end))))
+             word)))))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="sec-4-5-5-2" name="sec-4-5-5-2"></a>punctuation-p<br  /><div class="outline-text-5" id="text-4-5-5-2">
+<p>
+Define a set of functions for retrieving and manipulating a stored list of
+punctuation-marks and white-space characters.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">let</span> ((punctuations '(#\SPACE #\Tab
+                      #\.     #\,
+                      #\;     #\:
+                      #\/     #\\
+                      #\|     #\!
+                      #\-     #\_
+                      #\(     #\) 
+                      #\{     #\}
+                      #\[     #\]
+                      #\~     #\`
+                      #\&lt;     #\&gt;
+                      #\?     #\&amp;
+                      #\"     #\+
+                      #\=)))
+
+  (<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">punctuation-p</span> (chr)
+    (member chr punctuations))
+
+  (<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">defpunct</span> (chr)
+    (<span style="color: #f9b529; font-weight: bold;">unless</span> (punctuation-p chr)
+      (push chr punctuations)))
+
+  (<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">rempunct</span> (chr)
+    (<span style="color: #f9b529; font-weight: bold;">when</span> (punctuation-p)
+      (setf punctuations (delete chr punctuations))))
+
+  (<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">get-punctuation</span> ()
+    punctuations))
+</pre>
+</div>
+</div>
+</li></ul>
+</div>
+</div>
+<div id="outline-container-sec-4-6" class="outline-3">
+<h3 id="sec-4-6"><span class="section-number-3">4.6</span> count-spaces</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+Determine the complexity of an example by counting the spaces in a string. This
+is used to determine if one should be expected to enter the english equivalent
+of a selected Chinese text sample.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">count-spaces</span> (str)
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((space-count 0))
+    (iterate (for chr in-string str)
+      (<span style="color: #f9b529; font-weight: bold;">when</span> (char= chr #\SPACE)
+        (incf space-count))
+      (finally (<span style="color: #f9b529; font-weight: bold;">return</span> space-count)))))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Entry manipulation</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> add-entry</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Create a new instance of <code>vocab-entry</code> and install it into the primary
+hash-table with a unique key.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">add-entry</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> hanzi pinyin english (hsk 0) (hash-table *zh-hash-table*))
+  (puthash (gen-ht-key 'zh-index)
+           hash-table
+           (make-vocab-entry <span style="color: #f9b529;">:hanzi</span>   hanzi
+                             <span style="color: #f9b529;">:pinyin</span>  pinyin
+                             <span style="color: #f9b529;">:english</span> english
+                             <span style="color: #f9b529;">:hsk</span>     hsk)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> revise-entry</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Modify an entry by accepting a field parameter, and a replacement value.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">revise-entry</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> key field new-data (hash-table *zh-hash-table*))
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((the-object (gethash key hash-table)))
+    (<span style="color: #f9b529; font-weight: bold;">case</span> field
+      ((hanzi)   (setf (vocab-entry-hanzi   the-object) new-data))
+      ((pinyin)  (setf (vocab-entry-pinyin  the-object) new-data))
+      ((english) (setf (vocab-entry-english the-object) new-data)))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> append-english</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+Append additional English terms to the <code>:english</code> slot in a <code>vocab-entry</code>
+instance.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">append-english</span> (english-strings <span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> key (hash-table *zh-hash-table*))
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((the-object (gethash key hash-table)))
+    (revise-entry (append (vocab-entry-english the-object) english-strings)
+                  <span style="color: #f9b529;">:key</span> key
+                  <span style="color: #f9b529;">:field</span> 'english)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> update-score</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+Update the score stored in a <code>vocab-entry</code> instance based on the results of
+<code>check-answer</code> and <code>score-result</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">update-score</span> (answer hash-key test-type <span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (hash-table *zh-hash-table*))
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((vocab-entry (gethash hash-key hash-table)))
+    (setf (vocab-entry-score vocab-entry)
+          (+ (vocab-entry-score vocab-entry)
+             (score-result (<span style="color: #ea8673; font-weight: bold;">check-answer</span> answer vocab-entry test-type))))
+    (setf (vocab-entry-date vocab-entry)
+          (get-universal-time))
+    (incf (vocab-entry-reps vocab-entry))))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Storage</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Saving</h3>
+<div class="outline-text-3" id="text-6-1">
+</div><div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1">save-ht-vocab</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+<code>save-ht-vocab</code> dumps the raw hash-table to a file, pretty printed for nicer viewing.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">save-ht-vocab</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (vocab-table *zh-hash-table*) (filename <span style="color: #a9dc69;">"zh-save.raw"</span>))
+  (<span style="color: #f9b529; font-weight: bold;">with-open-file</span> (out filename
+                       <span style="color: #f9b529;">:direction</span> <span style="color: #f9b529;">:output</span>
+                       <span style="color: #f9b529;">:if-exists</span> <span style="color: #f9b529;">:supersede</span>)
+    (<span style="color: #f9b529; font-weight: bold;">with-standard-io-syntax</span>
+      (pprint vocab-table out))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-1-2" class="outline-4">
+<h4 id="sec-6-1-2">export-vocab</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+The <code>export-vocab</code> function arose out of a finding that hash-table objects
+differ slightly between Common Lisp implementations.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">export-vocab</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (vocab-table *zh-hash-table*) (filename <span style="color: #a9dc69;">"zh-portable.raw"</span>))
+  (<span style="color: #f9b529; font-weight: bold;">labels</span> ((destructure-vocab (x y)
+             (push (list x y) the-alist)))
+    (<span style="color: #f9b529; font-weight: bold;">let</span> (the-alist)
+      (maphash #'destructure-vocab vocab-table)
+      (<span style="color: #f9b529; font-weight: bold;">with-open-file</span> (out filename
+                           <span style="color: #f9b529;">:direction</span> <span style="color: #f9b529;">:output</span>
+                           <span style="color: #f9b529;">:if-exists</span> <span style="color: #f9b529;">:supersede</span>)
+        (<span style="color: #f9b529; font-weight: bold;">with-standard-io-syntax</span>
+          (pprint the-alist out))))))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Loading</h3>
+<div class="outline-text-3" id="text-6-2">
+</div><div id="outline-container-sec-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1">load-ht-vocab</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+This function reads in a file and sets the <code>*zh-hash-table*</code> to the value of the
+contents of that file.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">load-ht-vocab</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;optional</span> (filename <span style="color: #a9dc69;">"zh-save.raw"</span>) (vocab-variable *zh-hash-table*))
+  (<span style="color: #f9b529; font-weight: bold;">with-open-file</span> (in filename)
+    (<span style="color: #f9b529; font-weight: bold;">with-standard-io-syntax</span>
+      (setf vocab-variable (read in))))
+  (setf *vocab-key-count* (hash-table-count *zh-hash-table*)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-2-2" class="outline-4">
+<h4 id="sec-6-2-2">import-vocab</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<p>
+The obvious counterpart to <code>export-vocab</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">import-vocab</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (vocab-table *zh-hash-table*) (filename <span style="color: #a9dc69;">"zh-portable.raw"</span>))
+  (<span style="color: #f9b529; font-weight: bold;">labels</span> ((structure-vocab (l)
+             (puthash (car l) vocab-table (cadr l))))
+    (<span style="color: #f9b529; font-weight: bold;">with-open-file</span> (in filename)
+      (<span style="color: #f9b529; font-weight: bold;">with-standard-io-syntax</span>
+        (mapcar #'structure-vocab (read in))))
+    (setf *vocab-key-count* (hash-table-count *zh-hash-table*))))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Converting</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+When moving between Lisp implementations, you cannot keep the same hash-table
+object in plain-text format and expect to be able to load it, so this must be
+executed in order to use your data-set when migrating.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">convert-vocab</span> ()
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((voctemp (make-hash-table)))
+    (import-vocab <span style="color: #f9b529;">:vocab-variable</span> voctemp)
+    (save-ht-vocab <span style="color: #f9b529;">:vocab-table</span> voctemp)))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> MP3 file Matching and Playback</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+MP3s and the original data-set were provided by <i>lingomi</i>.
+</p>
+</div>
+
+<div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> fill-mp3-paths</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+Set the variable <code>*mp3dir*</code> to be a list of paths to each of the MP3s for the
+vocab tests.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">fill-mp3-paths</span> ()
+  (setf *mp3dir* (directory #P<span style="color: #a9dc69;">"~/chinese/hsk_mp3/*.mp3"</span>))
+  nil)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> matching vocab entries to mp3s</h3>
+<div class="outline-text-3" id="text-7-2">
+</div><div id="outline-container-sec-7-2-1" class="outline-4">
+<h4 id="sec-7-2-1">find-mp3-path</h4>
+<div class="outline-text-4" id="text-7-2-1">
+<p>
+Search a list of mp3 files for a match with a predefined pinyin string.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">find-mp3-path</span> (match-name)
+  (iterate (for elt in *mp3dir*)
+    (finding elt such-that (scan match-name (namestring elt)))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-2-2" class="outline-4">
+<h4 id="sec-7-2-2">find-matching-mp3</h4>
+<div class="outline-text-4" id="text-7-2-2">
+<p>
+Match a given vocabulary key to a list of mp3 files
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">find-matching-mp3</span> (vocab-key)
+  (<span style="color: #f9b529; font-weight: bold;">let*</span> ((vocab-entry (gethash vocab-key *zh-hash-table*))
+         (pinyin (vocab-entry-pinyin vocab-entry))
+         (nospace (regex-replace <span style="color: #a9dc69;">" "</span> pinyin <span style="color: #a9dc69;">""</span>))
+         (match-name (concatenate 'string <span style="color: #a9dc69;">"-"</span> nospace <span style="color: #a9dc69;">"-"</span>))
+         (mp3-path (find-mp3-path match-name)))
+    (<span style="color: #f9b529; font-weight: bold;">when</span> mp3-path
+      (push (list vocab-key
+                  (namestring mp3-path))
+            *mp3-alist*))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-2-3" class="outline-4">
+<h4 id="sec-7-2-3">find-active-vocab-mp3s</h4>
+<div class="outline-text-4" id="text-7-2-3">
+<p>
+Look for mp3s which match the contents of the <code>*mp3dir*</code> variable, if it is not
+already in the <code>*mp3-alist*</code>, add it in the form of <code>(KEY PATH-TO-MP3)</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">find-active-vocab-mp3s</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;optional</span> (source-list *mp3dir*))
+  (mapcar (<span style="color: #f9b529; font-weight: bold;">lambda</span> (key)
+            (<span style="color: #f9b529; font-weight: bold;">unless</span> (assoc key *mp3-alist*)
+              (find-matching-mp3 key)))
+          source-list))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-2-4" class="outline-4">
+<h4 id="sec-7-2-4">play-mp3</h4>
+<div class="outline-text-4" id="text-7-2-4">
+<p>
+Launch a thread that runs a program with the appropriate filename as returned by
+an association list lookup.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">play-mp3</span> (key)
+  (bordeaux-threads:make-thread (<span style="color: #f9b529; font-weight: bold;">lambda</span> ()
+                                  (run <span style="color: #a9dc69;">"/usr/bin/mpg123"</span>
+                                       (cdr (assoc key *mp3-alist*))))
+                                <span style="color: #f9b529;">:name</span> <span style="color: #a9dc69;">"mp3 playback thread"</span>))
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Testing Facilities</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> set comparisons</h3>
+<div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">my-subset?</span> (set-x set-y)
+  (not (set-difference set-x set-y)))
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">set-equal?</span> (set-x set-y)
+  (and (my-subset? set-x set-y)
+       (my-subset? set-y set-x)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> load-from-hsk</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+Useful for bootstrapping vocab-element selection.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">load-from-hsk</span> (hsk-val <span style="color: #9dbbd3; font-weight: bold;">&amp;optional</span> (n 10))
+  (setf *test-pool*
+        (subseq (reverse (hsk-apropos hsk-val))
+                0
+                n)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-3" class="outline-3">
+<h3 id="sec-8-3"><span class="section-number-3">8.3</span> add-vocabs</h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">add-vocabs</span> (hsk <span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (count 5))
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((pool     (reverse (hsk-apropos hsk)))
+        (p-length (length *test-pool*)))
+    (iterate (for elt in pool)
+      (<span style="color: #f9b529; font-weight: bold;">unless</span> (member elt *test-pool*)
+        (<span style="color: #f9b529; font-weight: bold;">when</span> (&lt;= (length *test-pool*)
+                  (+ p-length count))
+          (push elt *test-pool*))))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-4" class="outline-3">
+<h3 id="sec-8-4"><span class="section-number-3">8.4</span> enumerate-qualified-elements</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+Check the number of elements that have qualified since the last test occurred,
+This is used to check to see if the minimal number of elements required for a
+test can be called in without overlapping cooldown-times.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">enumerate-qualified-elements</span> ()
+  (length (remove-if-not #'qualified-p *test-pool*)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-5" class="outline-3">
+<h3 id="sec-8-5"><span class="section-number-3">8.5</span> refil-testing-pool</h3>
+<div class="outline-text-3" id="text-8-5">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">refil-testing-pool</span> (hsk upper-bound)
+  (add-vocabs hsk (- upper-bound (enumerate-qualified-elements))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-6" class="outline-3">
+<h3 id="sec-8-6"><span class="section-number-3">8.6</span> hsk-spillover</h3>
+<div class="outline-text-3" id="text-8-6">
+<p>
+When a testing level is exhausted, pull more from the next level up.
+If there are no more levels, don't increment.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">hsk-spillover</span> ()
+  (<span style="color: #f9b529; font-weight: bold;">if</span> (and (hsk-apropos (+ *current-hsk-level* 1))
+           (set-equal-p *test-pool* (hsk-apropos *current-hsk-level*)))
+      (incf *current-hsk-level*)
+      (format nil <span style="color: #a9dc69;">"Takeshi: ``</span><span style="color: #ffffff; font-weight: bold; font-style: italic;">Amazing!</span><span style="color: #a9dc69;">''"</span>)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-7" class="outline-3">
+<h3 id="sec-8-7"><span class="section-number-3">8.7</span> Vocab element qualification</h3>
+<div class="outline-text-3" id="text-8-7">
+</div><div id="outline-container-sec-8-7-1" class="outline-4">
+<h4 id="sec-8-7-1">english-sensible-p</h4>
+<div class="outline-text-4" id="text-8-7-1">
+<p>
+Check to see if any constituents of the english parameter of a particular entry
+can be expected to be remembered verbatim and entered when prompted for an
+English answer. Perhaps this could be mitigated with a check against a digital
+thesaurus.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">english-sensible-p</span> (vocab-entry)
+  (element-of-truth (mapcar (<span style="color: #f9b529; font-weight: bold;">lambda</span> (s)
+                              (&lt; (count-spaces s) 2))
+                            (vocab-entry-english vocab-entry))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-7-2" class="outline-4">
+<h4 id="sec-8-7-2">sensible-tests</h4>
+<div class="outline-text-4" id="text-8-7-2">
+<p>
+A bit crude, but return a list of appropriate tests based on the response of
+<code>english-sensible-p</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">sensible-tests</span> (vocab-element)
+  (<span style="color: #f9b529; font-weight: bold;">if</span> (english-qualified-p vocab-element)
+      (list 'english 'hanzi 'pinyin)
+      (list 'hanzi 'pinyin)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-7-3" class="outline-4">
+<h4 id="sec-8-7-3">qualified-p</h4>
+<div class="outline-text-4" id="text-8-7-3">
+<p>
+Test to see which vocabulary elements qualify for testing at a given time.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">qualified-p</span> (vocab-struct)
+  (and (&gt; 10 (vocab-entry-reps vocab-struct))
+       (&gt; (get-universal-time)
+          (vocab-entry-date vocab-struct))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-7-4" class="outline-4">
+<h4 id="sec-8-7-4">set-next-test</h4>
+<div class="outline-text-4" id="text-8-7-4">
+<p>
+Set the <code>:date</code> slot in a given vocab structure to the next scheduled test based
+upon the number of times it has been correctly answered.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">set-next-test</span> (vocab-struct)
+  (setf (vocab-entry-date vocab-struct)
+        (schedule-next-test (vocab-entry-reps vocab-struct))))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-8" class="outline-3">
+<h3 id="sec-8-8"><span class="section-number-3">8.8</span> Presentation</h3>
+<div class="outline-text-3" id="text-8-8">
+</div><div id="outline-container-sec-8-8-1" class="outline-4">
+<h4 id="sec-8-8-1">show-challenge</h4>
+<div class="outline-text-4" id="text-8-8-1">
+<p>
+Take a <code>field</code> and <code>key</code>, and respond with a string from the requested
+field. A field value of <code>english</code> will return a random string from the list
+located in the <code>:english</code> field of the selected <code>vocab-entry</code>, and <code>english-all</code>
+will return a string containing all the elements of the list. A value of
+<code>pinyin</code> will return a pinyin string, and <code>hanzi</code> will return the Chinese
+ideographs.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">show-challenge</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> field key (hash-table *zh-hash-table*))
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((the-object (gethash key hash-table)))
+    (<span style="color: #f9b529; font-weight: bold;">case</span> field
+      ((english)     (nth (random (length (vocab-entry-english the-object)))
+                          (vocab-entry-english the-object)))
+      ((english-all) (format nil <span style="color: #a9dc69;">"~{~A~^, ~}."</span> (vocab-entry-english the-object)))
+      ((pinyin)      (vocab-entry-pinyin the-object))
+      ((hanzi)       (vocab-entry-hanzi the-object)))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-8-2" class="outline-4">
+<h4 id="sec-8-8-2">take-answer</h4>
+<div class="outline-text-4" id="text-8-8-2">
+<p>
+A simple silly test.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">take-answer</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> test)
+  (format t <span style="color: #a9dc69;">"~D&gt; "</span> test)
+  (read-line))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-9" class="outline-3">
+<h3 id="sec-8-9"><span class="section-number-3">8.9</span> List construction</h3>
+<div class="outline-text-3" id="text-8-9">
+</div><div id="outline-container-sec-8-9-1" class="outline-4">
+<h4 id="sec-8-9-1">construct-test-list</h4>
+<div class="outline-text-4" id="text-8-9-1">
+<p>
+Build up a sample of vocab items for a test battery.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">construct-test-list</span> (length <span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (test-pool *test-pool*) (vocab *zh-hash-table*))
+  <span style="color: #9c71a5; font-style: italic;">"Construct a test list of LENGTH members"</span>
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((repeat 0)
+        (result))
+    (iterate (for key in test-pool)
+      (<span style="color: #f9b529; font-weight: bold;">if</span> (= repeat length)
+          result
+          (<span style="color: #f9b529; font-weight: bold;">when</span> (qualified-p (gethash key vocab))
+            (incf repeat)
+            (collect key into result at beginning))))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-9-2" class="outline-4">
+<h4 id="sec-8-9-2">reconstruct-test-pool</h4>
+<div class="outline-text-4" id="text-8-9-2">
+<p>
+Rebuild the testing pool from the base vocab library by searching for items that
+have already been seen in practice.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">reconstruct-test-pool</span> ()
+  (maphash (<span style="color: #f9b529; font-weight: bold;">lambda</span> (key val)
+             (<span style="color: #f9b529; font-weight: bold;">when</span> (&lt; 1 (vocab-entry-reps val))
+               (push key *test-pool*)))
+           *zh-hash-table*))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-10" class="outline-3">
+<h3 id="sec-8-10"><span class="section-number-3">8.10</span> Scoring</h3>
+<div class="outline-text-3" id="text-8-10">
+</div><div id="outline-container-sec-8-10-1" class="outline-4">
+<h4 id="sec-8-10-1">string-in-list-p</h4>
+<div class="outline-text-4" id="text-8-10-1">
+<p>
+Test to see if a list contains a specified string.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">string-in-list-p</span> (string l)
+  (iterate (for s in l)
+    (<span style="color: #f9b529; font-weight: bold;">when</span> (string= s string)
+      l)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-10-2" class="outline-4">
+<h4 id="sec-8-10-2">check-answer</h4>
+<div class="outline-text-4" id="text-8-10-2">
+<p>
+Test a provided answer for correctness against data stored in a vocab-entry instance.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">check-answer</span> (answer vocab-entry test-type)
+  (<span style="color: #f9b529; font-weight: bold;">cond</span> ((and (equalp test-type 'english)
+              (string-in-list-p answer (vocab-entry-english vocab-entry))))
+        ((and (equalp test-type 'hanzi)
+              (string= answer (vocab-entry-hanzi vocab-entry))))
+        ((and (equalp test-type 'pinyin)
+              (string= answer (vocab-entry-pinyin vocab-entry))))
+        ((not (member test-type '(english hanzi pinyin)))
+         (<span style="color: #ea8673; font-weight: bold;">error</span> <span style="color: #a9dc69;">"Unknown test-type"</span>))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-10-3" class="outline-4">
+<h4 id="sec-8-10-3">score-result</h4>
+<div class="outline-text-4" id="text-8-10-3">
+<p>
+Return a complex number, depending the state of <code>result</code>, that is added to the
+score stored in a specific <code>vocab-entry</code> structure. The left side of the complex
+is Correct, the right is Incorrect.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">score-result</span> (result)
+  (<span style="color: #f9b529; font-weight: bold;">if</span> result
+      1
+      #C(0 1)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-10-4" class="outline-4">
+<h4 id="sec-8-10-4">determine-offset</h4>
+<div class="outline-text-4" id="text-8-10-4">
+<p>
+,Determine the offset for scheduling from anywhere between minutes to weeks based
+on the ratio between the real and imaginary components of the complex number
+stored in the <code>:score</code> slot. This is used to grade understanding between at
+least four categories: unknown, poorly known, somewhat known, and known.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">determine-offset</span> (c)
+    (<span style="color: #f9b529; font-weight: bold;">let</span> ((ratio (/ (realpart c) (imagpart c))))
+      (<span style="color: #f9b529; font-weight: bold;">cond</span> ((&lt;= ratio 1)  'unknown)
+            ((&lt;= ratio 2)  'poor)
+            ((&lt;= ratio 5)  'medium)
+            ((&lt;= ratio 10) 'good))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-10-5" class="outline-4">
+<h4 id="sec-8-10-5">schedule-next-test</h4>
+<div class="outline-text-4" id="text-8-10-5">
+<p>
+Determine when a word should be tested next based on the number of repetitions,
+and adjust this based on the score.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">schedule-next-test</span> (reps score)
+  (round
+   (+ (get-universal-time)
+      (* (+ 7200                          <span style="color: #232533;">; </span><span style="color: #696e92;">two hours in seconds</span>
+            (<span style="color: #f9b529; font-weight: bold;">case</span> (determine-offset score)
+              ((unknown) 3600)            <span style="color: #232533;">; </span><span style="color: #696e92;">one hour in seconds</span>
+              ((poor)    7200)            <span style="color: #232533;">; </span><span style="color: #696e92;">two hours in seconds</span>
+              ((medium)  10800)           <span style="color: #232533;">; </span><span style="color: #696e92;">three hours in seconds</span>
+              ((good)    18000)           <span style="color: #232533;">; </span><span style="color: #696e92;">Five hours in seconds</span>
+              ((t)       28800)           <span style="color: #232533;">; </span><span style="color: #696e92;">Eight hours in seconds;</span>
+              ((nil)     28800))          <span style="color: #232533;">; </span><span style="color: #696e92;">for compiler optimization.</span>
+            (expt phi (/ reps 3)))))))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-11" class="outline-3">
+<h3 id="sec-8-11"><span class="section-number-3">8.11</span> display-and-play</h3>
+<div class="outline-text-3" id="text-8-11">
+<p>
+Print the Challenge to the screen, then prompt the user for the selected test,
+and play the sound file associated with the vocab entry. Update the score stored
+in the vocab-entry structure to reflect the correctness of the answer.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">display-and-play</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> key from for)
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((goal      (show-challenge <span style="color: #f9b529;">:field</span> for <span style="color: #f9b529;">:key</span> key))
+        (challenge (show-challenge <span style="color: #f9b529;">:field</span> from <span style="color: #f9b529;">:key</span> key)))
+    (play-mp3 key)
+    (format t <span style="color: #a9dc69;">"~D~%~D&gt; "</span> challenge for)
+    (<span style="color: #f9b529; font-weight: bold;">let*</span> ((vocab-entry (gethash key *zh-hash-table*))
+           (results     (<span style="color: #ea8673; font-weight: bold;">check-answer</span> (get-answer) vocab-entry for))
+           (reps        (vocab-entry-reps vocab-entry)))
+      (setf (vocab-entry-score vocab-entry)
+            (+ (score-result results)
+               (vocab-entry-score vocab-entry)))
+      (<span style="color: #f9b529; font-weight: bold;">if</span> results
+          (<span style="color: #f9b529; font-weight: bold;">progn</span> (setf (vocab-entry-date vocab-entry)
+                       (schedule-next-test reps
+                                           (vocab-entry-score vocab-entry)))
+                 (incf reps))
+          (<span style="color: #f9b529; font-weight: bold;">progn</span> (setf *test-pool*
+                       (reverse (cons key (reverse *test-pool*))))
+                 goal)))))
+</pre>
+</div>
+</div>
+<ul class="org-ul"><li><a id="sec-8-11-0-1" name="sec-8-11-0-1"></a>get-answer<br  /><div class="outline-text-5" id="text-8-11-0-1">
+<p>
+Just having a call to <code>read-line</code> has some strange effects on program flow, so
+I'm wrapping it in a function.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">get-answer</span> ()
+  (read-line))
+</pre>
+</div>
+</div>
+</li></ul>
+</div>
+<div id="outline-container-sec-8-12" class="outline-3">
+<h3 id="sec-8-12"><span class="section-number-3">8.12</span> test-loop</h3>
+<div class="outline-text-3" id="text-8-12">
+<p>
+Loop through a set of tests where the test type is indeterminate.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">test-loop</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;optional</span> (n 10) (type 'random))
+  (<span style="color: #f9b529; font-weight: bold;">let</span> ((test-list (construct-test-list n)))
+    (iterate (for elt in test-list)
+      (<span style="color: #f9b529; font-weight: bold;">when</span> (&gt; n 0)
+        (1- n)
+        (<span style="color: #f9b529; font-weight: bold;">case</span> type
+          ((random) (random-test elt))
+          ((t) (display-and-play <span style="color: #f9b529;">:key</span> elt <span style="color: #f9b529;">:from</span> 'pinyin <span style="color: #f9b529;">:for</span> 'hanzi)))))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-13" class="outline-3">
+<h3 id="sec-8-13"><span class="section-number-3">8.13</span> random-test</h3>
+<div class="outline-text-3" id="text-8-13">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">random-test</span> (key)
+  (<span style="color: #f9b529; font-weight: bold;">let*</span> ((test-list (list 'hanzi 'pinyin 'english))
+         (crazy-english (list 'hanzi 'pinyin))
+         (sane-for (<span style="color: #f9b529; font-weight: bold;">if</span> (english-sensible-p (gethash key *zh-hash-table*))
+                       (nth (random (length test-list)) test-list)
+                       (nth (random (length crazy-english)) crazy-english)))
+         (rest-tests (delete sane-for test-list))
+         (from (nth (random (length rest-tests)) rest-tests)))
+    (display-and-play <span style="color: #f9b529;">:key</span> key <span style="color: #f9b529;">:from</span> from <span style="color: #f9b529;">:for</span> sane-for)))
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Riley E.</p>
+<p class="date">Created: 2014-11-11 Tue 14:49</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

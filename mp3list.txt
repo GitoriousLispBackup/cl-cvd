@@ -1,0 +1,277 @@
+
+((CHINESE-VOCAB-DRILL::ZH-INDEX-148
+  "/home/riley/chinese/hsk_mp3/1236-gao1xing4-happy; glad; willing (to do sth).mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-147
+  "/home/riley/chinese/hsk_mp3/1031-fan4guan3-restaurant.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-146
+  "/home/riley/chinese/hsk_mp3/1067-fei1ji1-airplane.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-145
+  "/home/riley/chinese/hsk_mp3/2356-ling2-(small) bell.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-144
+  "/home/riley/chinese/hsk_mp3/2880-qian2-coin; money.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-143
+  "/home/riley/chinese/hsk_mp3/2280-li3-lining; interior; inside; internal.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-142
+  "/home/riley/chinese/hsk_mp3/888-dou1-pocket; bag.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-141
+  "/home/riley/chinese/hsk_mp3/2599-na4r5-there.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-140
+  "/home/riley/chinese/hsk_mp3/2597-na4-that; those; then (in that case).mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-139
+  "/home/riley/chinese/hsk_mp3/4623-zhe4r5-here.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-138
+  "/home/riley/chinese/hsk_mp3/4622-zhe4-this; these.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-137
+  "/home/riley/chinese/hsk_mp3/4021-xie4xie5-to thank.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-136
+  "/home/riley/chinese/hsk_mp3/3173-shei2-who.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-135
+  "/home/riley/chinese/hsk_mp3/896-du2-to read; to study.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-134
+  "/home/riley/chinese/hsk_mp3/2954-qing3-to ask; to invite; please (do sth).mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-133
+  "/home/riley/chinese/hsk_mp3/3423-shuo1hua4-to speak; to say; to talk; to gossip.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-132
+  "/home/riley/chinese/hsk_mp3/3061-ren4shi5-to know; to recognize.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-131
+  "/home/riley/chinese/hsk_mp3/4263-yi1fu5-clothes.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-130
+  "/home/riley/chinese/hsk_mp3/350-cai4-dish (type of food); vegetables.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-129
+  "/home/riley/chinese/hsk_mp3/394-cha2-tea; tea plant.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-128
+  "/home/riley/chinese/hsk_mp3/2772-ping2guo3-apple.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-127
+  "/home/riley/chinese/hsk_mp3/2625-neng2-to be able to; to be capable of.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-126
+  "/home/riley/chinese/hsk_mp3/2256-lao3shi1-teacher.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-125
+  "/home/riley/chinese/hsk_mp3/2508-mi3fan4-(cooked)_rice.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-124
+  "/home/riley/chinese/hsk_mp3/3417-shui4jiao4-to go to bed.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-123
+  "/home/riley/chinese/hsk_mp3/2113-kan4jian4-to see.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-122
+  "/home/riley/chinese/hsk_mp3/781-de5-of.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-121
+  "/home/riley/chinese/hsk_mp3/840-dian4shi4-television; tv.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-120
+  "/home/riley/chinese/hsk_mp3/839-dian4nao3-computer.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-119
+  "/home/riley/chinese/hsk_mp3/843-dian4ying3-movie; film.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-118
+  "/home/riley/chinese/hsk_mp3/3933-xian4zai4-now; at present; at the moment; modern.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-117
+  "/home/riley/chinese/hsk_mp3/2465-mao1-cat.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-116
+  "/home/riley/chinese/hsk_mp3/1334-gou3-dog.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-115
+  "/home/riley/chinese/hsk_mp3/49-ba4ba5-(informal) father.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-114
+  "/home/riley/chinese/hsk_mp3/8-ai4-to love; affection; to be fond of.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-113
+  "/home/riley/chinese/hsk_mp3/3027-re4-heat; to heat up; fervent.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-112
+  "/home/riley/chinese/hsk_mp3/829-dian3-drop (of liquid); stain; spot; speck.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-110
+  "/home/riley/chinese/hsk_mp3/2751-piao4liang5-pretty.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-108
+  "/home/riley/chinese/hsk_mp3/2475-mei2-(negative prefix for verbs); have not.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-106
+  "/home/riley/chinese/hsk_mp3/3410-shui3-water; river; liquid; beverage.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-105
+  "/home/riley/chinese/hsk_mp3/4314-yi3zi5-chair.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-104
+  "/home/riley/chinese/hsk_mp3/4890-zhuo1zi5-table; desk.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-103
+  "/home/riley/chinese/hsk_mp3/138-bei1zi5-cup; glass.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-102
+  "/home/riley/chinese/hsk_mp3/2228-lai2-to come; to arrive; to come round.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-101
+  "/home/riley/chinese/hsk_mp3/156-ben3-roots or stems of plants; origin.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-100
+  "/home/riley/chinese/hsk_mp3/2715-peng2you5-friend.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-99
+  "/home/riley/chinese/hsk_mp3/4421-you3-to have; there is; there are; to exist.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-98
+  "/home/riley/chinese/hsk_mp3/4493-yue4-moon; month.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-97
+  "/home/riley/chinese/hsk_mp3/3296-shi4-is; are; am; yes.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-96
+  "/home/riley/chinese/hsk_mp3/4983-zuo2tian1-yesterday.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-95
+  "/home/riley/chinese/hsk_mp3/4059-xing1qi1-week.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-94
+  "/home/riley/chinese/hsk_mp3/2552-ming2tian1-tomorrow.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-93
+  "/home/riley/chinese/hsk_mp3/3263-shi2hou5-time; length of time; moment.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-92
+  "/home/riley/chinese/hsk_mp3/3071-ri4-sun; day; date, day of the month.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-90
+  "/home/riley/chinese/hsk_mp3/3809-wo3men5-we; us; ourselves.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-89
+  "/home/riley/chinese/hsk_mp3/3808-wo3-i; me.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-88
+  "/home/riley/chinese/hsk_mp3/3954-xiang3-to make a sound; to sound; to ring.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-86
+  "/home/riley/chinese/hsk_mp3/4553-zen3me5-how_; what_.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-85
+  "/home/riley/chinese/hsk_mp3/1538-hen3-(adverb of degree); quite; very.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-84
+  "/home/riley/chinese/hsk_mp3/2088-kai1-to open; to start; to turn on; to boil.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-83
+  "/home/riley/chinese/hsk_mp3/2633-nian2-year.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-82
+  "/home/riley/chinese/hsk_mp3/1324-gong1zuo4-job; work; construction; task.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-81
+  "/home/riley/chinese/hsk_mp3/3474-sui4-classifier for years (of age); year.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-80
+  "/home/riley/chinese/hsk_mp3/3154-shao3-few; little.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-79
+  "/home/riley/chinese/hsk_mp3/3989-xiao3jie5-young lady; miss.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-78
+  "/home/riley/chinese/hsk_mp3/3986-xiao3-small; tiny; few.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-76
+  "/home/riley/chinese/hsk_mp3/1758-jia1-home; family.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-75
+  "/home/riley/chinese/hsk_mp3/4139-xue2sheng5-student.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-74
+  "/home/riley/chinese/hsk_mp3/4145-xue2xiao4-school.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-73
+  "/home/riley/chinese/hsk_mp3/4144-xue2xi2-to learn.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-72
+  "/home/riley/chinese/hsk_mp3/4912-zi4-letter; symbol; character; word.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-71
+  "/home/riley/chinese/hsk_mp3/2430-ma1ma5-mama; mommy; mother.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-70
+  "/home/riley/chinese/hsk_mp3/1497-hao3-good; well; proper; good to; easy to.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-69
+  "/home/riley/chinese/hsk_mp3/3490-ta1-he or him.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-68
+  "/home/riley/chinese/hsk_mp3/2666-nv3er2-daughter.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-67
+  "/home/riley/chinese/hsk_mp3/3500-tai4-highest; greatest; too (much); very.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-66
+  "/home/riley/chinese/hsk_mp3/3578-tian1qi4-weather.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-65
+  "/home/riley/chinese/hsk_mp3/688-da4-big; huge; large; major; great; wide.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-64
+  "/home/riley/chinese/hsk_mp3/950-duo1shao3-number; amount.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-63
+  "/home/riley/chinese/hsk_mp3/947-duo1-many; much; a lot of; numerous.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-62
+  "/home/riley/chinese/hsk_mp3/2196-kuai4-lump (of earth); chunk; piece.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-61
+  "/home/riley/chinese/hsk_mp3/4986-zuo4-to do; to make; to produce; to write.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-60
+  "/home/riley/chinese/hsk_mp3/4520-zai4-again; once more; re-; second; another.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-59
+  "/home/riley/chinese/hsk_mp3/1634-hui2-to circle; to go back; to turn around.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-58
+  "/home/riley/chinese/hsk_mp3/3443-si4-four.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-57
+  "/home/riley/chinese/hsk_mp3/1507-he1-to drink; to shout (a command).mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-56
+  "/home/riley/chinese/hsk_mp3/3874-xi3huan5-to like.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-55
+  "/home/riley/chinese/hsk_mp3/3766-wei4-because of; for.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-54
+  "/home/riley/chinese/hsk_mp3/3134-shang1dian4-store; shop.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-53
+  "/home/riley/chinese/hsk_mp3/2596-na3r5-where_; wherever.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-52
+  "/home/riley/chinese/hsk_mp3/2594-na3-how.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-51
+  "/home/riley/chinese/hsk_mp3/1509-he2-and; together with; with; sum; union.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-50
+  "/home/riley/chinese/hsk_mp3/2617-ne5-(question_particle_for_subjects_already_m.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-49
+  "/home/riley/chinese/hsk_mp3/3607-ting1-_to listen; to hear; to obey.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-48
+  "/home/riley/chinese/hsk_mp3/2440-ma5-(question_tag).mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-47
+  "/home/riley/chinese/hsk_mp3/2557-ming2zi5-name (of a person or thing).mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-46
+  "/home/riley/chinese/hsk_mp3/3629-tong2xue2-(fellow) classmate.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-45
+  "/home/riley/chinese/hsk_mp3/506-chi1-to eat; to have one_s meal.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-44
+  "/home/riley/chinese/hsk_mp3/1884-jiao4-to shout; to call; to order; to ask.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-43
+  "/home/riley/chinese/hsk_mp3/2980-qu4-to go; to go to (a place).mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-42
+  "/home/riley/chinese/hsk_mp3/3254-shi2-ten.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-41
+  "/home/riley/chinese/hsk_mp3/4286-yi1yuan4-hospital.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-40
+  "/home/riley/chinese/hsk_mp3/4281-yi1sheng1-doctor.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-38
+  "/home/riley/chinese/hsk_mp3/2883-qian2mian4-ahead; in front; preceding.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-37
+  "/home/riley/chinese/hsk_mp3/1099-fen1zhong1-minute.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-35
+  "/home/riley/chinese/hsk_mp3/2268-leng3-cold.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-34
+  "/home/riley/chinese/hsk_mp3/4015-xie3-to_write.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-33
+  "/home/riley/chinese/hsk_mp3/4523-zai4jian4-goodbye.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-32
+  "/home/riley/chinese/hsk_mp3/2392-liu4-six.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-31
+  "/home/riley/chinese/hsk_mp3/38-ba1-eight.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-30
+  "/home/riley/chinese/hsk_mp3/3906-xian1sheng5-teacher; mister (mr.); husband.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-29
+  "/home/riley/chinese/hsk_mp3/968-er2zi5-son.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-28
+  "/home/riley/chinese/hsk_mp3/4986-zuo4-to do; to make; to produce; to write.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-27
+  "/home/riley/chinese/hsk_mp3/2631-ni3-you_(informal,_as_opposed_to_polite_您\\[nin.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-26
+  "/home/riley/chinese/hsk_mp3/4833-zhu4-to live; to dwell; to stay; to reside.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-25
+  "/home/riley/chinese/hsk_mp3/1643-hui4-can; be possible; be able to; will.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-24
+  "/home/riley/chinese/hsk_mp3/3490-ta1-he or him.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-23
+  "/home/riley/chinese/hsk_mp3/1949-jin1tian1-today; at the present.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-22
+  "/home/riley/chinese/hsk_mp3/3189-shen2me5-what_; who_; something.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-21
+  "/home/riley/chinese/hsk_mp3/3035-ren2-man; person; people.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-20
+  "/home/riley/chinese/hsk_mp3/4005-xie1-some; few; several.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-19
+  "/home/riley/chinese/hsk_mp3/3838-wu3-five.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-18
+  "/home/riley/chinese/hsk_mp3/971-er4-two; 2.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-17
+  "/home/riley/chinese/hsk_mp3/2262-le5-(modal_particle_intensifying_preceding_cl.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-16
+  "/home/riley/chinese/hsk_mp3/2445-mai3-to buy.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-15
+  "/home/riley/chinese/hsk_mp3/3365-shu1-book; letter.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-14
+  "/home/riley/chinese/hsk_mp3/2025-jiu3-(long) time.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-12
+  "/home/riley/chinese/hsk_mp3/4777-zhong1wu3-noon; midday.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-11
+  "/home/riley/chinese/hsk_mp3/1258-ge4-individual; this; that; size.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-10
+  "/home/riley/chinese/hsk_mp3/867-dong1xi5-thing; stuff; person.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-8
+  "/home/riley/chinese/hsk_mp3/283-bu4-(negative prefix); not.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-7
+  "/home/riley/chinese/hsk_mp3/3899-xia4yu3-to rain.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-6
+  "/home/riley/chinese/hsk_mp3/3898-xia4wu3-afternoon; p.m..mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-5
+  "/home/riley/chinese/hsk_mp3/3893-xia4-down; downwards; below; lower; later.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-4
+  "/home/riley/chinese/hsk_mp3/3147-shang4wu3-morning.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-3
+  "/home/riley/chinese/hsk_mp3/3104-san1-three.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-2
+  "/home/riley/chinese/hsk_mp3/2805-qi1-seven.mp3")
+ (CHINESE-VOCAB-DRILL::ZH-INDEX-1
+  "/home/riley/chinese/hsk_mp3/4254-yi1-_one; 1; single; a (article).mp3"))

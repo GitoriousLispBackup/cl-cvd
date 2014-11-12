@@ -1,0 +1,983 @@
+#+AUTHOR: Riley E.
+#+TITLE: Common Lisp Chinese Vocabulary Drill.
+#+OPTIONS: toc:2 num:2
+#+LATEX_HEADER:\usepackage[margin=1.5cm]{geometry}
+#+BEGIN_SRC lisp :session :eval no :tangle cl-cvd.lisp
+
+  ;; Copyright (C) 2014 Riley E.
+
+  ;; This program is free software: you can redistribute it and/or
+  ;; modify it under the terms of the GNU General Public License as
+  ;; published by the Free Software Foundation, either version 3 of
+  ;; the License, or (at your option) any later version.
+
+  ;; This program is distributed in the hope that it will be useful,
+  ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  ;; GNU General Public License for more details.
+
+  ;; You should have received a copy of the GNU General Public
+  ;; License along with this program. If not, see
+  ;; <http://www.gnu.org/licenses/>.
+
+
+#+End_SRC
+
+* Headers, Variables, Parameters
+** System description
+The Chinese Vocab Drill software is written largely out of a desire for learning
+more Common Lisp, better programming techniques, and the Chinese Mandarin
+language. All editing is done in the .ORG file, and exported to .PDF, and the
+source code is "tangled" from the code blocks into the appropriate .LISP
+files. This package takes advantage of several libraries:
+ - [[http://common-lisp.net/project/iterate/][iterate]]:
+  + The iterate package was written as a more Lispy and extensible alternative to
+    the standard LOOP macro.
+ - [[http://weitz.de/cl-ppcre/][cl-ppcre]]:
+  + A fast regular expression library, allows for sophisticated methods for
+    pattern matching, including creating of Scanners.
+ - [[http://common-lisp.net/project/external-program/][external-program]]:
+  + Allows an implementation-neutral access to external programs.
+ - [[http://common-lisp.net/project/bordeaux-threads/][bordeaux-threads]]
+  + a system for launching and managing threads as long as your Lisp system
+    provides support for them.
+
+** System Definition
+#+BEGIN_SRC lisp :session :eval no :tangle cl-cvd.asd
+  (asdf:defsystem #:cl-cvd
+    :serial t
+    :description "Chinese Vocabulary Drill"
+    :author "Riley E."
+    :license "GPLv3 or Later"
+    :depends-on (:iterate
+                  :cl-ppcre
+                  :cl-csv
+                  :external-program
+                  :bordeaux-threads)
+    :components ((:file "package")
+                 (:file "cl-cvd")
+                 (:file "csv-import")))
+#+END_SRC
+
+** Package Definition
+#+BEGIN_SRC lisp :session :eval no :tangle package.lisp
+  (defpackage #:chinese-vocab-drill
+    (:nicknames #:cl-cvd)
+    (:use :common-lisp
+          :iterate
+          :bordeaux-threads
+          :cl-ppcre
+          :cl-csv
+          :external-program))
+#+END_SRC
+
+** Global variables, and setting the package
+Initialize the hash-table, and the hash-table element counter, which is used for
+generating the keys used to identify hash-table entries.
+#+BEGIN_SRC lisp :session :eval no :tangle cl-cvd.lisp
+  (in-package :cl-cvd)
+  
+;;; The constant PHI is used for spaced-repetition timing
+  (defconstant phi 1.618033988749895d0
+    "The constant PHI, The golden ratio.")
+
+  (defvar *zh-hash-table* (make-hash-table)
+    "Hash table for storing data of, and
+  metadata about the vocabulary listing")
+
+  (defvar *mp3dir* nil)
+
+  (defvar *mp3-alist* nil)
+
+  (defvar *vocab-key-count* 0
+    "Counter for the list of vocabulary entries,
+  is incremented on addition of elements, or set
+  when a data-set is loaded into the hash-table.")
+
+  (defvar *test-pool* nil
+    "Words that have been seen during a practice session")
+
+  (defvar *current-hsk-level* 1)
+#+END_SRC
+
+* Structures
+- Vocab Entry:
+ + The =vocab-entry= data-structure houses each vocabulary item, as well as the
+   metadata about each item, such as times correct, time incorrect, last
+   practice date, and repetitions.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defstruct vocab-entry
+    (hsk     1                    :type integer)
+    (hanzi   ""                   :type string)
+    (pinyin  ""                   :type string)
+    (english '("")                :type list)
+    (seealso '("")                :type list)
+    (units   '("")                :type list)
+    (score   (complex 0.0 0.0)    :type complex)
+    (date    (get-universal-time) :type integer)
+    (reps    1                    :type integer))
+#+END_SRC
+#+RESULTS:
+: VOCAB-ENTRY
+
+* Comma-separated value import utilities
+** Header info
+#+BEGIN_SRC lisp :session :eval no :tangle no
+  ;; This file is a part of the CL-CVD package, and contains the functionality for
+  ;; parsing CSV input.
+
+#+END_SRC
+#+RESULTS:
+: #<PACKAGE "CHINESE-VOCAB-DRILL">
+
+** preprocess-english
+Break up the generic English description rendered from the CSV by
+splitting it at each semicolon.
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun preprocess-english (desc-string)
+    (car (cl-csv:read-csv desc-string
+                          :separator #\SEMICOLON)))
+#+END_SRC
+#+RESULTS:
+: PREPROCESS-ENGLISH
+
+** collect-measures
+Collect all applicable notes concerning units of measurement related to words
+and generate a list of them. First checking to see if the object is a string at
+all, then if the length is greater than four (to prevent errors, and because it
+is a waste of time to scan such strings), then if the string begins with the
+characters which designate a unit (in this case, "CL:".)
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun collect-measures (l)
+    (iterate (for s in l)
+      (when (and (stringp s)
+                 (< 4 (length s))
+                 (string= (subseq s 0 3) "CL:"))
+        (collect s))))
+#+END_SRC
+#+RESULTS:
+: COLLECT-MEASURES
+
+** clean-measures
+Prune the "CL:" from the head of measures to make displaying nicer.
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun clean-measures (s)
+    (regex-replace "CL:" s ""))
+#+END_SRC
+#+RESULTS:
+: CLEAN-MEASURES
+
+** flatten
+Flatten nested lists. Pulled from [[http://letoverlambda.com][Let Over Lambda]] Credit goes to Doug Hoyte.
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun flatten (x)
+    (labels ((rec (x acc)
+               (cond ((null x) acc)
+                     ((atom x) (cons x acc))
+                     (t (rec (car x)
+                             (rec (cdr x) acc))))))
+      (rec x nil)))
+#+END_SRC
+#+RESULTS:
+: FLATTEN
+
+** finalize-measures
+Take the collected measures, split them by commas into separate
+strings, and flatten the resulting structure.
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun finalize-measures (l)
+    (let ((objet-petit-a (collect-measures l)))
+      (unless (zerop (length objet-petit-a))
+        (flatten
+         (mapcar #'cl-csv:read-csv
+                 (mapcar #'clean-measures objet-petit-a))))))
+#+END_SRC
+#+RESULTS:
+: FINALIZE-MEASURES
+
+** collect-see-also
+Collect strings from the results of =preprocess-english= that begin with "see
+also".
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun collect-see-also (l)
+    (iterate (for s in l)
+      (when (and (stringp s)
+                 (< 8 (length s))
+                 (string= (subseq s 0 8) "see also"))
+        (collect s))))
+#+END_SRC
+#+RESULTS:
+: COLLECT-SEE-ALSO
+
+** clean-english
+Remove all entries that are not themselves translations of the term,
+but relate to either units of measurement, or hint to related terms.
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun clean-english (l)
+    (remove-if (lambda (s)
+                 (or
+                  (and (< 8 (length s))
+                       (or (string= (subseq s 0 8) "see also")
+                           (string= (subseq s 0 9) "(see also")))
+                  (and (< 4 (length s))
+                       (string= (subseq s 0 3) "CL:"))))
+               l))
+#+END_SRC
+#+RESULTS:
+: CLEAN-ENGLISH
+
+** eleml-to-struct
+Break up the s-expressionized CSV line and name the elements, then perform
+various operations on each elements, including further breaking up into
+references to other items,
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun eleml-to-struct (l)
+    (destructuring-bind (hsk hanzi pinyin description) l
+      (let* ((pre-english (preprocess-english description))
+             (units       (finalize-measures  pre-english))
+             (see-also    (collect-see-also   pre-english))
+             (english     (clean-english      pre-english)))
+        (make-vocab-entry :hsk     (read-from-string hsk)
+                          :hanzi   hanzi
+                          :pinyin  pinyin
+                          :english english
+                          :units   units
+                          :seealso see-also))))
+#+END_SRC
+#+RESULTS:
+: ELEML-TO-STRUCT
+
+** batch-add-table
+Copy the entire result of a =parse-csv= operation into a hash table using the
+predefined functions above.
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun batch-add-table (l)
+    (dolist (lx l)
+      (puthash (gen-ht-key 'zh-index)
+               ,*zh-hash-table*
+               (eleml-to-struct lx))))
+#+END_SRC
+#+RESULTS:
+: BATCH-ADD-TABLE
+
+* Data-store utility functions
+** element-of-truth
+Check a list for any non-nil values.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun element-of-truth (l)
+    (member t (mapcar (lambda (x)
+                        (when x t))
+                      l)))
+#+END_SRC
+#+RESULTS:
+: ELEMENT-OF-TRUTH
+
+** gen-ht-key
+=gen-ht-key= creates the keys used for labeling objects in the hash table.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun gen-ht-key (prefix)
+    (let ((the-sym-name (format nil "~D-~D" prefix (incf *vocab-key-count*))))
+      (intern the-sym-name :cl-cvd)))
+#+END_SRC
+#+RESULTS:
+: GEN-HT-KEY
+
+** key-exists-p
+Test to see if a key is already assigned within a hash-table
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun key-exists-p (key table)
+    (if (gethash key table)
+        t
+        nil))
+#+END_SRC
+#+RESULTS:
+: KEY-EXISTS-P
+
+** puthash
+Wrap the =setf= clause in a function for adding/modifying entries in a hash-table
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun puthash (key table object)
+    (setf (gethash key table) object))
+#+END_SRC
+#+RESULTS:
+: PUTHASH
+
+** hash-table searching functions
+*** hsk-apropos
+Search for and collect items that match a specified [[http://en.wikipedia.org/wiki/Hanyu_Shuiping_Kaoshi][HSK]] level.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun hsk-apropos (level)
+    (declare (fixnum level))
+    (loop :for key :being the hash-keys :of *zh-hash-table*
+          :for val :being the hash-value :of *zh-hash-table*
+          :when (= level (the fixnum (vocab-entry-hsk val)))
+            :collect key))
+#+END_SRC
+#+RESULTS:
+: HSK-APROPOS
+
+*** zh-apropos
+Search the hash table for a matching Hanzi entry and return it with the hash key
+associated with the vocabulary entry found in a list in the form =(<key>
+<vocab-entry>)=.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun zh-apropos (zh-string)
+    (declare (string zh-string))
+    (loop :for key :being the hash-keys :of *zh-hash-table*
+          :for val :being the hash-value :of *zh-hash-table*
+          :when (scan zh-string (vocab-entry-hanzi val))
+            :collect (list key val)))
+#+END_SRC
+#+RESULTS:
+: ZH-APROPOS
+
+*** zh-apropos-key
+Find vocabulary entries where the provided =zh-string= is at least a subset of
+the string stored in the entry's =:hanzi= slot. Return a list of hash-keys of
+the relevant vocabulary entries.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun zh-apropos-key (zh-string)
+    (declare (string zh-string))
+    (loop :for key :being the hash-keys  :of *zh-hash-table*
+          :for val :being the hash-value :of *zh-hash-table*
+          :when (scan zh-string (vocab-entry-hanzi val))
+            :collect key))
+#+END_SRC
+#+RESULTS:
+: ZH-APROPOS-KEY
+
+*** en-apropos
+Find a vocab entry which contains a specified substring within its =:english= slot.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun en-apropos (en-string)
+    (declare (string en-string))
+    (loop :for key :being the hash-keys :of *zh-hash-table*
+          :for val :being the hash-value :of *zh-hash-table*
+          :when (element-of-truth
+                 (mapcar (lambda (s)
+                           (scan en-string s))
+                         (vocab-entry-english val)))
+            :collect (list key val)))
+#+END_SRC
+#+RESULTS:
+: EN-APROPOS
+
+*** en-apropos-word
+Find a vocab entry which contains a discreet word, separated by punctuation on
+either side, or at either end of the whole sequence.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun en-apropos-word (en-word)
+    (declare (string en-word))
+    (loop :for key :being the hash-keys :of *zh-hash-table*
+          :for val :being the hash-value :of *zh-hash-table*
+          :when (element-of-truth
+                 (mapcar (lambda (s)
+                           (find-word-in-string en-word s))
+                         (vocab-entry-english val)))
+            :collect (list key val)))
+#+END_SRC
+#+RESULTS:
+: EN-APROPOS-WORD
+
+**** find-word-in-string
+Find a whole word within a provided string, delineated by an end of the
+=target-string= or any predefined punctuation mark as defined within the
+=punctuation-p= enclosed functions.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun find-word-in-string (word target-string)
+    (declare (string word target-string))
+    (multiple-value-bind (word-begin word-end) (scan word target-string)
+      (when (and word-begin word-end)
+        (cond ((string= word target-string) word)
+              ((and (or (zerop word-begin)
+                        (punctuation-p (char target-string (- word-begin 1))))
+                    (or (= (length target-string) word-end)
+                        (punctuation-p (char target-string word-end))))
+               word)))))
+#+END_SRC
+#+RESULTS:
+: FIND-WORD-IN-STRING
+
+**** punctuation-p
+Define a set of functions for retrieving and manipulating a stored list of
+punctuation-marks and white-space characters.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (let ((punctuations '(#\SPACE #\Tab
+                        #\.     #\,
+                        #\;     #\:
+                        #\/     #\\
+                        #\|     #\!
+                        #\-     #\_
+                        #\(     #\) 
+                        #\{     #\}
+                        #\[     #\]
+                        #\~     #\`
+                        #\<     #\>
+                        #\?     #\&
+                        #\"     #\+
+                        #\=)))
+    
+    (defun punctuation-p (chr)
+      (member chr punctuations))
+    
+    (defun defpunct (chr)
+      (unless (punctuation-p chr)
+        (push chr punctuations)))
+    
+    (defun rempunct (chr)
+      (when (punctuation-p)
+        (setf punctuations (delete chr punctuations))))
+
+    (defun get-punctuation ()
+      punctuations))
+
+#+END_SRC
+#+RESULTS:
+: GET-PUNCTUATION
+
+** count-spaces
+Determine the complexity of an example by counting the spaces in a string. This
+is used to determine if one should be expected to enter the english equivalent
+of a selected Chinese text sample.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-csv.lisp
+  (defun count-spaces (str)
+    (let ((space-count 0))
+      (iterate (for chr in-string str)
+        (when (char= chr #\SPACE)
+          (incf space-count))
+        (finally (return space-count)))))
+#+END_SRC
+#+RESULTS:
+: COUNT-SPACES
+
+* Entry manipulation
+** add-entry
+Create a new instance of =vocab-entry= and install it into the primary
+hash-table with a unique key.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun add-entry (&key hanzi pinyin english (hsk 0) (hash-table *zh-hash-table*))
+    (puthash (gen-ht-key 'zh-index)
+             hash-table
+             (make-vocab-entry :hanzi   hanzi
+                               :pinyin  pinyin
+                               :english english
+                               :hsk     hsk)))
+#+END_SRC
+#+RESULTS:
+: ADD-ENTRY
+
+** revise-entry
+Modify an entry by accepting a field parameter, and a replacement value.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun revise-entry (&key key field new-data (hash-table *zh-hash-table*))
+    (let ((the-object (gethash key hash-table)))
+      (case field
+        ((hanzi)   (setf (vocab-entry-hanzi   the-object) new-data))
+        ((pinyin)  (setf (vocab-entry-pinyin  the-object) new-data))
+        ((english) (setf (vocab-entry-english the-object) new-data)))))
+#+END_SRC
+#+RESULTS:
+: REVISE-ENTRY
+
+** append-english
+Append additional English terms to the =:english= slot in a =vocab-entry=
+instance.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun append-english (english-strings &key key (hash-table *zh-hash-table*))
+    (let ((the-object (gethash key hash-table)))
+      (revise-entry (append (vocab-entry-english the-object) english-strings)
+                    :key key
+                    :field 'english)))
+#+END_SRC
+#+RESULTS:
+: APPEND-ENGLISH
+
+** update-score
+Update the score stored in a =vocab-entry= instance based on the results of
+=check-answer= and =score-result=.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun update-score (answer hash-key test-type &key (hash-table *zh-hash-table*))
+    (let ((vocab-entry (gethash hash-key hash-table)))
+      (setf (vocab-entry-score vocab-entry)
+            (+ (vocab-entry-score vocab-entry)
+               (score-result (check-answer answer vocab-entry test-type))))
+      (setf (vocab-entry-date vocab-entry)
+            (get-universal-time))
+      (incf (vocab-entry-reps vocab-entry))))
+#+END_SRC
+#+RESULTS:
+: UPDATE-SCORE
+
+* Storage
+** Saving
+*** save-ht-vocab
+=save-ht-vocab= dumps the raw hash-table to a file, pretty printed for nicer viewing.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun save-ht-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-save.raw"))
+    (with-open-file (out filename
+                         :direction :output
+                         :if-exists :supersede)
+      (with-standard-io-syntax
+        (pprint vocab-table out))))
+#+END_SRC
+#+RESULTS:
+: SAVE-HT-VOCAB
+
+*** export-vocab
+The =export-vocab= function arose out of a finding that hash-table objects
+differ slightly between Common Lisp implementations.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun export-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw"))
+    (labels ((destructure-vocab (x y)
+               (push (list x y) the-alist)))
+      (let (the-alist)
+        (maphash #'destructure-vocab vocab-table)
+        (with-open-file (out filename
+                             :direction :output
+                             :if-exists :supersede)
+          (with-standard-io-syntax
+            (pprint the-alist out))))))
+#+END_SRC
+#+RESULTS:
+: EXPORT-VOCAB
+
+** Loading
+*** load-ht-vocab
+This function reads in a file and sets the =*zh-hash-table*= to the value of the
+contents of that file.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun load-ht-vocab (&optional (filename "zh-save.raw") (vocab-variable *zh-hash-table*))
+    (with-open-file (in filename)
+      (with-standard-io-syntax
+        (setf vocab-variable (read in))))
+    (setf *vocab-key-count* (hash-table-count *zh-hash-table*)))
+#+END_SRC
+#+RESULTS:
+: LOAD-HT-VOCAB
+
+*** import-vocab
+The obvious counterpart to =export-vocab=.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun import-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw"))
+    (labels ((structure-vocab (l)
+               (puthash (car l) vocab-table (cadr l))))
+      (with-open-file (in filename)
+        (with-standard-io-syntax
+          (mapcar #'structure-vocab (read in))))
+      (setf *vocab-key-count* (hash-table-count *zh-hash-table*))))
+#+END_SRC
+#+RESULTS:
+: IMPORT-VOCAB
+
+** Converting
+When moving between Lisp implementations, you cannot keep the same hash-table
+object in plain-text format and expect to be able to load it, so this must be
+executed in order to use your data-set when migrating.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun convert-vocab ()
+    (let ((voctemp (make-hash-table)))
+      (import-vocab :vocab-variable voctemp)
+      (save-ht-vocab :vocab-table voctemp)))
+#+END_SRC
+#+RESULTS:
+: CONVERT-VOCAB
+
+* MP3 file Matching and Playback
+MP3s and the original data-set were provided by [[lingomi.com][lingomi]].
+
+** fill-mp3-paths
+Set the variable =*mp3dir*= to be a list of paths to each of the MP3s for the
+vocab tests.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun fill-mp3-paths ()
+    (setf *mp3dir* (directory #P"~/chinese/hsk_mp3/*.mp3"))
+    nil)
+#+END_SRC
+#+RESULTS:
+: FILL-MP3-PATHS
+
+** matching vocab entries to mp3s
+*** find-mp3-path
+Search a list of mp3 files for a match with a predefined pinyin string.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun find-mp3-path (match-name)
+    (iterate (for elt in *mp3dir*)
+      (finding elt such-that (scan match-name (namestring elt)))))
+#+END_SRC
+#+RESULTS:
+: FIND-MP3-PATH
+
+*** find-matching-mp3
+Match a given vocabulary key to a list of mp3 files
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun find-matching-mp3 (vocab-key)
+    (let* ((vocab-entry (gethash vocab-key *zh-hash-table*))
+           (pinyin (vocab-entry-pinyin vocab-entry))
+           (nospace (regex-replace " " pinyin ""))
+           (match-name (concatenate 'string "-" nospace "-"))
+           (mp3-path (find-mp3-path match-name)))
+      (when mp3-path
+        (push (list vocab-key
+                    (namestring mp3-path))
+              ,*mp3-alist*))))
+#+END_SRC
+#+RESULTS:
+: FIND-MATCHING-MP3
+
+*** find-active-vocab-mp3s
+Look for mp3s which match the contents of the =*mp3dir*= variable, if it is not
+already in the =*mp3-alist*=, add it in the form of =(KEY PATH-TO-MP3)=.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun find-active-vocab-mp3s (&optional (source-list *mp3dir*))
+    (mapcar (lambda (key)
+              (unless (assoc key *mp3-alist*)
+                (find-matching-mp3 key)))
+            source-list))
+#+END_SRC
+#+RESULTS:
+: FIND-ACTIVE-VOCAB-MP3S
+
+*** play-mp3
+Launch a thread that runs a program with the appropriate filename as returned by
+an association list lookup.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun play-mp3 (key)
+    (bordeaux-threads:make-thread (lambda ()
+                                    (run "/usr/bin/mpg123"
+                                         (cdr (assoc key *mp3-alist*))))
+                                  :name "mp3 playback thread"))
+#+END_SRC
+#+RESULTS:
+: PLAY-MP3
+
+* Testing Facilities
+** set comparisons
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun my-subset? (set-x set-y)
+    (not (set-difference set-x set-y)))
+#+END_SRC
+#+RESULTS:
+: MY-SUBSET\?
+
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun set-equal? (set-x set-y)
+    (and (my-subset? set-x set-y)
+         (my-subset? set-y set-x)))
+#+END_SRC
+#+RESULTS:
+: SET-EQUAL\?
+
+** load-from-hsk
+Useful for bootstrapping vocab-element selection.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun load-from-hsk (hsk-val &optional (n 10))
+    (setf *test-pool*
+          (subseq (reverse (hsk-apropos hsk-val))
+                  0
+                  n)))
+#+END_SRC
+#+RESULTS:
+: LOAD-FROM-HSK
+
+** add-vocabs
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun add-vocabs (hsk &key (count 5))
+    (let ((pool     (reverse (hsk-apropos hsk)))
+          (p-length (length *test-pool*)))
+      (iterate (for elt in pool)
+        (unless (member elt *test-pool*)
+          (when (<= (length *test-pool*)
+                    (+ p-length count))
+            (push elt *test-pool*))))))
+#+END_SRC
+#+RESULTS:
+: ADD-VOCABS
+
+** enumerate-qualified-elements
+Check the number of elements that have qualified since the last test occurred,
+This is used to check to see if the minimal number of elements required for a
+test can be called in without overlapping cooldown-times.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun enumerate-qualified-elements ()
+    (length (remove-if-not #'qualified-p *test-pool*)))
+#+END_SRC
+#+RESULTS:
+: ENUMERATE-QUALIFIED-ELEMENTS
+
+** refil-testing-pool
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun refil-testing-pool (hsk upper-bound)
+    (add-vocabs hsk (- upper-bound (enumerate-qualified-elements))))
+#+END_SRC
+
+#+RESULTS:
+: REFIL-TESTING-POOL
+
+** hsk-spillover
+When a testing level is exhausted, pull more from the next level up.
+If there are no more levels, don't increment.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun hsk-spillover ()
+    (if (and (hsk-apropos (+ *current-hsk-level* 1))
+             (set-equal-p *test-pool* (hsk-apropos *current-hsk-level*)))
+        (incf *current-hsk-level*)
+        (format nil "Takeshi: ``Amazing!''")))
+#+END_SRC
+#+RESULTS:
+: HSK-SPILLOVER
+
+** Vocab element qualification
+*** english-sensible-p
+Check to see if any constituents of the english parameter of a particular entry
+can be expected to be remembered verbatim and entered when prompted for an
+English answer. Perhaps this could be mitigated with a check against a digital
+thesaurus.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun english-sensible-p (vocab-entry)
+    (element-of-truth (mapcar (lambda (s)
+                                (< (count-spaces s) 2))
+                              (vocab-entry-english vocab-entry))))
+#+END_SRC
+#+RESULTS:
+: ENGLISH-SENSIBLE-P
+
+*** sensible-tests
+A bit crude, but return a list of appropriate tests based on the response of
+=english-sensible-p=.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun sensible-tests (vocab-element)
+    (if (english-qualified-p vocab-element)
+        (list 'english 'hanzi 'pinyin)
+        (list 'hanzi 'pinyin)))
+#+END_SRC
+#+RESULTS:
+: SENSIBLE-TESTS
+
+*** qualified-p
+Test to see which vocabulary elements qualify for testing at a given time.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun qualified-p (vocab-struct)
+    (and (> 10 (vocab-entry-reps vocab-struct))
+         (> (get-universal-time)
+            (vocab-entry-date vocab-struct))))
+#+END_SRC
+#+RESULTS:
+: QUALIFIED-P
+
+*** set-next-test
+Set the =:date= slot in a given vocab structure to the next scheduled test based
+upon the number of times it has been correctly answered.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun set-next-test (vocab-struct)
+    (setf (vocab-entry-date vocab-struct)
+          (schedule-next-test (vocab-entry-reps vocab-struct))))
+#+END_SRC
+#+RESULTS:
+: SET-NEXT-TEST
+
+** Presentation
+*** show-challenge
+Take a =field= and =key=, and respond with a string from the requested
+field. A field value of =english= will return a random string from the list
+located in the =:english= field of the selected =vocab-entry=, and =english-all=
+will return a string containing all the elements of the list. A value of
+=pinyin= will return a pinyin string, and =hanzi= will return the Chinese
+ideographs.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun show-challenge (&key field key (hash-table *zh-hash-table*))
+    (let ((the-object (gethash key hash-table)))
+      (case field
+        ((english)     (nth (random (length (vocab-entry-english the-object)))
+                            (vocab-entry-english the-object)))
+        ((english-all) (format nil "~{~A~^, ~}." (vocab-entry-english the-object)))
+        ((pinyin)      (vocab-entry-pinyin the-object))
+        ((hanzi)       (vocab-entry-hanzi the-object)))))
+#+END_SRC
+#+RESULTS:
+: SHOW-CHALLENGE
+
+*** take-answer
+A simple silly test.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun take-answer (&key test)
+    (format t "~D> " test)
+    (read-line))
+#+END_SRC
+#+RESULTS:
+: TAKE-ANSWER
+
+** List construction
+*** construct-test-list
+Build up a sample of vocab items for a test battery.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun construct-test-list (length &key (test-pool *test-pool*) (vocab *zh-hash-table*))
+    "Construct a test list of LENGTH members"
+    (let ((repeat 0)
+          (result))
+      (iterate (for key in test-pool)
+        (if (= repeat length)
+            result
+            (when (qualified-p (gethash key vocab))
+              (incf repeat)
+              (collect key into result at beginning))))))
+#+END_SRC
+#+RESULTS:
+: CONSTRUCT-TEST-LIST
+
+*** reconstruct-test-pool
+Rebuild the testing pool from the base vocab library by searching for items that
+have already been seen in practice.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun reconstruct-test-pool ()
+    (maphash (lambda (key val)
+               (when (< 1 (vocab-entry-reps val))
+                 (push key *test-pool*)))
+             ,*zh-hash-table*))
+#+END_SRC
+#+RESULTS:
+: RECONSTRUCT-TEST-POOL
+
+** Scoring
+*** string-in-list-p
+Test to see if a list contains a specified string.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun string-in-list-p (string l)
+    (iterate (for s in l)
+      (when (string= s string)
+        l)))
+#+END_SRC
+#+RESULTS:
+: STRING-IN-LIST-P
+
+*** check-answer
+Test a provided answer for correctness against data stored in a vocab-entry instance.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun check-answer (answer vocab-entry test-type)
+    (cond ((and (equalp test-type 'english)
+                (string-in-list-p answer (vocab-entry-english vocab-entry))))
+          ((and (equalp test-type 'hanzi)
+                (string= answer (vocab-entry-hanzi vocab-entry))))
+          ((and (equalp test-type 'pinyin)
+                (string= answer (vocab-entry-pinyin vocab-entry))))
+          ((not (member test-type '(english hanzi pinyin)))
+           (error "Unknown test-type"))))
+#+END_SRC
+#+RESULTS:
+: CHECK-ANSWER
+
+*** score-result
+Return a complex number, depending the state of =result=, that is added to the
+score stored in a specific =vocab-entry= structure. The left side of the complex
+is Correct, the right is Incorrect.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun score-result (result)
+    (if result
+        1
+        #C(0 1)))
+#+END_SRC
+#+RESULTS:
+: SCORE-RESULT
+
+*** determine-offset
+,Determine the offset for scheduling from anywhere between minutes to weeks based
+on the ratio between the real and imaginary components of the complex number
+stored in the =:score= slot. This is used to grade understanding between at
+least four categories: unknown, poorly known, somewhat known, and known.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun determine-offset (c)
+      (let ((ratio (/ (realpart c) (imagpart c))))
+        (cond ((<= ratio 1)  'unknown)
+              ((<= ratio 2)  'poor)
+              ((<= ratio 5)  'medium)
+              ((<= ratio 10) 'good))))
+#+END_SRC
+#+RESULTS:
+: DETERMINE-OFFSET
+
+*** schedule-next-test
+Determine when a word should be tested next based on the number of repetitions,
+and adjust this based on the score.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun schedule-next-test (reps score)
+    (round
+     (+ (get-universal-time)
+        (* (+ 7200                          ; two hours in seconds
+              (case (determine-offset score)
+                ((unknown) 3600)            ; one hour in seconds
+                ((poor)    7200)            ; two hours in seconds
+                ((medium)  10800)           ; three hours in seconds
+                ((good)    18000)           ; Five hours in seconds
+                ((t)       28800)           ; Eight hours in seconds;
+                ((nil)     28800))          ; for compiler optimization.
+              (expt phi (/ reps 3)))))))
+#+END_SRC
+#+RESULTS:
+: SCHEDULE-NEXT-TEST
+
+** display-and-play
+Print the Challenge to the screen, then prompt the user for the selected test,
+and play the sound file associated with the vocab entry. Update the score stored
+in the vocab-entry structure to reflect the correctness of the answer.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun display-and-play (&key key from for)
+    (let ((goal      (show-challenge :field for :key key))
+          (challenge (show-challenge :field from :key key)))
+      (play-mp3 key)
+      (format t "~D~%~D> " challenge for)
+      (let* ((vocab-entry (gethash key *zh-hash-table*))
+             (results     (check-answer (get-answer) vocab-entry for))
+             (reps        (vocab-entry-reps vocab-entry)))
+        (setf (vocab-entry-score vocab-entry)
+              (+ (score-result results)
+                 (vocab-entry-score vocab-entry)))
+        (if results
+            (progn (setf (vocab-entry-date vocab-entry)
+                         (schedule-next-test reps
+                                             (vocab-entry-score vocab-entry)))
+                   (incf reps))
+            (progn (setf *test-pool*
+                         (reverse (cons key (reverse *test-pool*))))
+                   goal)))))
+#+END_SRC
+#+RESULTS:
+: DISPLAY-AND-PLAY
+
+**** get-answer
+Just having a call to =read-line= has some strange effects on program flow, so
+I'm wrapping it in a function.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun get-answer ()
+    (read-line))
+#+END_SRC
+#+RESULTS:
+: GET-ANSWER
+
+** test-loop
+Loop through a set of tests where the test type is indeterminate.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun test-loop (&optional (n 10) (type 'random))
+    (let ((test-list (construct-test-list n)))
+      (iterate (for elt in test-list)
+        (when (> n 0)
+          (1- n)
+          (case type
+            ((random) (random-test elt))
+            ((t) (display-and-play :key elt :from 'pinyin :for 'hanzi)))))))
+#+END_SRC
+#+RESULTS:
+: TEST-LOOP
+
+** random-test
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun random-test (key)
+    (let* ((test-list (list 'hanzi 'pinyin 'english))
+           (crazy-english (list 'hanzi 'pinyin))
+           (sane-for (if (english-sensible-p (gethash key *zh-hash-table*))
+                         (nth (random (length test-list)) test-list)
+                         (nth (random (length crazy-english)) crazy-english)))
+           (rest-tests (delete sane-for test-list))
+           (from (nth (random (length rest-tests)) rest-tests)))
+      (display-and-play :key key :from from :for sane-for)))
+#+END_SRC
+#+RESULTS:
+: RANDOM-TEST
