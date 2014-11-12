@@ -142,7 +142,7 @@
       (push chr punctuations)))
   
   (defun rempunct (chr)
-    (when (punctuation-p)
+    (when (punctuation-p chr)
       (setf punctuations (delete chr punctuations))))
 
   (defun get-punctuation ()
