@@ -27,8 +27,8 @@
 ** System description
 The Chinese Vocab Drill software is written largely out of a desire for learning
 more Common Lisp, better programming techniques, and the Chinese Mandarin
-language. All editing is done in the .ORG file, and exported to .PDF, and the
-source code is "tangled" from the code blocks into the appropriate .LISP
+language. All editing is done in the .ORG file, and exported to PDF and HTML,
+and the source code is "tangled" from the code blocks into the appropriate Lisp
 files. This package takes advantage of several libraries:
  - [[http://common-lisp.net/project/iterate/][iterate]]:
   + The iterate package was written as a more Lispy and extensible alternative to
@@ -265,9 +265,8 @@ predefined functions above.
 Check a list for any non-nil values.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun element-of-truth (l)
-    (member t (mapcar (lambda (x)
-                        (when x t))
-                      l)))
+    (iterate (for i in l)
+      (when i (return i))))
 #+END_SRC
 #+RESULTS:
 : ELEMENT-OF-TRUTH

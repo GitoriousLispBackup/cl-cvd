@@ -51,9 +51,8 @@
   (reps    1                    :type integer))
 
 (defun element-of-truth (l)
-  (member t (mapcar (lambda (x)
-                      (when x t))
-                    l)))
+  (iterate (for i in l)
+    (when i (return i))))
 
 (defun gen-ht-key (prefix)
   (let ((the-sym-name (format nil "~D-~D" prefix (incf *vocab-key-count*))))
