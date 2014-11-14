@@ -3,3 +3,6 @@
 /cl-cvd.pdf
 /cl-cvd.tex
 /mp3list.txt
+/pinyin-converter.lisp
+/pinyin-converter.fasl
+/zh-diacritic.raw

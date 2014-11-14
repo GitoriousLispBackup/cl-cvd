@@ -53,9 +53,11 @@ files. This package takes advantage of several libraries:
                   :cl-ppcre
                   :cl-csv
                   :external-program
-                  :bordeaux-threads)
+                  :bordeaux-threads
+                  :cl-cffi-gtk)
     :components ((:file "package")
                  (:file "cl-cvd")
+                 (:file "cl-cvd-gui")
                  (:file "csv-import")))
 #+END_SRC
 
@@ -63,12 +65,9 @@ files. This package takes advantage of several libraries:
 #+BEGIN_SRC lisp :session :eval no :tangle package.lisp
   (defpackage #:chinese-vocab-drill
     (:nicknames #:cl-cvd)
-    (:use :common-lisp
-          :iterate
-          :bordeaux-threads
-          :cl-ppcre
-          :cl-csv
-          :external-program))
+    (:use :iterate :bordeaux-threads :cl-ppcre
+          :cl-csv :gtk :gdk :gobject :glib :pango
+          :cairo :cffi :external-program :cl))
 #+END_SRC
 
 ** Global variables, and setting the package
@@ -76,14 +75,14 @@ Initialize the hash-table, and the hash-table element counter, which is used for
 generating the keys used to identify hash-table entries.
 #+BEGIN_SRC lisp :session :eval no :tangle cl-cvd.lisp
   (in-package :cl-cvd)
-  
-;;; The constant PHI is used for spaced-repetition timing
+
+    ;;; The constant PHI is used for spaced-repetition timing
   (defconstant phi 1.618033988749895d0
     "The constant PHI, The golden ratio.")
 
   (defvar *zh-hash-table* (make-hash-table)
     "Hash table for storing data of, and
-  metadata about the vocabulary listing")
+      metadata about the vocabulary listing")
 
   (defvar *mp3dir* nil)
 
@@ -91,8 +90,9 @@ generating the keys used to identify hash-table entries.
 
   (defvar *vocab-key-count* 0
     "Counter for the list of vocabulary entries,
-  is incremented on addition of elements, or set
-  when a data-set is loaded into the hash-table.")
+      is incremented on addition of elements, or set
+      when a data-set is loaded into the hash-table
+      by the `import-vocab' function.")
 
   (defvar *test-pool* nil
     "Words that have been seen during a practice session")
@@ -102,9 +102,10 @@ generating the keys used to identify hash-table entries.
 
 * Structures
 - Vocab Entry:
- + The =vocab-entry= data-structure houses each vocabulary item, as well as the
-   metadata about each item, such as times correct, time incorrect, last
-   practice date, and repetitions.
+ + The =vocab-entry= data-structure provides the scaffolding for each
+   vocabulary item, as well as the metadata about each item, such as times
+   correct, time incorrect, last practice date, and number of total
+   repetitions.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defstruct vocab-entry
     (hsk     1                    :type integer)
@@ -534,26 +535,13 @@ The obvious counterpart to =export-vocab=.
     (labels ((structure-vocab (l)
                (puthash (car l) vocab-table (cadr l))))
       (with-open-file (in filename)
+        (declare (dynamic-extent in))
         (with-standard-io-syntax
           (mapcar #'structure-vocab (read in))))
       (setf *vocab-key-count* (hash-table-count *zh-hash-table*))))
 #+END_SRC
 #+RESULTS:
 : IMPORT-VOCAB
-
-** Converting
-When moving between Lisp implementations, you cannot keep the same hash-table
-object in plain-text format and expect to be able to load it, so this must be
-executed in order to use your data-set when migrating.
-#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (defun convert-vocab ()
-    (let ((voctemp (make-hash-table)))
-      (import-vocab :vocab-variable voctemp)
-      (save-ht-vocab :vocab-table voctemp)))
-#+END_SRC
-#+RESULTS:
-: CONVERT-VOCAB
-
 * MP3 file Matching and Playback
 MP3s and the original data-set were provided by [[lingomi.com][lingomi]].
 
@@ -953,3 +941,12 @@ Loop through a set of tests where the test type is indeterminate.
 #+END_SRC
 #+RESULTS:
 : RANDOM-TEST
+
+* User Interface
+** Header
+#+BEGIN_SRC lisp :session :eval no :tangle cl-cvd-gui.lisp
+  ;; This is the source for the GUI front-end of the Chinese Vocab Drill
+  ;; package. It uses GTK+ 3.x via CFFI.
+  (in-package :cl-cvd)
+#+END_SRC
+

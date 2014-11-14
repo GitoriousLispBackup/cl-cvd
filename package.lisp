@@ -1,9 +1,6 @@
 
 (defpackage #:chinese-vocab-drill
   (:nicknames #:cl-cvd)
-  (:use :common-lisp
-        :iterate
-        :bordeaux-threads
-        :cl-ppcre
-        :cl-csv
-        :external-program))
+  (:use :iterate :bordeaux-threads :cl-ppcre
+        :cl-csv :gtk :gdk :gobject :glib :pango
+        :cairo :cffi :external-program :cl))

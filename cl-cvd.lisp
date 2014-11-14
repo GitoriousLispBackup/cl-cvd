@@ -16,28 +16,29 @@
 ;; <http://www.gnu.org/licenses/>.
 
 (in-package :cl-cvd)
-  
-;;; The constant PHI is used for spaced-repetition timing
-  (defconstant phi 1.618033988749895d0
-    "The constant PHI, The golden ratio.")
 
-  (defvar *zh-hash-table* (make-hash-table)
-    "Hash table for storing data of, and
-  metadata about the vocabulary listing")
+  ;;; The constant PHI is used for spaced-repetition timing
+(defconstant phi 1.618033988749895d0
+  "The constant PHI, The golden ratio.")
 
-  (defvar *mp3dir* nil)
+(defvar *zh-hash-table* (make-hash-table)
+  "Hash table for storing data of, and
+    metadata about the vocabulary listing")
 
-  (defvar *mp3-alist* nil)
+(defvar *mp3dir* nil)
 
-  (defvar *vocab-key-count* 0
-    "Counter for the list of vocabulary entries,
-  is incremented on addition of elements, or set
-  when a data-set is loaded into the hash-table.")
+(defvar *mp3-alist* nil)
 
-  (defvar *test-pool* nil
-    "Words that have been seen during a practice session")
+(defvar *vocab-key-count* 0
+  "Counter for the list of vocabulary entries,
+    is incremented on addition of elements, or set
+    when a data-set is loaded into the hash-table
+    by the `import-vocab' function.")
 
-  (defvar *current-hsk-level* 1)
+(defvar *test-pool* nil
+  "Words that have been seen during a practice session")
+
+(defvar *current-hsk-level* 1)
 
 (defstruct vocab-entry
   (hsk     1                    :type integer)
@@ -199,14 +200,10 @@
   (labels ((structure-vocab (l)
              (puthash (car l) vocab-table (cadr l))))
     (with-open-file (in filename)
+      (declare (dynamic-extent in))
       (with-standard-io-syntax
         (mapcar #'structure-vocab (read in))))
     (setf *vocab-key-count* (hash-table-count *zh-hash-table*))))
-
-(defun convert-vocab ()
-  (let ((voctemp (make-hash-table)))
-    (import-vocab :vocab-variable voctemp)
-    (save-ht-vocab :vocab-table voctemp)))
 
 (defun fill-mp3-paths ()
   (setf *mp3dir* (directory #P"~/chinese/hsk_mp3/*.mp3"))

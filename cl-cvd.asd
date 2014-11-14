@@ -8,7 +8,9 @@
                 :cl-ppcre
                 :cl-csv
                 :external-program
-                :bordeaux-threads)
+                :bordeaux-threads
+                :cl-cffi-gtk)
   :components ((:file "package")
                (:file "cl-cvd")
+               (:file "cl-cvd-gui")
                (:file "csv-import")))

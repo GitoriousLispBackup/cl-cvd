@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Common Lisp Chinese Vocabulary Drill.</title>
-<!-- 2014-11-13 Thu 09:49 -->
+<!-- 2014-11-14 Fri 11:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Riley E." />
@@ -186,30 +186,30 @@ for the JavaScript code in this tag.
 <li><a href="#sec-6">6. Storage</a>
 <ul>
 <li><a href="#sec-6-1">6.1. Saving and Loading</a></li>
-<li><a href="#sec-6-2">6.2. Converting</a></li>
+<li><a href="#sec-6-2">6.2. fill-mp3-paths</a></li>
+<li><a href="#sec-6-3">6.3. matching vocab entries to mp3s</a></li>
 </ul>
 </li>
-<li><a href="#sec-7">7. MP3 file Matching and Playback</a>
+<li><a href="#sec-7">7. Testing Facilities</a>
 <ul>
-<li><a href="#sec-7-1">7.1. fill-mp3-paths</a></li>
-<li><a href="#sec-7-2">7.2. matching vocab entries to mp3s</a></li>
+<li><a href="#sec-7-1">7.1. set comparisons</a></li>
+<li><a href="#sec-7-2">7.2. load-from-hsk</a></li>
+<li><a href="#sec-7-3">7.3. add-vocabs</a></li>
+<li><a href="#sec-7-4">7.4. enumerate-qualified-elements</a></li>
+<li><a href="#sec-7-5">7.5. refil-testing-pool</a></li>
+<li><a href="#sec-7-6">7.6. hsk-spillover</a></li>
+<li><a href="#sec-7-7">7.7. Vocab element qualification</a></li>
+<li><a href="#sec-7-8">7.8. Presentation</a></li>
+<li><a href="#sec-7-9">7.9. List construction</a></li>
+<li><a href="#sec-7-10">7.10. Scoring</a></li>
+<li><a href="#sec-7-11">7.11. display-and-play</a></li>
+<li><a href="#sec-7-12">7.12. test-loop</a></li>
+<li><a href="#sec-7-13">7.13. random-test</a></li>
 </ul>
 </li>
-<li><a href="#sec-8">8. Testing Facilities</a>
+<li><a href="#sec-8">8. User Interface</a>
 <ul>
-<li><a href="#sec-8-1">8.1. set comparisons</a></li>
-<li><a href="#sec-8-2">8.2. load-from-hsk</a></li>
-<li><a href="#sec-8-3">8.3. add-vocabs</a></li>
-<li><a href="#sec-8-4">8.4. enumerate-qualified-elements</a></li>
-<li><a href="#sec-8-5">8.5. refil-testing-pool</a></li>
-<li><a href="#sec-8-6">8.6. hsk-spillover</a></li>
-<li><a href="#sec-8-7">8.7. Vocab element qualification</a></li>
-<li><a href="#sec-8-8">8.8. Presentation</a></li>
-<li><a href="#sec-8-9">8.9. List construction</a></li>
-<li><a href="#sec-8-10">8.10. Scoring</a></li>
-<li><a href="#sec-8-11">8.11. display-and-play</a></li>
-<li><a href="#sec-8-12">8.12. test-loop</a></li>
-<li><a href="#sec-8-13">8.13. random-test</a></li>
+<li><a href="#sec-8-1">8.1. Header</a></li>
 </ul>
 </li>
 </ul>
@@ -294,9 +294,11 @@ provides support for them.
                 <span style="color: #f9b529;">:cl-ppcre</span>
                 <span style="color: #f9b529;">:cl-csv</span>
                 <span style="color: #f9b529;">:external-program</span>
-                <span style="color: #f9b529;">:bordeaux-threads</span>)
+                <span style="color: #f9b529;">:bordeaux-threads</span>
+                <span style="color: #f9b529;">:cl-cffi-gtk</span>)
   <span style="color: #f9b529;">:components</span> ((<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"package"</span>)
                (<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"cl-cvd"</span>)
+               (<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"cl-cvd-gui"</span>)
                (<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"csv-import"</span>)))
 </pre>
 </div>
@@ -310,12 +312,9 @@ provides support for them.
 
 <pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defpackage</span> #<span style="color: #f9b529;">:chinese-vocab-drill</span>
   (<span style="color: #f9b529;">:nicknames</span> #<span style="color: #f9b529;">:cl-cvd</span>)
-  (<span style="color: #f9b529;">:use</span> <span style="color: #f9b529;">:common-lisp</span>
-        <span style="color: #f9b529;">:iterate</span>
-        <span style="color: #f9b529;">:bordeaux-threads</span>
-        <span style="color: #f9b529;">:cl-ppcre</span>
-        <span style="color: #f9b529;">:cl-csv</span>
-        <span style="color: #f9b529;">:external-program</span>))
+  (<span style="color: #f9b529;">:use</span> <span style="color: #f9b529;">:iterate</span> <span style="color: #f9b529;">:bordeaux-threads</span> <span style="color: #f9b529;">:cl-ppcre</span>
+        <span style="color: #f9b529;">:cl-csv</span> <span style="color: #f9b529;">:gtk</span> <span style="color: #f9b529;">:gdk</span> <span style="color: #f9b529;">:gobject</span> <span style="color: #f9b529;">:glib</span> <span style="color: #f9b529;">:pango</span>
+        <span style="color: #f9b529;">:cairo</span> <span style="color: #f9b529;">:cffi</span> <span style="color: #f9b529;">:external-program</span> <span style="color: #f9b529;">:cl</span>))
 </pre>
 </div>
 </div>
@@ -330,29 +329,30 @@ generating the keys used to identify hash-table entries.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">  (<span style="color: #f9b529; font-weight: bold;">in-package</span> <span style="color: #f9b529;">:cl-cvd</span>)
+<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">in-package</span> <span style="color: #f9b529;">:cl-cvd</span>)
 
-<span style="color: #232533;">;;; </span><span style="color: #696e92;">The constant PHI is used for spaced-repetition timing</span>
-  (<span style="color: #f9b529; font-weight: bold;">defconstant</span> <span style="color: #8aa6bc;">phi</span> 1.618033988749895d0
-    <span style="color: #a9dc69;">"The constant PHI, The golden ratio."</span>)
+  <span style="color: #232533;">;;; </span><span style="color: #696e92;">The constant PHI is used for spaced-repetition timing</span>
+(<span style="color: #f9b529; font-weight: bold;">defconstant</span> <span style="color: #8aa6bc;">phi</span> 1.618033988749895d0
+  <span style="color: #a9dc69;">"The constant PHI, The golden ratio."</span>)
 
-  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*zh-hash-table*</span> (make-hash-table)
-    <span style="color: #9c71a5; font-style: italic;">"Hash table for storing data of, and</span>
-<span style="color: #9c71a5; font-style: italic;">  metadata about the vocabulary listing"</span>)
+(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*zh-hash-table*</span> (make-hash-table)
+  <span style="color: #9c71a5; font-style: italic;">"Hash table for storing data of, and</span>
+<span style="color: #9c71a5; font-style: italic;">    metadata about the vocabulary listing"</span>)
 
-  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*mp3dir*</span> nil)
+(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*mp3dir*</span> nil)
 
-  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*mp3-alist*</span> nil)
+(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*mp3-alist*</span> nil)
 
-  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*vocab-key-count*</span> 0
-    <span style="color: #9c71a5; font-style: italic;">"Counter for the list of vocabulary entries,</span>
-<span style="color: #9c71a5; font-style: italic;">  is incremented on addition of elements, or set</span>
-<span style="color: #9c71a5; font-style: italic;">  when a data-set is loaded into the hash-table."</span>)
+(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*vocab-key-count*</span> 0
+  <span style="color: #9c71a5; font-style: italic;">"Counter for the list of vocabulary entries,</span>
+<span style="color: #9c71a5; font-style: italic;">    is incremented on addition of elements, or set</span>
+<span style="color: #9c71a5; font-style: italic;">    when a data-set is loaded into the hash-table</span>
+<span style="color: #9c71a5; font-style: italic;">    by the `</span><span style="color: #ffffff; font-weight: bold; font-style: italic;">import-vocab</span><span style="color: #9c71a5; font-style: italic;">' function."</span>)
 
-  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*test-pool*</span> nil
-    <span style="color: #9c71a5; font-style: italic;">"Words that have been seen during a practice session"</span>)
+(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*test-pool*</span> nil
+  <span style="color: #9c71a5; font-style: italic;">"Words that have been seen during a practice session"</span>)
 
-  (<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*current-hsk-level*</span> 1)
+(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*current-hsk-level*</span> 1)
 </pre>
 </div>
 </div>
@@ -365,9 +365,10 @@ generating the keys used to identify hash-table entries.
 <ul class="org-ul">
 <li>Vocab Entry:
 <ul class="org-ul">
-<li>The <code>vocab-entry</code> data-structure houses each vocabulary item, as well as the
-metadata about each item, such as times correct, time incorrect, last
-practice date, and repetitions.
+<li>The <code>vocab-entry</code> data-structure provides the scaffolding for each
+vocabulary item, as well as the metadata about each item, such as times
+correct, time incorrect, last practice date, and number of total
+repetitions.
 </li>
 </ul>
 </li>
@@ -950,44 +951,22 @@ The obvious counterpart to <code>export-vocab</code>.
   (<span style="color: #f9b529; font-weight: bold;">labels</span> ((structure-vocab (l)
              (puthash (car l) vocab-table (cadr l))))
     (<span style="color: #f9b529; font-weight: bold;">with-open-file</span> (in filename)
+      (<span style="color: #f9b529; font-weight: bold;">declare</span> (dynamic-extent in))
       (<span style="color: #f9b529; font-weight: bold;">with-standard-io-syntax</span>
         (mapcar #'structure-vocab (read in))))
     (setf *vocab-key-count* (hash-table-count *zh-hash-table*))))
 </pre>
 </div>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Converting</h3>
-<div class="outline-text-3" id="text-6-2">
-<p>
-When moving between Lisp implementations, you cannot keep the same hash-table
-object in plain-text format and expect to be able to load it, so this must be
-executed in order to use your data-set when migrating.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">convert-vocab</span> ()
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((voctemp (make-hash-table)))
-    (import-vocab <span style="color: #f9b529;">:vocab-variable</span> voctemp)
-    (save-ht-vocab <span style="color: #f9b529;">:vocab-table</span> voctemp)))
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> MP3 file Matching and Playback</h2>
-<div class="outline-text-2" id="text-7">
 <p>
 MP3s and the original data-set were provided by <i>lingomi</i>.
 </p>
 </div>
+</div>
+</div>
 
-<div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1"><span class="section-number-3">7.1</span> fill-mp3-paths</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> fill-mp3-paths</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 Set the variable <code>*mp3dir*</code> to be a list of paths to each of the MP3s for the
 vocab tests.
@@ -1001,12 +980,12 @@ vocab tests.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-2" class="outline-3">
-<h3 id="sec-7-2"><span class="section-number-3">7.2</span> matching vocab entries to mp3s</h3>
-<div class="outline-text-3" id="text-7-2">
-</div><div id="outline-container-sec-7-2-1" class="outline-4">
-<h4 id="sec-7-2-1">find-mp3-path</h4>
-<div class="outline-text-4" id="text-7-2-1">
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> matching vocab entries to mp3s</h3>
+<div class="outline-text-3" id="text-6-3">
+</div><div id="outline-container-sec-6-3-1" class="outline-4">
+<h4 id="sec-6-3-1">find-mp3-path</h4>
+<div class="outline-text-4" id="text-6-3-1">
 <p>
 Search a list of mp3 files for a match with a predefined pinyin string.
 </p>
@@ -1019,9 +998,9 @@ Search a list of mp3 files for a match with a predefined pinyin string.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-2-2" class="outline-4">
-<h4 id="sec-7-2-2">find-matching-mp3</h4>
-<div class="outline-text-4" id="text-7-2-2">
+<div id="outline-container-sec-6-3-2" class="outline-4">
+<h4 id="sec-6-3-2">find-matching-mp3</h4>
+<div class="outline-text-4" id="text-6-3-2">
 <p>
 Match a given vocabulary key to a list of mp3 files
 </p>
@@ -1041,9 +1020,9 @@ Match a given vocabulary key to a list of mp3 files
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-2-3" class="outline-4">
-<h4 id="sec-7-2-3">find-active-vocab-mp3s</h4>
-<div class="outline-text-4" id="text-7-2-3">
+<div id="outline-container-sec-6-3-3" class="outline-4">
+<h4 id="sec-6-3-3">find-active-vocab-mp3s</h4>
+<div class="outline-text-4" id="text-6-3-3">
 <p>
 Look for mp3s which match the contents of the <code>*mp3dir*</code> variable, if it is not
 already in the <code>*mp3-alist*</code>, add it in the form of <code>(KEY PATH-TO-MP3)</code>.
@@ -1059,9 +1038,9 @@ already in the <code>*mp3-alist*</code>, add it in the form of <code>(KEY PATH-T
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-2-4" class="outline-4">
-<h4 id="sec-7-2-4">play-mp3</h4>
-<div class="outline-text-4" id="text-7-2-4">
+<div id="outline-container-sec-6-3-4" class="outline-4">
+<h4 id="sec-6-3-4">play-mp3</h4>
+<div class="outline-text-4" id="text-6-3-4">
 <p>
 Launch a thread that runs a program with the appropriate filename as returned by
 an association list lookup.
@@ -1079,12 +1058,12 @@ an association list lookup.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> Testing Facilities</h2>
-<div class="outline-text-2" id="text-8">
-</div><div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1"><span class="section-number-3">8.1</span> set comparisons</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Testing Facilities</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> set comparisons</h3>
+<div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 
 <pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">my-subset?</span> (set-x set-y)
@@ -1100,9 +1079,9 @@ an association list lookup.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2"><span class="section-number-3">8.2</span> load-from-hsk</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> load-from-hsk</h3>
+<div class="outline-text-3" id="text-7-2">
 <p>
 Useful for bootstrapping vocab-element selection.
 </p>
@@ -1117,9 +1096,9 @@ Useful for bootstrapping vocab-element selection.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-3" class="outline-3">
-<h3 id="sec-8-3"><span class="section-number-3">8.3</span> add-vocabs</h3>
-<div class="outline-text-3" id="text-8-3">
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> add-vocabs</h3>
+<div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 
 <pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">add-vocabs</span> (hsk <span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (count 5))
@@ -1134,9 +1113,9 @@ Useful for bootstrapping vocab-element selection.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-4" class="outline-3">
-<h3 id="sec-8-4"><span class="section-number-3">8.4</span> enumerate-qualified-elements</h3>
-<div class="outline-text-3" id="text-8-4">
+<div id="outline-container-sec-7-4" class="outline-3">
+<h3 id="sec-7-4"><span class="section-number-3">7.4</span> enumerate-qualified-elements</h3>
+<div class="outline-text-3" id="text-7-4">
 <p>
 Check the number of elements that have qualified since the last test occurred,
 This is used to check to see if the minimal number of elements required for a
@@ -1150,9 +1129,9 @@ test can be called in without overlapping cooldown-times.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-5" class="outline-3">
-<h3 id="sec-8-5"><span class="section-number-3">8.5</span> refil-testing-pool</h3>
-<div class="outline-text-3" id="text-8-5">
+<div id="outline-container-sec-7-5" class="outline-3">
+<h3 id="sec-7-5"><span class="section-number-3">7.5</span> refil-testing-pool</h3>
+<div class="outline-text-3" id="text-7-5">
 <div class="org-src-container">
 
 <pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">refil-testing-pool</span> (hsk upper-bound)
@@ -1162,9 +1141,9 @@ test can be called in without overlapping cooldown-times.
 </div>
 </div>
 
-<div id="outline-container-sec-8-6" class="outline-3">
-<h3 id="sec-8-6"><span class="section-number-3">8.6</span> hsk-spillover</h3>
-<div class="outline-text-3" id="text-8-6">
+<div id="outline-container-sec-7-6" class="outline-3">
+<h3 id="sec-7-6"><span class="section-number-3">7.6</span> hsk-spillover</h3>
+<div class="outline-text-3" id="text-7-6">
 <p>
 When a testing level is exhausted, pull more from the next level up.
 If there are no more levels, don't increment.
@@ -1180,12 +1159,12 @@ If there are no more levels, don't increment.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-7" class="outline-3">
-<h3 id="sec-8-7"><span class="section-number-3">8.7</span> Vocab element qualification</h3>
-<div class="outline-text-3" id="text-8-7">
-</div><div id="outline-container-sec-8-7-1" class="outline-4">
-<h4 id="sec-8-7-1">english-sensible-p</h4>
-<div class="outline-text-4" id="text-8-7-1">
+<div id="outline-container-sec-7-7" class="outline-3">
+<h3 id="sec-7-7"><span class="section-number-3">7.7</span> Vocab element qualification</h3>
+<div class="outline-text-3" id="text-7-7">
+</div><div id="outline-container-sec-7-7-1" class="outline-4">
+<h4 id="sec-7-7-1">english-sensible-p</h4>
+<div class="outline-text-4" id="text-7-7-1">
 <p>
 Check to see if any constituents of the english parameter of a particular entry
 can be expected to be remembered verbatim and entered when prompted for an
@@ -1202,9 +1181,9 @@ thesaurus.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-7-2" class="outline-4">
-<h4 id="sec-8-7-2">sensible-tests</h4>
-<div class="outline-text-4" id="text-8-7-2">
+<div id="outline-container-sec-7-7-2" class="outline-4">
+<h4 id="sec-7-7-2">sensible-tests</h4>
+<div class="outline-text-4" id="text-7-7-2">
 <p>
 A bit crude, but return a list of appropriate tests based on the response of
 <code>english-sensible-p</code>.
@@ -1219,9 +1198,9 @@ A bit crude, but return a list of appropriate tests based on the response of
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-7-3" class="outline-4">
-<h4 id="sec-8-7-3">qualified-p</h4>
-<div class="outline-text-4" id="text-8-7-3">
+<div id="outline-container-sec-7-7-3" class="outline-4">
+<h4 id="sec-7-7-3">qualified-p</h4>
+<div class="outline-text-4" id="text-7-7-3">
 <p>
 Test to see which vocabulary elements qualify for testing at a given time.
 </p>
@@ -1235,9 +1214,9 @@ Test to see which vocabulary elements qualify for testing at a given time.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-7-4" class="outline-4">
-<h4 id="sec-8-7-4">set-next-test</h4>
-<div class="outline-text-4" id="text-8-7-4">
+<div id="outline-container-sec-7-7-4" class="outline-4">
+<h4 id="sec-7-7-4">set-next-test</h4>
+<div class="outline-text-4" id="text-7-7-4">
 <p>
 Set the <code>:date</code> slot in a given vocab structure to the next scheduled test based
 upon the number of times it has been correctly answered.
@@ -1252,12 +1231,12 @@ upon the number of times it has been correctly answered.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-8" class="outline-3">
-<h3 id="sec-8-8"><span class="section-number-3">8.8</span> Presentation</h3>
-<div class="outline-text-3" id="text-8-8">
-</div><div id="outline-container-sec-8-8-1" class="outline-4">
-<h4 id="sec-8-8-1">show-challenge</h4>
-<div class="outline-text-4" id="text-8-8-1">
+<div id="outline-container-sec-7-8" class="outline-3">
+<h3 id="sec-7-8"><span class="section-number-3">7.8</span> Presentation</h3>
+<div class="outline-text-3" id="text-7-8">
+</div><div id="outline-container-sec-7-8-1" class="outline-4">
+<h4 id="sec-7-8-1">show-challenge</h4>
+<div class="outline-text-4" id="text-7-8-1">
 <p>
 Take a <code>field</code> and <code>key</code>, and respond with a string from the requested
 field. A field value of <code>english</code> will return a random string from the list
@@ -1280,9 +1259,9 @@ ideographs.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-8-2" class="outline-4">
-<h4 id="sec-8-8-2">take-answer</h4>
-<div class="outline-text-4" id="text-8-8-2">
+<div id="outline-container-sec-7-8-2" class="outline-4">
+<h4 id="sec-7-8-2">take-answer</h4>
+<div class="outline-text-4" id="text-7-8-2">
 <p>
 A simple silly test.
 </p>
@@ -1296,12 +1275,12 @@ A simple silly test.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-9" class="outline-3">
-<h3 id="sec-8-9"><span class="section-number-3">8.9</span> List construction</h3>
-<div class="outline-text-3" id="text-8-9">
-</div><div id="outline-container-sec-8-9-1" class="outline-4">
-<h4 id="sec-8-9-1">construct-test-list</h4>
-<div class="outline-text-4" id="text-8-9-1">
+<div id="outline-container-sec-7-9" class="outline-3">
+<h3 id="sec-7-9"><span class="section-number-3">7.9</span> List construction</h3>
+<div class="outline-text-3" id="text-7-9">
+</div><div id="outline-container-sec-7-9-1" class="outline-4">
+<h4 id="sec-7-9-1">construct-test-list</h4>
+<div class="outline-text-4" id="text-7-9-1">
 <p>
 Build up a sample of vocab items for a test battery.
 </p>
@@ -1321,9 +1300,9 @@ Build up a sample of vocab items for a test battery.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-9-2" class="outline-4">
-<h4 id="sec-8-9-2">reconstruct-test-pool</h4>
-<div class="outline-text-4" id="text-8-9-2">
+<div id="outline-container-sec-7-9-2" class="outline-4">
+<h4 id="sec-7-9-2">reconstruct-test-pool</h4>
+<div class="outline-text-4" id="text-7-9-2">
 <p>
 Rebuild the testing pool from the base vocab library by searching for items that
 have already been seen in practice.
@@ -1340,12 +1319,12 @@ have already been seen in practice.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-10" class="outline-3">
-<h3 id="sec-8-10"><span class="section-number-3">8.10</span> Scoring</h3>
-<div class="outline-text-3" id="text-8-10">
-</div><div id="outline-container-sec-8-10-1" class="outline-4">
-<h4 id="sec-8-10-1">string-in-list-p</h4>
-<div class="outline-text-4" id="text-8-10-1">
+<div id="outline-container-sec-7-10" class="outline-3">
+<h3 id="sec-7-10"><span class="section-number-3">7.10</span> Scoring</h3>
+<div class="outline-text-3" id="text-7-10">
+</div><div id="outline-container-sec-7-10-1" class="outline-4">
+<h4 id="sec-7-10-1">string-in-list-p</h4>
+<div class="outline-text-4" id="text-7-10-1">
 <p>
 Test to see if a list contains a specified string.
 </p>
@@ -1359,9 +1338,9 @@ Test to see if a list contains a specified string.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-10-2" class="outline-4">
-<h4 id="sec-8-10-2">check-answer</h4>
-<div class="outline-text-4" id="text-8-10-2">
+<div id="outline-container-sec-7-10-2" class="outline-4">
+<h4 id="sec-7-10-2">check-answer</h4>
+<div class="outline-text-4" id="text-7-10-2">
 <p>
 Test a provided answer for correctness against data stored in a vocab-entry instance.
 </p>
@@ -1380,9 +1359,9 @@ Test a provided answer for correctness against data stored in a vocab-entry inst
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-10-3" class="outline-4">
-<h4 id="sec-8-10-3">score-result</h4>
-<div class="outline-text-4" id="text-8-10-3">
+<div id="outline-container-sec-7-10-3" class="outline-4">
+<h4 id="sec-7-10-3">score-result</h4>
+<div class="outline-text-4" id="text-7-10-3">
 <p>
 Return a complex number, depending the state of <code>result</code>, that is added to the
 score stored in a specific <code>vocab-entry</code> structure. The left side of the complex
@@ -1398,9 +1377,9 @@ is Correct, the right is Incorrect.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-10-4" class="outline-4">
-<h4 id="sec-8-10-4">determine-offset</h4>
-<div class="outline-text-4" id="text-8-10-4">
+<div id="outline-container-sec-7-10-4" class="outline-4">
+<h4 id="sec-7-10-4">determine-offset</h4>
+<div class="outline-text-4" id="text-7-10-4">
 <p>
 ,Determine the offset for scheduling from anywhere between minutes to weeks based
 on the ratio between the real and imaginary components of the complex number
@@ -1419,9 +1398,9 @@ least four categories: unknown, poorly known, somewhat known, and known.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-10-5" class="outline-4">
-<h4 id="sec-8-10-5">schedule-next-test</h4>
-<div class="outline-text-4" id="text-8-10-5">
+<div id="outline-container-sec-7-10-5" class="outline-4">
+<h4 id="sec-7-10-5">schedule-next-test</h4>
+<div class="outline-text-4" id="text-7-10-5">
 <p>
 Determine when a word should be tested next based on the number of repetitions,
 and adjust this based on the score.
@@ -1445,9 +1424,9 @@ and adjust this based on the score.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-11" class="outline-3">
-<h3 id="sec-8-11"><span class="section-number-3">8.11</span> display-and-play</h3>
-<div class="outline-text-3" id="text-8-11">
+<div id="outline-container-sec-7-11" class="outline-3">
+<h3 id="sec-7-11"><span class="section-number-3">7.11</span> display-and-play</h3>
+<div class="outline-text-3" id="text-7-11">
 <p>
 Print the Challenge to the screen, then prompt the user for the selected test,
 and play the sound file associated with the vocab entry. Update the score stored
@@ -1477,7 +1456,7 @@ in the vocab-entry structure to reflect the correctness of the answer.
 </pre>
 </div>
 </div>
-<ul class="org-ul"><li><a id="sec-8-11-0-1" name="sec-8-11-0-1"></a>get-answer<br  /><div class="outline-text-5" id="text-8-11-0-1">
+<ul class="org-ul"><li><a id="sec-7-11-0-1" name="sec-7-11-0-1"></a>get-answer<br  /><div class="outline-text-5" id="text-7-11-0-1">
 <p>
 Just having a call to <code>read-line</code> has some strange effects on program flow, so
 I'm wrapping it in a function.
@@ -1491,9 +1470,9 @@ I'm wrapping it in a function.
 </div>
 </li></ul>
 </div>
-<div id="outline-container-sec-8-12" class="outline-3">
-<h3 id="sec-8-12"><span class="section-number-3">8.12</span> test-loop</h3>
-<div class="outline-text-3" id="text-8-12">
+<div id="outline-container-sec-7-12" class="outline-3">
+<h3 id="sec-7-12"><span class="section-number-3">7.12</span> test-loop</h3>
+<div class="outline-text-3" id="text-7-12">
 <p>
 Loop through a set of tests where the test type is indeterminate.
 </p>
@@ -1511,9 +1490,9 @@ Loop through a set of tests where the test type is indeterminate.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-13" class="outline-3">
-<h3 id="sec-8-13"><span class="section-number-3">8.13</span> random-test</h3>
-<div class="outline-text-3" id="text-8-13">
+<div id="outline-container-sec-7-13" class="outline-3">
+<h3 id="sec-7-13"><span class="section-number-3">7.13</span> random-test</h3>
+<div class="outline-text-3" id="text-7-13">
 <div class="org-src-container">
 
 <pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">random-test</span> (key)
@@ -1530,10 +1509,26 @@ Loop through a set of tests where the test type is indeterminate.
 </div>
 </div>
 </div>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> User Interface</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> Header</h3>
+<div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #232533;">;; </span><span style="color: #696e92;">This is the source for the GUI front-end of the Chinese Vocab Drill</span>
+<span style="color: #232533;">;; </span><span style="color: #696e92;">package. It uses GTK+ 3.x via CFFI.</span>
+(<span style="color: #f9b529; font-weight: bold;">in-package</span> <span style="color: #f9b529;">:cl-cvd</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Riley E.</p>
-<p class="date">Created: 2014-11-13 Thu 09:49</p>
+<p class="date">Created: 2014-11-14 Fri 11:04</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
