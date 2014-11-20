@@ -44,9 +44,9 @@
   (hsk     1                    :type integer)
   (hanzi   ""                   :type string)
   (pinyin  ""                   :type string)
-  (english '("")                :type list)
-  (seealso '("")                :type list)
-  (units   '("")                :type list)
+  (english (list "")            :type list)
+  (seealso (list "")            :type list)
+  (units   (list "")            :type list)
   (score   (complex 0.0 0.0)    :type complex)
   (date    (get-universal-time) :type integer)
   (reps    1                    :type integer))
@@ -119,20 +119,20 @@
                       (punctuation-p (char target-string word-end))))
              word)))))
 
-(let ((punctuations '(#\SPACE #\Tab
-                      #\.     #\,
-                      #\;     #\:
-                      #\/     #\\
-                      #\|     #\!
-                      #\-     #\_
-                      #\(     #\) 
-                      #\{     #\}
-                      #\[     #\]
-                      #\~     #\`
-                      #\<     #\>
-                      #\?     #\&
-                      #\"     #\+
-                      #\=)))
+(let ((punctuations (list #\SPACE #\Tab
+                          #\.     #\,
+                          #\;     #\:
+                          #\/     #\\
+                          #\|     #\!
+                          #\-     #\_
+                          #\(     #\) 
+                          #\{     #\}
+                          #\[     #\]
+                          #\~     #\`
+                          #\<     #\>
+                          #\?     #\&
+                          #\"     #\+
+                          #\=)))
   
   (defun punctuation-p (chr)
     (member chr punctuations))
@@ -144,16 +144,9 @@
   (defun rempunct (chr)
     (when (punctuation-p chr)
       (setf punctuations (delete chr punctuations))))
-
+  
   (defun get-punctuation ()
     punctuations))
-
-(defun count-spaces (str)
-  (let ((space-count 0))
-    (iterate (for chr in-string str)
-      (when (char= chr #\SPACE)
-        (incf space-count))
-      (finally (return space-count)))))
 
 (defun add-entry (&key hanzi pinyin english (hsk 0) (hash-table *zh-hash-table*))
   (puthash (gen-ht-key 'zh-index)
@@ -186,15 +179,17 @@
     (incf (vocab-entry-reps vocab-entry))))
 
 (defun export-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw")) 
-  (let (the-alist)
+  (let ((the-alist) (count 0))
     (labels ((destructure-vocab (x y)
-               (push (list x y) the-alist)))
+               (push (list x y) the-alist)
+               (incf count)))
       (maphash #'destructure-vocab vocab-table)
       (with-open-file (out filename
                            :direction :output
                            :if-exists :supersede)
         (with-standard-io-syntax
-          (pprint the-alist out))))))
+          (pprint the-alist out))))
+    count))
 
 (defun import-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw"))
   (labels ((structure-vocab (l)
@@ -244,31 +239,31 @@
        (my-subset? set-y set-x)))
 
 (defun load-from-hsk (hsk-val &optional (n 10))
-  (setf *test-pool*
-        (subseq (reverse (hsk-apropos hsk-val))
-                0
-                n)))
-
-(defun add-vocabs (hsk &key (count 5))
-  (let ((pool     (reverse (hsk-apropos hsk)))
-        (p-length (length *test-pool*)))
-    (iterate (for elt in pool)
-      (unless (member elt *test-pool*)
-        (when (<= (length *test-pool*)
-                  (+ p-length count))
-          (push elt *test-pool*))))))
+  (let ((base (length *test-pool*)))
+    (setf *test-pool*
+          (nconc *test-pool*
+                 (subseq (reverse (hsk-apropos hsk-val))
+                         base
+                         (+ n base))))))
 
 (defun enumerate-qualified-elements ()
   (length (remove-if-not #'qualified-p *test-pool*)))
 
 (defun refil-testing-pool (hsk upper-bound)
-  (add-vocabs hsk (- upper-bound (enumerate-qualified-elements))))
+  (load-from-hsk hsk (- upper-bound (enumerate-qualified-elements))))
 
 (defun hsk-spillover ()
   (if (and (hsk-apropos (+ *current-hsk-level* 1))
            (set-equal-p *test-pool* (hsk-apropos *current-hsk-level*)))
       (incf *current-hsk-level*)
       (format nil "Takeshi: ``Amazing!''")))
+
+(defun count-spaces (str)
+  (let ((space-count 0))
+    (iterate (for chr in-string str)
+      (when (char= chr #\SPACE)
+        (incf space-count))
+      (finally (return space-count)))))
 
 (defun english-sensible-p (vocab-entry)
   (element-of-truth (mapcar (lambda (s)
@@ -287,7 +282,7 @@
 
 (defun set-next-test (vocab-struct)
   (setf (vocab-entry-date vocab-struct)
-        (schedule-next-test (vocab-entry-reps vocab-struct))))
+        (schedule-next-test vocab-struct)))
 
 (defun show-challenge (&key field key (hash-table *zh-hash-table*))
   (let ((the-object (gethash key hash-table)))
@@ -325,14 +320,14 @@
       l)))
 
 (defun check-answer (answer vocab-entry test-type)
-  (cond ((and (equalp test-type 'english)
+  (cond ((not (member test-type '(english hanzi pinyin)))
+         (error "Unknown test-type"))
+        ((and (equalp test-type 'english)
               (string-in-list-p answer (vocab-entry-english vocab-entry))))
         ((and (equalp test-type 'hanzi)
               (string= answer (vocab-entry-hanzi vocab-entry))))
         ((and (equalp test-type 'pinyin)
-              (string= answer (vocab-entry-pinyin vocab-entry))))
-        ((not (member test-type '(english hanzi pinyin)))
-         (error "Unknown test-type"))))
+              (string= answer (vocab-entry-pinyin vocab-entry))))))
 
 (defun score-result (result)
   (if result
@@ -341,23 +336,17 @@
 
 (defun determine-offset (c)
     (let ((ratio (/ (realpart c) (imagpart c))))
-      (cond ((<= ratio 1)  'unknown)
-            ((<= ratio 2)  'poor)
-            ((<= ratio 5)  'medium)
-            ((<= ratio 10) 'good))))
+      (cond ((<= ratio 1)  3600)
+            ((<= ratio 2)  7200)
+            ((<= ratio 5)  10800)
+            ((<= ratio 10) 28000))))
 
 (defun schedule-next-test (reps score)
   (round
    (+ (get-universal-time)
-      (* (+ 7200                          ; two hours in seconds
-            (case (determine-offset score)
-              ((unknown) 3600)            ; one hour in seconds
-              ((poor)    7200)            ; two hours in seconds
-              ((medium)  10800)           ; three hours in seconds
-              ((good)    18000)           ; Five hours in seconds
-              ((t)       28800)           ; Eight hours in seconds;
-              ((nil)     28800))          ; for compiler optimization.
-            (expt phi (/ reps 3)))))))
+      (* (+ 7200
+            (determine-offset score) 
+            (expt phi (/ reps 2)))))))
 
 (defun display-and-play (&key key from for)
   (let ((goal      (show-challenge :field for :key key))

@@ -1,7 +1,6 @@
 
 (defun preprocess-english (desc-string)
-  (car (cl-csv:read-csv desc-string
-                        :separator #\SEMICOLON)))
+  (car (read-csv desc-string :separator #\SEMICOLON)))
 
 (defun collect-measures (l)
   (iterate (for s in l)
@@ -28,13 +27,6 @@
        (mapcar #'cl-csv:read-csv
                (mapcar #'clean-measures objet-petit-a))))))
 
-(defun collect-see-also (l)
-  (iterate (for s in l)
-    (when (and (stringp s)
-               (< 8 (length s))
-               (string= (subseq s 0 8) "see also"))
-      (collect s))))
-
 (defun clean-english (l)
   (remove-if (lambda (s)
                (or
@@ -44,6 +36,13 @@
                 (and (< 4 (length s))
                      (string= (subseq s 0 3) "CL:"))))
              l))
+
+(defun collect-see-also (l)
+  (iterate (for s in l)
+    (when (and (stringp s)
+               (< 8 (length s))
+               (string= (subseq s 0 8) "see also"))
+      (collect s))))
 
 (defun eleml-to-struct (l)
   (destructuring-bind (hsk hanzi pinyin description) l

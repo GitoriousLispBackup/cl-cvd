@@ -111,9 +111,9 @@ generating the keys used to identify hash-table entries.
     (hsk     1                    :type integer)
     (hanzi   ""                   :type string)
     (pinyin  ""                   :type string)
-    (english '("")                :type list)
-    (seealso '("")                :type list)
-    (units   '("")                :type list)
+    (english (list "")            :type list)
+    (seealso (list "")            :type list)
+    (units   (list "")            :type list)
     (score   (complex 0.0 0.0)    :type complex)
     (date    (get-universal-time) :type integer)
     (reps    1                    :type integer))
@@ -122,27 +122,18 @@ generating the keys used to identify hash-table entries.
 : VOCAB-ENTRY
 
 * Comma-separated value import utilities
-** Header info
-#+BEGIN_SRC lisp :session :eval no :tangle no
-  ;; This file is a part of the CL-CVD package, and contains the functionality for
-  ;; parsing CSV input.
-
-#+END_SRC
-#+RESULTS:
-: #<PACKAGE "CHINESE-VOCAB-DRILL">
-
-** preprocess-english
+** Pre-parsing
+*** preprocess-english
 Break up the generic English description rendered from the CSV by
 splitting it at each semicolon.
 #+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
   (defun preprocess-english (desc-string)
-    (car (cl-csv:read-csv desc-string
-                          :separator #\SEMICOLON)))
+    (car (read-csv desc-string :separator #\SEMICOLON)))
 #+END_SRC
 #+RESULTS:
 : PREPROCESS-ENGLISH
 
-** collect-measures
+*** collect-measures
 Collect all applicable notes concerning units of measurement related to words
 and generate a list of them. First checking to see if the object is a string at
 all, then if the length is greater than four (to prevent errors, and because it
@@ -159,7 +150,7 @@ characters which designate a unit (in this case, "CL:".)
 #+RESULTS:
 : COLLECT-MEASURES
 
-** clean-measures
+*** clean-measures
 Prune the "CL:" from the head of measures to make displaying nicer.
 #+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
   (defun clean-measures (s)
@@ -168,7 +159,7 @@ Prune the "CL:" from the head of measures to make displaying nicer.
 #+RESULTS:
 : CLEAN-MEASURES
 
-** flatten
+*** flatten
 Flatten nested lists. Pulled from [[http://letoverlambda.com][Let Over Lambda]] Credit goes to Doug Hoyte.
 #+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
   (defun flatten (x)
@@ -182,7 +173,7 @@ Flatten nested lists. Pulled from [[http://letoverlambda.com][Let Over Lambda]] 
 #+RESULTS:
 : FLATTEN
 
-** finalize-measures
+*** finalize-measures
 Take the collected measures, split them by commas into separate
 strings, and flatten the resulting structure.
 #+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
@@ -196,21 +187,7 @@ strings, and flatten the resulting structure.
 #+RESULTS:
 : FINALIZE-MEASURES
 
-** collect-see-also
-Collect strings from the results of =preprocess-english= that begin with "see
-also".
-#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
-  (defun collect-see-also (l)
-    (iterate (for s in l)
-      (when (and (stringp s)
-                 (< 8 (length s))
-                 (string= (subseq s 0 8) "see also"))
-        (collect s))))
-#+END_SRC
-#+RESULTS:
-: COLLECT-SEE-ALSO
-
-** clean-english
+*** clean-english
 Remove all entries that are not themselves translations of the term,
 but relate to either units of measurement, or hint to related terms.
 #+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
@@ -227,10 +204,27 @@ but relate to either units of measurement, or hint to related terms.
 #+RESULTS:
 : CLEAN-ENGLISH
 
-** eleml-to-struct
+
+** Separating components
+*** collect-see-also
+Collect strings from the results of =preprocess-english= that begin with "see
+also".
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun collect-see-also (l)
+    (iterate (for s in l)
+      (when (and (stringp s)
+                 (< 8 (length s))
+                 (string= (subseq s 0 8) "see also"))
+        (collect s))))
+#+END_SRC
+#+RESULTS:
+: COLLECT-SEE-ALSO
+
+** Final structuring of data
+*** eleml-to-struct
 Break up the s-expressionized CSV line and name the elements, then perform
-various operations on each elements, including further breaking up into
-references to other items,
+various operations on each of these elements, including further breaking up into
+other specific values to be stored in the vocab-entry structure.
 #+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
   (defun eleml-to-struct (l)
     (destructuring-bind (hsk hanzi pinyin description) l
@@ -248,7 +242,7 @@ references to other items,
 #+RESULTS:
 : ELEML-TO-STRUCT
 
-** batch-add-table
+*** batch-add-table
 Copy the entire result of a =parse-csv= operation into a hash table using the
 predefined functions above.
 #+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
@@ -402,20 +396,20 @@ Find a whole word within a provided string, delineated by an end of the
 Define a set of functions for retrieving and manipulating a stored list of
 punctuation-marks and white-space characters.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (let ((punctuations '(#\SPACE #\Tab
-                        #\.     #\,
-                        #\;     #\:
-                        #\/     #\\
-                        #\|     #\!
-                        #\-     #\_
-                        #\(     #\) 
-                        #\{     #\}
-                        #\[     #\]
-                        #\~     #\`
-                        #\<     #\>
-                        #\?     #\&
-                        #\"     #\+
-                        #\=)))
+  (let ((punctuations (list #\SPACE #\Tab
+                            #\.     #\,
+                            #\;     #\:
+                            #\/     #\\
+                            #\|     #\!
+                            #\-     #\_
+                            #\(     #\) 
+                            #\{     #\}
+                            #\[     #\]
+                            #\~     #\`
+                            #\<     #\>
+                            #\?     #\&
+                            #\"     #\+
+                            #\=)))
     
     (defun punctuation-p (chr)
       (member chr punctuations))
@@ -427,29 +421,13 @@ punctuation-marks and white-space characters.
     (defun rempunct (chr)
       (when (punctuation-p chr)
         (setf punctuations (delete chr punctuations))))
-
+    
     (defun get-punctuation ()
       punctuations))
 
 #+END_SRC
 #+RESULTS:
-: GET-PUNCTUATION
-
-** count-spaces
-Determine the complexity of an example by counting the spaces in a string. This
-is used to determine if one should be expected to enter the english equivalent
-of a selected Chinese text sample.
-#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (defun count-spaces (str)
-    (let ((space-count 0))
-      (iterate (for chr in-string str)
-        (when (char= chr #\SPACE)
-          (incf space-count))
-        (finally (return space-count)))))
-#+END_SRC
-#+RESULTS:
-: COUNT-SPACES
-
+: *PUNCTUATIONS*
 * Entry manipulation
 ** add-entry
 Create a new instance of =vocab-entry= and install it into the primary
@@ -515,15 +493,17 @@ The =export-vocab= function arose out of a finding that hash-table objects
 differ slightly between Common Lisp implementations.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun export-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw")) 
-    (let (the-alist)
+    (let ((the-alist) (count 0))
       (labels ((destructure-vocab (x y)
-                 (push (list x y) the-alist)))
+                 (push (list x y) the-alist)
+                 (incf count)))
         (maphash #'destructure-vocab vocab-table)
         (with-open-file (out filename
                              :direction :output
                              :if-exists :supersede)
           (with-standard-io-syntax
-            (pprint the-alist out))))))
+            (pprint the-alist out))))
+      count))
 #+END_SRC
 #+RESULTS:
 : EXPORT-VOCAB
@@ -631,27 +611,15 @@ an association list lookup.
 Useful for bootstrapping vocab-element selection.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun load-from-hsk (hsk-val &optional (n 10))
-    (setf *test-pool*
-          (subseq (reverse (hsk-apropos hsk-val))
-                  0
-                  n)))
+    (let ((base (length *test-pool*)))
+      (setf *test-pool*
+            (nconc *test-pool*
+                   (subseq (reverse (hsk-apropos hsk-val))
+                           base
+                           (+ n base))))))
 #+END_SRC
 #+RESULTS:
 : LOAD-FROM-HSK
-
-** add-vocabs
-#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (defun add-vocabs (hsk &key (count 5))
-    (let ((pool     (reverse (hsk-apropos hsk)))
-          (p-length (length *test-pool*)))
-      (iterate (for elt in pool)
-        (unless (member elt *test-pool*)
-          (when (<= (length *test-pool*)
-                    (+ p-length count))
-            (push elt *test-pool*))))))
-#+END_SRC
-#+RESULTS:
-: ADD-VOCABS
 
 ** enumerate-qualified-elements
 Check the number of elements that have qualified since the last test occurred,
@@ -667,7 +635,7 @@ test can be called in without overlapping cooldown-times.
 ** refil-testing-pool
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun refil-testing-pool (hsk upper-bound)
-    (add-vocabs hsk (- upper-bound (enumerate-qualified-elements))))
+    (load-from-hsk hsk (- upper-bound (enumerate-qualified-elements))))
 #+END_SRC
 
 #+RESULTS:
@@ -687,6 +655,21 @@ If there are no more levels, don't increment.
 : HSK-SPILLOVER
 
 ** Vocab element qualification
+*** count-spaces
+Determine the complexity of an example by counting the spaces in a string. This
+is used to determine if one should be expected to enter the english equivalent
+of a selected Chinese text sample.
+#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
+  (defun count-spaces (str)
+    (let ((space-count 0))
+      (iterate (for chr in-string str)
+        (when (char= chr #\SPACE)
+          (incf space-count))
+        (finally (return space-count)))))
+#+END_SRC
+#+RESULTS:
+: COUNT-SPACES
+
 *** english-sensible-p
 Check to see if any constituents of the english parameter of a particular entry
 can be expected to be remembered verbatim and entered when prompted for an
@@ -730,7 +713,7 @@ upon the number of times it has been correctly answered.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun set-next-test (vocab-struct)
     (setf (vocab-entry-date vocab-struct)
-          (schedule-next-test (vocab-entry-reps vocab-struct))))
+          (schedule-next-test vocab-struct)))
 #+END_SRC
 #+RESULTS:
 : SET-NEXT-TEST
@@ -813,14 +796,14 @@ Test to see if a list contains a specified string.
 Test a provided answer for correctness against data stored in a vocab-entry instance.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun check-answer (answer vocab-entry test-type)
-    (cond ((and (equalp test-type 'english)
+    (cond ((not (member test-type '(english hanzi pinyin)))
+           (error "Unknown test-type"))
+          ((and (equalp test-type 'english)
                 (string-in-list-p answer (vocab-entry-english vocab-entry))))
           ((and (equalp test-type 'hanzi)
                 (string= answer (vocab-entry-hanzi vocab-entry))))
           ((and (equalp test-type 'pinyin)
-                (string= answer (vocab-entry-pinyin vocab-entry))))
-          ((not (member test-type '(english hanzi pinyin)))
-           (error "Unknown test-type"))))
+                (string= answer (vocab-entry-pinyin vocab-entry))))))
 #+END_SRC
 #+RESULTS:
 : CHECK-ANSWER
@@ -846,10 +829,10 @@ least four categories: unknown, poorly known, somewhat known, and known.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun determine-offset (c)
       (let ((ratio (/ (realpart c) (imagpart c))))
-        (cond ((<= ratio 1)  'unknown)
-              ((<= ratio 2)  'poor)
-              ((<= ratio 5)  'medium)
-              ((<= ratio 10) 'good))))
+        (cond ((<= ratio 1)  3600)
+              ((<= ratio 2)  7200)
+              ((<= ratio 5)  10800)
+              ((<= ratio 10) 28000))))
 #+END_SRC
 #+RESULTS:
 : DETERMINE-OFFSET
@@ -861,15 +844,9 @@ and adjust this based on the score.
   (defun schedule-next-test (reps score)
     (round
      (+ (get-universal-time)
-        (* (+ 7200                          ; two hours in seconds
-              (case (determine-offset score)
-                ((unknown) 3600)            ; one hour in seconds
-                ((poor)    7200)            ; two hours in seconds
-                ((medium)  10800)           ; three hours in seconds
-                ((good)    18000)           ; Five hours in seconds
-                ((t)       28800)           ; Eight hours in seconds;
-                ((nil)     28800))          ; for compiler optimization.
-              (expt phi (/ reps 3)))))))
+        (* (+ 7200
+              (determine-offset score) 
+              (expt phi (/ reps 2)))))))
 #+END_SRC
 #+RESULTS:
 : SCHEDULE-NEXT-TEST
@@ -949,4 +926,3 @@ Loop through a set of tests where the test type is indeterminate.
   ;; package. It uses GTK+ 3.x via CFFI.
   (in-package :cl-cvd)
 #+END_SRC
-

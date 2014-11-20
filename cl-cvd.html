@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Common Lisp Chinese Vocabulary Drill.</title>
-<!-- 2014-11-14 Fri 11:04 -->
+<!-- 2014-11-19 Wed 23:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Riley E." />
@@ -153,16 +153,9 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2">2. Structures</a></li>
 <li><a href="#sec-3">3. Comma-separated value import utilities</a>
 <ul>
-<li><a href="#sec-3-1">3.1. Header info</a></li>
-<li><a href="#sec-3-2">3.2. preprocess-english</a></li>
-<li><a href="#sec-3-3">3.3. collect-measures</a></li>
-<li><a href="#sec-3-4">3.4. clean-measures</a></li>
-<li><a href="#sec-3-5">3.5. flatten</a></li>
-<li><a href="#sec-3-6">3.6. finalize-measures</a></li>
-<li><a href="#sec-3-7">3.7. collect-see-also</a></li>
-<li><a href="#sec-3-8">3.8. clean-english</a></li>
-<li><a href="#sec-3-9">3.9. eleml-to-struct</a></li>
-<li><a href="#sec-3-10">3.10. batch-add-table</a></li>
+<li><a href="#sec-3-1">3.1. Pre-parsing</a></li>
+<li><a href="#sec-3-2">3.2. Separating components</a></li>
+<li><a href="#sec-3-3">3.3. Final structuring of data</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">4. Data-store utility functions</a>
@@ -172,44 +165,38 @@ for the JavaScript code in this tag.
 <li><a href="#sec-4-3">4.3. key-exists-p</a></li>
 <li><a href="#sec-4-4">4.4. puthash</a></li>
 <li><a href="#sec-4-5">4.5. hash-table searching functions</a></li>
-<li><a href="#sec-4-6">4.6. count-spaces</a></li>
+<li><a href="#sec-4-6">4.6. add-entry</a></li>
+<li><a href="#sec-4-7">4.7. revise-entry</a></li>
+<li><a href="#sec-4-8">4.8. append-english</a></li>
+<li><a href="#sec-4-9">4.9. update-score</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. Entry manipulation</a>
+<li><a href="#sec-5">5. Storage</a>
 <ul>
-<li><a href="#sec-5-1">5.1. add-entry</a></li>
-<li><a href="#sec-5-2">5.2. revise-entry</a></li>
-<li><a href="#sec-5-3">5.3. append-english</a></li>
-<li><a href="#sec-5-4">5.4. update-score</a></li>
+<li><a href="#sec-5-1">5.1. Saving and Loading</a></li>
+<li><a href="#sec-5-2">5.2. fill-mp3-paths</a></li>
+<li><a href="#sec-5-3">5.3. matching vocab entries to mp3s</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. Storage</a>
+<li><a href="#sec-6">6. Testing Facilities</a>
 <ul>
-<li><a href="#sec-6-1">6.1. Saving and Loading</a></li>
-<li><a href="#sec-6-2">6.2. fill-mp3-paths</a></li>
-<li><a href="#sec-6-3">6.3. matching vocab entries to mp3s</a></li>
+<li><a href="#sec-6-1">6.1. set comparisons</a></li>
+<li><a href="#sec-6-2">6.2. load-from-hsk</a></li>
+<li><a href="#sec-6-3">6.3. enumerate-qualified-elements</a></li>
+<li><a href="#sec-6-4">6.4. refil-testing-pool</a></li>
+<li><a href="#sec-6-5">6.5. hsk-spillover</a></li>
+<li><a href="#sec-6-6">6.6. Vocab element qualification</a></li>
+<li><a href="#sec-6-7">6.7. Presentation</a></li>
+<li><a href="#sec-6-8">6.8. List construction</a></li>
+<li><a href="#sec-6-9">6.9. Scoring</a></li>
+<li><a href="#sec-6-10">6.10. display-and-play</a></li>
+<li><a href="#sec-6-11">6.11. test-loop</a></li>
+<li><a href="#sec-6-12">6.12. random-test</a></li>
 </ul>
 </li>
-<li><a href="#sec-7">7. Testing Facilities</a>
+<li><a href="#sec-7">7. User Interface</a>
 <ul>
-<li><a href="#sec-7-1">7.1. set comparisons</a></li>
-<li><a href="#sec-7-2">7.2. load-from-hsk</a></li>
-<li><a href="#sec-7-3">7.3. add-vocabs</a></li>
-<li><a href="#sec-7-4">7.4. enumerate-qualified-elements</a></li>
-<li><a href="#sec-7-5">7.5. refil-testing-pool</a></li>
-<li><a href="#sec-7-6">7.6. hsk-spillover</a></li>
-<li><a href="#sec-7-7">7.7. Vocab element qualification</a></li>
-<li><a href="#sec-7-8">7.8. Presentation</a></li>
-<li><a href="#sec-7-9">7.9. List construction</a></li>
-<li><a href="#sec-7-10">7.10. Scoring</a></li>
-<li><a href="#sec-7-11">7.11. display-and-play</a></li>
-<li><a href="#sec-7-12">7.12. test-loop</a></li>
-<li><a href="#sec-7-13">7.13. random-test</a></li>
-</ul>
-</li>
-<li><a href="#sec-8">8. User Interface</a>
-<ul>
-<li><a href="#sec-8-1">8.1. Header</a></li>
+<li><a href="#sec-7-1">7.1. Header</a></li>
 </ul>
 </li>
 </ul>
@@ -217,21 +204,21 @@ for the JavaScript code in this tag.
 </div>
 <div class="org-src-container">
 
-<pre class="src src-lisp"><span style="color: #232533;">;; </span><span style="color: #696e92;">Copyright (C) 2014 Riley E.</span>
+<pre class="src src-lisp"><span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">Copyright (C) 2014 Riley E.</span>
 
-<span style="color: #232533;">;; </span><span style="color: #696e92;">This program is free software: you can redistribute it and/or</span>
-<span style="color: #232533;">;; </span><span style="color: #696e92;">modify it under the terms of the GNU General Public License as</span>
-<span style="color: #232533;">;; </span><span style="color: #696e92;">published by the Free Software Foundation, either version 3 of</span>
-<span style="color: #232533;">;; </span><span style="color: #696e92;">the License, or (at your option) any later version.</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">This program is free software: you can redistribute it and/or</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">modify it under the terms of the GNU General Public License as</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">published by the Free Software Foundation, either version 3 of</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">the License, or (at your option) any later version.</span>
 
-<span style="color: #232533;">;; </span><span style="color: #696e92;">This program is distributed in the hope that it will be useful,</span>
-<span style="color: #232533;">;; </span><span style="color: #696e92;">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<span style="color: #232533;">;; </span><span style="color: #696e92;">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
-<span style="color: #232533;">;; </span><span style="color: #696e92;">GNU General Public License for more details.</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">This program is distributed in the hope that it will be useful,</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">GNU General Public License for more details.</span>
 
-<span style="color: #232533;">;; </span><span style="color: #696e92;">You should have received a copy of the GNU General Public</span>
-<span style="color: #232533;">;; </span><span style="color: #696e92;">License along with this program. If not, see</span>
-<span style="color: #232533;">;; </span><span style="color: #696e92;"><a href="http://www.gnu.org/licenses/">&lt;http://www.gnu.org/licenses/&gt;</a>.</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">You should have received a copy of the GNU General Public</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">License along with this program. If not, see</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;"><a href="http://www.gnu.org/licenses/">&lt;http://www.gnu.org/licenses/&gt;</a>.</span>
 </pre>
 </div>
 
@@ -285,21 +272,21 @@ provides support for them.
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(asdf:defsystem #<span style="color: #f9b529;">:cl-cvd</span>
-  <span style="color: #f9b529;">:serial</span> t
-  <span style="color: #f9b529;">:description</span> <span style="color: #a9dc69;">"Chinese Vocabulary Drill"</span>
-  <span style="color: #f9b529;">:author</span> <span style="color: #a9dc69;">"Riley E."</span>
-  <span style="color: #f9b529;">:license</span> <span style="color: #a9dc69;">"GPLv3 or Later"</span>
-  <span style="color: #f9b529;">:depends-on</span> (<span style="color: #f9b529;">:iterate</span>
-                <span style="color: #f9b529;">:cl-ppcre</span>
-                <span style="color: #f9b529;">:cl-csv</span>
-                <span style="color: #f9b529;">:external-program</span>
-                <span style="color: #f9b529;">:bordeaux-threads</span>
-                <span style="color: #f9b529;">:cl-cffi-gtk</span>)
-  <span style="color: #f9b529;">:components</span> ((<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"package"</span>)
-               (<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"cl-cvd"</span>)
-               (<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"cl-cvd-gui"</span>)
-               (<span style="color: #f9b529;">:file</span> <span style="color: #a9dc69;">"csv-import"</span>)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span>asdf:defsystem #<span style="color: #DCDCCC; font-weight: bold;">:cl-cvd</span>
+  <span style="color: #DCDCCC; font-weight: bold;">:serial</span> t
+  <span style="color: #DCDCCC; font-weight: bold;">:description</span> <span style="color: #CC9393;">"Chinese Vocabulary Drill"</span>
+  <span style="color: #DCDCCC; font-weight: bold;">:author</span> <span style="color: #CC9393;">"Riley E."</span>
+  <span style="color: #DCDCCC; font-weight: bold;">:license</span> <span style="color: #CC9393;">"GPLv3 or Later"</span>
+  <span style="color: #DCDCCC; font-weight: bold;">:depends-on</span> <span style="color: #BFEBBF;">(</span><span style="color: #DCDCCC; font-weight: bold;">:iterate</span>
+                <span style="color: #DCDCCC; font-weight: bold;">:cl-ppcre</span>
+                <span style="color: #DCDCCC; font-weight: bold;">:cl-csv</span>
+                <span style="color: #DCDCCC; font-weight: bold;">:external-program</span>
+                <span style="color: #DCDCCC; font-weight: bold;">:bordeaux-threads</span>
+                <span style="color: #DCDCCC; font-weight: bold;">:cl-cffi-gtk</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #DCDCCC; font-weight: bold;">:components</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span><span style="color: #DCDCCC; font-weight: bold;">:file</span> <span style="color: #CC9393;">"package"</span><span style="color: #D0BF8F;">)</span>
+               <span style="color: #D0BF8F;">(</span><span style="color: #DCDCCC; font-weight: bold;">:file</span> <span style="color: #CC9393;">"cl-cvd"</span><span style="color: #D0BF8F;">)</span>
+               <span style="color: #D0BF8F;">(</span><span style="color: #DCDCCC; font-weight: bold;">:file</span> <span style="color: #CC9393;">"cl-cvd-gui"</span><span style="color: #D0BF8F;">)</span>
+               <span style="color: #D0BF8F;">(</span><span style="color: #DCDCCC; font-weight: bold;">:file</span> <span style="color: #CC9393;">"csv-import"</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -310,11 +297,11 @@ provides support for them.
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defpackage</span> #<span style="color: #f9b529;">:chinese-vocab-drill</span>
-  (<span style="color: #f9b529;">:nicknames</span> #<span style="color: #f9b529;">:cl-cvd</span>)
-  (<span style="color: #f9b529;">:use</span> <span style="color: #f9b529;">:iterate</span> <span style="color: #f9b529;">:bordeaux-threads</span> <span style="color: #f9b529;">:cl-ppcre</span>
-        <span style="color: #f9b529;">:cl-csv</span> <span style="color: #f9b529;">:gtk</span> <span style="color: #f9b529;">:gdk</span> <span style="color: #f9b529;">:gobject</span> <span style="color: #f9b529;">:glib</span> <span style="color: #f9b529;">:pango</span>
-        <span style="color: #f9b529;">:cairo</span> <span style="color: #f9b529;">:cffi</span> <span style="color: #f9b529;">:external-program</span> <span style="color: #f9b529;">:cl</span>))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defpackage</span> #<span style="color: #DCDCCC; font-weight: bold;">:chinese-vocab-drill</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #DCDCCC; font-weight: bold;">:nicknames</span> #<span style="color: #DCDCCC; font-weight: bold;">:cl-cvd</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #DCDCCC; font-weight: bold;">:use</span> <span style="color: #DCDCCC; font-weight: bold;">:iterate</span> <span style="color: #DCDCCC; font-weight: bold;">:bordeaux-threads</span> <span style="color: #DCDCCC; font-weight: bold;">:cl-ppcre</span>
+        <span style="color: #DCDCCC; font-weight: bold;">:cl-csv</span> <span style="color: #DCDCCC; font-weight: bold;">:gtk</span> <span style="color: #DCDCCC; font-weight: bold;">:gdk</span> <span style="color: #DCDCCC; font-weight: bold;">:gobject</span> <span style="color: #DCDCCC; font-weight: bold;">:glib</span> <span style="color: #DCDCCC; font-weight: bold;">:pango</span>
+        <span style="color: #DCDCCC; font-weight: bold;">:cairo</span> <span style="color: #DCDCCC; font-weight: bold;">:cffi</span> <span style="color: #DCDCCC; font-weight: bold;">:external-program</span> <span style="color: #DCDCCC; font-weight: bold;">:cl</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -329,30 +316,30 @@ generating the keys used to identify hash-table entries.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">in-package</span> <span style="color: #f9b529;">:cl-cvd</span>)
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">in-package</span> <span style="color: #DCDCCC; font-weight: bold;">:cl-cvd</span><span style="color: #DCDCCC;">)</span>
 
-  <span style="color: #232533;">;;; </span><span style="color: #696e92;">The constant PHI is used for spaced-repetition timing</span>
-(<span style="color: #f9b529; font-weight: bold;">defconstant</span> <span style="color: #8aa6bc;">phi</span> 1.618033988749895d0
-  <span style="color: #a9dc69;">"The constant PHI, The golden ratio."</span>)
+  <span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">The constant PHI is used for spaced-repetition timing</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defconstant</span> <span style="color: #DFAF8F;">phi</span> 1.618033988749895d0
+  <span style="color: #CC9393;">"The constant PHI, The golden ratio."</span><span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*zh-hash-table*</span> (make-hash-table)
-  <span style="color: #9c71a5; font-style: italic;">"Hash table for storing data of, and</span>
-<span style="color: #9c71a5; font-style: italic;">    metadata about the vocabulary listing"</span>)
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">*zh-hash-table*</span> <span style="color: #BFEBBF;">(</span>make-hash-table<span style="color: #BFEBBF;">)</span>
+  <span style="color: #9FC59F;">"Hash table for storing data of, and</span>
+<span style="color: #9FC59F;">    metadata about the vocabulary listing"</span><span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*mp3dir*</span> nil)
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">*mp3dir*</span> nil<span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*mp3-alist*</span> nil)
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">*mp3-alist*</span> nil<span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*vocab-key-count*</span> 0
-  <span style="color: #9c71a5; font-style: italic;">"Counter for the list of vocabulary entries,</span>
-<span style="color: #9c71a5; font-style: italic;">    is incremented on addition of elements, or set</span>
-<span style="color: #9c71a5; font-style: italic;">    when a data-set is loaded into the hash-table</span>
-<span style="color: #9c71a5; font-style: italic;">    by the `</span><span style="color: #ffffff; font-weight: bold; font-style: italic;">import-vocab</span><span style="color: #9c71a5; font-style: italic;">' function."</span>)
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">*vocab-key-count*</span> 0
+  <span style="color: #9FC59F;">"Counter for the list of vocabulary entries,</span>
+<span style="color: #9FC59F;">    is incremented on addition of elements, or set</span>
+<span style="color: #9FC59F;">    when a data-set is loaded into the hash-table</span>
+<span style="color: #9FC59F;">    by the `</span><span style="color: #BFEBBF;">import-vocab</span><span style="color: #9FC59F;">' function."</span><span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*test-pool*</span> nil
-  <span style="color: #9c71a5; font-style: italic;">"Words that have been seen during a practice session"</span>)
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">*test-pool*</span> nil
+  <span style="color: #9FC59F;">"Words that have been seen during a practice session"</span><span style="color: #DCDCCC;">)</span>
 
-(<span style="color: #f9b529; font-weight: bold;">defvar</span> <span style="color: #8aa6bc;">*current-hsk-level*</span> 1)
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">*current-hsk-level*</span> 1<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -375,16 +362,16 @@ repetitions.
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defstruct</span> <span style="color: #9dbbd3; font-weight: bold;">vocab-entry</span>
-  (hsk     1                    <span style="color: #f9b529;">:type</span> integer)
-  (hanzi   <span style="color: #a9dc69;">""</span>                   <span style="color: #f9b529;">:type</span> string)
-  (pinyin  <span style="color: #a9dc69;">""</span>                   <span style="color: #f9b529;">:type</span> string)
-  (english '(<span style="color: #a9dc69;">""</span>)                <span style="color: #f9b529;">:type</span> list)
-  (seealso '(<span style="color: #a9dc69;">""</span>)                <span style="color: #f9b529;">:type</span> list)
-  (units   '(<span style="color: #a9dc69;">""</span>)                <span style="color: #f9b529;">:type</span> list)
-  (score   (complex 0.0 0.0)    <span style="color: #f9b529;">:type</span> complex)
-  (date    (get-universal-time) <span style="color: #f9b529;">:type</span> integer)
-  (reps    1                    <span style="color: #f9b529;">:type</span> integer))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defstruct</span> <span style="color: #7CB8BB;">vocab-entry</span>
+  <span style="color: #BFEBBF;">(</span>hsk     1                    <span style="color: #DCDCCC; font-weight: bold;">:type</span> integer<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>hanzi   <span style="color: #CC9393;">""</span>                   <span style="color: #DCDCCC; font-weight: bold;">:type</span> string<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>pinyin  <span style="color: #CC9393;">""</span>                   <span style="color: #DCDCCC; font-weight: bold;">:type</span> string<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>english <span style="color: #D0BF8F;">(</span>list <span style="color: #CC9393;">""</span><span style="color: #D0BF8F;">)</span>            <span style="color: #DCDCCC; font-weight: bold;">:type</span> list<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>seealso <span style="color: #D0BF8F;">(</span>list <span style="color: #CC9393;">""</span><span style="color: #D0BF8F;">)</span>            <span style="color: #DCDCCC; font-weight: bold;">:type</span> list<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>units   <span style="color: #D0BF8F;">(</span>list <span style="color: #CC9393;">""</span><span style="color: #D0BF8F;">)</span>            <span style="color: #DCDCCC; font-weight: bold;">:type</span> list<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>score   <span style="color: #D0BF8F;">(</span>complex 0.0 0.0<span style="color: #D0BF8F;">)</span>    <span style="color: #DCDCCC; font-weight: bold;">:type</span> complex<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>date    <span style="color: #D0BF8F;">(</span>get-universal-time<span style="color: #D0BF8F;">)</span> <span style="color: #DCDCCC; font-weight: bold;">:type</span> integer<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>reps    1                    <span style="color: #DCDCCC; font-weight: bold;">:type</span> integer<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -393,35 +380,26 @@ repetitions.
 <h2 id="sec-3"><span class="section-number-2">3</span> Comma-separated value import utilities</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Header info</h3>
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Pre-parsing</h3>
 <div class="outline-text-3" id="text-3-1">
-<div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #232533;">;; </span><span style="color: #696e92;">This file is a part of the CL-CVD package, and contains the functionality for</span>
-<span style="color: #232533;">;; </span><span style="color: #696e92;">parsing CSV input.</span>
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> preprocess-english</h3>
-<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1">preprocess-english</h4>
+<div class="outline-text-4" id="text-3-1-1">
 <p>
 Break up the generic English description rendered from the CSV by
 splitting it at each semicolon.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">preprocess-english</span> (desc-string)
-  (car (cl-csv:read-csv desc-string
-                        <span style="color: #f9b529;">:separator</span> #\SEMICOLON)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">preprocess-english</span> <span style="color: #BFEBBF;">(</span>desc-string<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>car <span style="color: #D0BF8F;">(</span>read-csv desc-string <span style="color: #DCDCCC; font-weight: bold;">:separator</span> #\SEMICOLON<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> collect-measures</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2">collect-measures</h4>
+<div class="outline-text-4" id="text-3-1-2">
 <p>
 Collect all applicable notes concerning units of measurement related to words
 and generate a list of them. First checking to see if the object is a string at
@@ -431,150 +409,160 @@ characters which designate a unit (in this case, "CL:".)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">collect-measures</span> (l)
-  (iterate (for s in l)
-    (<span style="color: #f9b529; font-weight: bold;">when</span> (and (stringp s)
-               (&lt; 4 (length s))
-               (string= (subseq s 0 3) <span style="color: #a9dc69;">"CL:"</span>))
-      (collect s))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">collect-measures</span> <span style="color: #BFEBBF;">(</span>l<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>iterate <span style="color: #D0BF8F;">(</span>for s in l<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #93E0E3;">(</span>and <span style="color: #9FC59F;">(</span>stringp s<span style="color: #9FC59F;">)</span>
+               <span style="color: #9FC59F;">(</span>&lt; 4 <span style="color: #94BFF3;">(</span>length s<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+               <span style="color: #9FC59F;">(</span>string= <span style="color: #94BFF3;">(</span>subseq s 0 3<span style="color: #94BFF3;">)</span> <span style="color: #CC9393;">"CL:"</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>collect s<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4"><span class="section-number-3">3.4</span> clean-measures</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3">clean-measures</h4>
+<div class="outline-text-4" id="text-3-1-3">
 <p>
 Prune the "CL:" from the head of measures to make displaying nicer.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">clean-measures</span> (s)
-  (regex-replace <span style="color: #a9dc69;">"CL:"</span> s <span style="color: #a9dc69;">""</span>))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">clean-measures</span> <span style="color: #BFEBBF;">(</span>s<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>regex-replace <span style="color: #CC9393;">"CL:"</span> s <span style="color: #CC9393;">""</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-5" class="outline-3">
-<h3 id="sec-3-5"><span class="section-number-3">3.5</span> flatten</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-sec-3-1-4" class="outline-4">
+<h4 id="sec-3-1-4">flatten</h4>
+<div class="outline-text-4" id="text-3-1-4">
 <p>
 Flatten nested lists. Pulled from <a href="http://letoverlambda.com">Let Over Lambda</a> Credit goes to Doug Hoyte.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">flatten</span> (x)
-  (<span style="color: #f9b529; font-weight: bold;">labels</span> ((rec (x acc)
-             (<span style="color: #f9b529; font-weight: bold;">cond</span> ((null x) acc)
-                   ((atom x) (cons x acc))
-                   (t (rec (car x)
-                           (rec (cdr x) acc))))))
-    (rec x nil)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">flatten</span> <span style="color: #BFEBBF;">(</span>x<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">labels</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>rec <span style="color: #9FC59F;">(</span>x acc<span style="color: #9FC59F;">)</span>
+             <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>null x<span style="color: #E0CF9F;">)</span> acc<span style="color: #94BFF3;">)</span>
+                   <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>atom x<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>cons x acc<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+                   <span style="color: #94BFF3;">(</span>t <span style="color: #E0CF9F;">(</span>rec <span style="color: #8FB28F;">(</span>car x<span style="color: #8FB28F;">)</span>
+                           <span style="color: #8FB28F;">(</span>rec <span style="color: #6CA0A3;">(</span>cdr x<span style="color: #6CA0A3;">)</span> acc<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>rec x nil<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-6" class="outline-3">
-<h3 id="sec-3-6"><span class="section-number-3">3.6</span> finalize-measures</h3>
-<div class="outline-text-3" id="text-3-6">
+<div id="outline-container-sec-3-1-5" class="outline-4">
+<h4 id="sec-3-1-5">finalize-measures</h4>
+<div class="outline-text-4" id="text-3-1-5">
 <p>
 Take the collected measures, split them by commas into separate
 strings, and flatten the resulting structure.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">finalize-measures</span> (l)
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((objet-petit-a (collect-measures l)))
-    (<span style="color: #f9b529; font-weight: bold;">unless</span> (zerop (length objet-petit-a))
-      (flatten
-       (mapcar #'cl-csv:read-csv
-               (mapcar #'clean-measures objet-petit-a))))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">finalize-measures</span> <span style="color: #BFEBBF;">(</span>l<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>objet-petit-a <span style="color: #9FC59F;">(</span>collect-measures l<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">unless</span> <span style="color: #93E0E3;">(</span>zerop <span style="color: #9FC59F;">(</span>length objet-petit-a<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>flatten
+       <span style="color: #9FC59F;">(</span>mapcar #'cl-csv:read-csv
+               <span style="color: #94BFF3;">(</span>mapcar #'clean-measures objet-petit-a<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-7" class="outline-3">
-<h3 id="sec-3-7"><span class="section-number-3">3.7</span> collect-see-also</h3>
-<div class="outline-text-3" id="text-3-7">
-<p>
-Collect strings from the results of <code>preprocess-english</code> that begin with "see
-also".
-</p>
-<div class="org-src-container">
-
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">collect-see-also</span> (l)
-  (iterate (for s in l)
-    (<span style="color: #f9b529; font-weight: bold;">when</span> (and (stringp s)
-               (&lt; 8 (length s))
-               (string= (subseq s 0 8) <span style="color: #a9dc69;">"see also"</span>))
-      (collect s))))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-3-8" class="outline-3">
-<h3 id="sec-3-8"><span class="section-number-3">3.8</span> clean-english</h3>
-<div class="outline-text-3" id="text-3-8">
+<div id="outline-container-sec-3-1-6" class="outline-4">
+<h4 id="sec-3-1-6">clean-english</h4>
+<div class="outline-text-4" id="text-3-1-6">
 <p>
 Remove all entries that are not themselves translations of the term,
 but relate to either units of measurement, or hint to related terms.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">clean-english</span> (l)
-  (remove-if (<span style="color: #f9b529; font-weight: bold;">lambda</span> (s)
-               (or
-                (and (&lt; 8 (length s))
-                     (or (string= (subseq s 0 8) <span style="color: #a9dc69;">"see also"</span>)
-                         (string= (subseq s 0 9) <span style="color: #a9dc69;">"(see also"</span>)))
-                (and (&lt; 4 (length s))
-                     (string= (subseq s 0 3) <span style="color: #a9dc69;">"CL:"</span>))))
-             l))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">clean-english</span> <span style="color: #BFEBBF;">(</span>l<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>remove-if <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>s<span style="color: #93E0E3;">)</span>
+               <span style="color: #93E0E3;">(</span>or
+                <span style="color: #9FC59F;">(</span>and <span style="color: #94BFF3;">(</span>&lt; 8 <span style="color: #E0CF9F;">(</span>length s<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+                     <span style="color: #94BFF3;">(</span>or <span style="color: #E0CF9F;">(</span>string= <span style="color: #8FB28F;">(</span>subseq s 0 8<span style="color: #8FB28F;">)</span> <span style="color: #CC9393;">"see also"</span><span style="color: #E0CF9F;">)</span>
+                         <span style="color: #E0CF9F;">(</span>string= <span style="color: #8FB28F;">(</span>subseq s 0 9<span style="color: #8FB28F;">)</span> <span style="color: #CC9393;">"(see also"</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+                <span style="color: #9FC59F;">(</span>and <span style="color: #94BFF3;">(</span>&lt; 4 <span style="color: #E0CF9F;">(</span>length s<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+                     <span style="color: #94BFF3;">(</span>string= <span style="color: #E0CF9F;">(</span>subseq s 0 3<span style="color: #E0CF9F;">)</span> <span style="color: #CC9393;">"CL:"</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+             l<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-9" class="outline-3">
-<h3 id="sec-3-9"><span class="section-number-3">3.9</span> eleml-to-struct</h3>
-<div class="outline-text-3" id="text-3-9">
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Separating components</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1">collect-see-also</h4>
+<div class="outline-text-4" id="text-3-2-1">
 <p>
-Break up the s-expressionized CSV line and name the elements, then perform
-various operations on each elements, including further breaking up into
-references to other items,
+Collect strings from the results of <code>preprocess-english</code> that begin with "see
+also".
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">eleml-to-struct</span> (l)
-  (<span style="color: #f9b529; font-weight: bold;">destructuring-bind</span> (hsk hanzi pinyin description) l
-    (<span style="color: #f9b529; font-weight: bold;">let*</span> ((pre-english (preprocess-english description))
-           (units       (finalize-measures  pre-english))
-           (see-also    (collect-see-also   pre-english))
-           (english     (clean-english      pre-english)))
-      (make-vocab-entry <span style="color: #f9b529;">:hsk</span>     (read-from-string hsk)
-                        <span style="color: #f9b529;">:hanzi</span>   hanzi
-                        <span style="color: #f9b529;">:pinyin</span>  pinyin
-                        <span style="color: #f9b529;">:english</span> english
-                        <span style="color: #f9b529;">:units</span>   units
-                        <span style="color: #f9b529;">:seealso</span> see-also))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">collect-see-also</span> <span style="color: #BFEBBF;">(</span>l<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>iterate <span style="color: #D0BF8F;">(</span>for s in l<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #93E0E3;">(</span>and <span style="color: #9FC59F;">(</span>stringp s<span style="color: #9FC59F;">)</span>
+               <span style="color: #9FC59F;">(</span>&lt; 8 <span style="color: #94BFF3;">(</span>length s<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+               <span style="color: #9FC59F;">(</span>string= <span style="color: #94BFF3;">(</span>subseq s 0 8<span style="color: #94BFF3;">)</span> <span style="color: #CC9393;">"see also"</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>collect s<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-10" class="outline-3">
-<h3 id="sec-3-10"><span class="section-number-3">3.10</span> batch-add-table</h3>
-<div class="outline-text-3" id="text-3-10">
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Final structuring of data</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1">eleml-to-struct</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+Break up the s-expressionized CSV line and name the elements, then perform
+various operations on each of these elements, including further breaking up into
+other specific values to be stored in the vocab-entry structure.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">eleml-to-struct</span> <span style="color: #BFEBBF;">(</span>l<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">destructuring-bind</span> <span style="color: #D0BF8F;">(</span>hsk hanzi pinyin description<span style="color: #D0BF8F;">)</span> l
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let*</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>pre-english <span style="color: #94BFF3;">(</span>preprocess-english description<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+           <span style="color: #9FC59F;">(</span>units       <span style="color: #94BFF3;">(</span>finalize-measures  pre-english<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+           <span style="color: #9FC59F;">(</span>see-also    <span style="color: #94BFF3;">(</span>collect-see-also   pre-english<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+           <span style="color: #9FC59F;">(</span>english     <span style="color: #94BFF3;">(</span>clean-english      pre-english<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>make-vocab-entry <span style="color: #DCDCCC; font-weight: bold;">:hsk</span>     <span style="color: #9FC59F;">(</span>read-from-string hsk<span style="color: #9FC59F;">)</span>
+                        <span style="color: #DCDCCC; font-weight: bold;">:hanzi</span>   hanzi
+                        <span style="color: #DCDCCC; font-weight: bold;">:pinyin</span>  pinyin
+                        <span style="color: #DCDCCC; font-weight: bold;">:english</span> english
+                        <span style="color: #DCDCCC; font-weight: bold;">:units</span>   units
+                        <span style="color: #DCDCCC; font-weight: bold;">:seealso</span> see-also<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2">batch-add-table</h4>
+<div class="outline-text-4" id="text-3-3-2">
 <p>
 Copy the entire result of a <code>parse-csv</code> operation into a hash table using the
 predefined functions above.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">batch-add-table</span> (l)
-  (<span style="color: #f9b529; font-weight: bold;">dolist</span> (lx l)
-    (puthash (gen-ht-key 'zh-index)
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">batch-add-table</span> <span style="color: #BFEBBF;">(</span>l<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">dolist</span> <span style="color: #D0BF8F;">(</span>lx l<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>puthash <span style="color: #93E0E3;">(</span>gen-ht-key 'zh-index<span style="color: #93E0E3;">)</span>
              *zh-hash-table*
-             (eleml-to-struct lx))))
+             <span style="color: #93E0E3;">(</span>eleml-to-struct lx<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
+</div>
 </div>
 </div>
 </div>
@@ -590,9 +578,9 @@ Check a list for any non-nil values.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">element-of-truth</span> (l)
-  (iterate (for i in l)
-    (<span style="color: #f9b529; font-weight: bold;">when</span> i (<span style="color: #f9b529; font-weight: bold;">return</span> i))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">element-of-truth</span> <span style="color: #BFEBBF;">(</span>l<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>iterate <span style="color: #D0BF8F;">(</span>for i in l<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> i <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">return</span> i<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -605,9 +593,9 @@ Check a list for any non-nil values.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">gen-ht-key</span> (prefix)
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((the-sym-name (format nil <span style="color: #a9dc69;">"~D-~D"</span> prefix (incf *vocab-key-count*))))
-    (intern the-sym-name <span style="color: #f9b529;">:cl-cvd</span>)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">gen-ht-key</span> <span style="color: #BFEBBF;">(</span>prefix<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>the-sym-name <span style="color: #9FC59F;">(</span>format nil <span style="color: #CC9393;">"~D-~D"</span> prefix <span style="color: #94BFF3;">(</span>incf *vocab-key-count*<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>intern the-sym-name <span style="color: #DCDCCC; font-weight: bold;">:cl-cvd</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -620,10 +608,10 @@ Test to see if a key is already assigned within a hash-table
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">key-exists-p</span> (key table)
-  (<span style="color: #f9b529; font-weight: bold;">if</span> (gethash key table)
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">key-exists-p</span> <span style="color: #BFEBBF;">(</span>key table<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>gethash key table<span style="color: #D0BF8F;">)</span>
       t
-      nil))
+      nil<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -636,8 +624,8 @@ Wrap the <code>setf</code> clause in a function for adding/modifying entries in 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">puthash</span> (key table object)
-  (setf (gethash key table) object))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">puthash</span> <span style="color: #BFEBBF;">(</span>key table object<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>setf <span style="color: #D0BF8F;">(</span>gethash key table<span style="color: #D0BF8F;">)</span> object<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -653,12 +641,12 @@ Search for and collect items that match a specified <a href="http://en.wikipedia
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">hsk-apropos</span> (level)
-  (<span style="color: #f9b529; font-weight: bold;">declare</span> (fixnum level))
-  (<span style="color: #f9b529; font-weight: bold;">loop</span> <span style="color: #f9b529;">:for</span> key <span style="color: #f9b529;">:being</span> the hash-keys <span style="color: #f9b529;">:of</span> *zh-hash-table*
-        <span style="color: #f9b529;">:for</span> val <span style="color: #f9b529;">:being</span> the hash-value <span style="color: #f9b529;">:of</span> *zh-hash-table*
-        <span style="color: #f9b529;">:when</span> (= level (<span style="color: #f9b529; font-weight: bold;">the</span> fixnum (vocab-entry-hsk val)))
-          <span style="color: #f9b529;">:collect</span> key))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">hsk-apropos</span> <span style="color: #BFEBBF;">(</span>level<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">declare</span> <span style="color: #D0BF8F;">(</span>fixnum level<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">loop</span> <span style="color: #DCDCCC; font-weight: bold;">:for</span> key <span style="color: #DCDCCC; font-weight: bold;">:being</span> the hash-keys <span style="color: #DCDCCC; font-weight: bold;">:of</span> *zh-hash-table*
+        <span style="color: #DCDCCC; font-weight: bold;">:for</span> val <span style="color: #DCDCCC; font-weight: bold;">:being</span> the hash-value <span style="color: #DCDCCC; font-weight: bold;">:of</span> *zh-hash-table*
+        <span style="color: #DCDCCC; font-weight: bold;">:when</span> <span style="color: #D0BF8F;">(</span>= level <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">the</span> fixnum <span style="color: #9FC59F;">(</span>vocab-entry-hsk val<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+          <span style="color: #DCDCCC; font-weight: bold;">:collect</span> key<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -673,12 +661,12 @@ associated with the vocabulary entry found in a list in the form <code>(&lt;key&
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">zh-apropos</span> (zh-string)
-  (<span style="color: #f9b529; font-weight: bold;">declare</span> (string zh-string))
-  (<span style="color: #f9b529; font-weight: bold;">loop</span> <span style="color: #f9b529;">:for</span> key <span style="color: #f9b529;">:being</span> the hash-keys <span style="color: #f9b529;">:of</span> *zh-hash-table*
-        <span style="color: #f9b529;">:for</span> val <span style="color: #f9b529;">:being</span> the hash-value <span style="color: #f9b529;">:of</span> *zh-hash-table*
-        <span style="color: #f9b529;">:when</span> (scan zh-string (vocab-entry-hanzi val))
-          <span style="color: #f9b529;">:collect</span> (list key val)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">zh-apropos</span> <span style="color: #BFEBBF;">(</span>zh-string<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">declare</span> <span style="color: #D0BF8F;">(</span>string zh-string<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">loop</span> <span style="color: #DCDCCC; font-weight: bold;">:for</span> key <span style="color: #DCDCCC; font-weight: bold;">:being</span> the hash-keys <span style="color: #DCDCCC; font-weight: bold;">:of</span> *zh-hash-table*
+        <span style="color: #DCDCCC; font-weight: bold;">:for</span> val <span style="color: #DCDCCC; font-weight: bold;">:being</span> the hash-value <span style="color: #DCDCCC; font-weight: bold;">:of</span> *zh-hash-table*
+        <span style="color: #DCDCCC; font-weight: bold;">:when</span> <span style="color: #D0BF8F;">(</span>scan zh-string <span style="color: #93E0E3;">(</span>vocab-entry-hanzi val<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+          <span style="color: #DCDCCC; font-weight: bold;">:collect</span> <span style="color: #D0BF8F;">(</span>list key val<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -693,12 +681,12 @@ the relevant vocabulary entries.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">zh-apropos-key</span> (zh-string)
-  (<span style="color: #f9b529; font-weight: bold;">declare</span> (string zh-string))
-  (<span style="color: #f9b529; font-weight: bold;">loop</span> <span style="color: #f9b529;">:for</span> key <span style="color: #f9b529;">:being</span> the hash-keys  <span style="color: #f9b529;">:of</span> *zh-hash-table*
-        <span style="color: #f9b529;">:for</span> val <span style="color: #f9b529;">:being</span> the hash-value <span style="color: #f9b529;">:of</span> *zh-hash-table*
-        <span style="color: #f9b529;">:when</span> (scan zh-string (vocab-entry-hanzi val))
-          <span style="color: #f9b529;">:collect</span> key))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">zh-apropos-key</span> <span style="color: #BFEBBF;">(</span>zh-string<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">declare</span> <span style="color: #D0BF8F;">(</span>string zh-string<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">loop</span> <span style="color: #DCDCCC; font-weight: bold;">:for</span> key <span style="color: #DCDCCC; font-weight: bold;">:being</span> the hash-keys  <span style="color: #DCDCCC; font-weight: bold;">:of</span> *zh-hash-table*
+        <span style="color: #DCDCCC; font-weight: bold;">:for</span> val <span style="color: #DCDCCC; font-weight: bold;">:being</span> the hash-value <span style="color: #DCDCCC; font-weight: bold;">:of</span> *zh-hash-table*
+        <span style="color: #DCDCCC; font-weight: bold;">:when</span> <span style="color: #D0BF8F;">(</span>scan zh-string <span style="color: #93E0E3;">(</span>vocab-entry-hanzi val<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+          <span style="color: #DCDCCC; font-weight: bold;">:collect</span> key<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -711,15 +699,15 @@ Find a vocab entry which contains a specified substring within its <code>:englis
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">en-apropos</span> (en-string)
-  (<span style="color: #f9b529; font-weight: bold;">declare</span> (string en-string))
-  (<span style="color: #f9b529; font-weight: bold;">loop</span> <span style="color: #f9b529;">:for</span> key <span style="color: #f9b529;">:being</span> the hash-keys <span style="color: #f9b529;">:of</span> *zh-hash-table*
-        <span style="color: #f9b529;">:for</span> val <span style="color: #f9b529;">:being</span> the hash-value <span style="color: #f9b529;">:of</span> *zh-hash-table*
-        <span style="color: #f9b529;">:when</span> (element-of-truth
-               (mapcar (<span style="color: #f9b529; font-weight: bold;">lambda</span> (s)
-                         (scan en-string s))
-                       (vocab-entry-english val)))
-          <span style="color: #f9b529;">:collect</span> (list key val)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">en-apropos</span> <span style="color: #BFEBBF;">(</span>en-string<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">declare</span> <span style="color: #D0BF8F;">(</span>string en-string<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">loop</span> <span style="color: #DCDCCC; font-weight: bold;">:for</span> key <span style="color: #DCDCCC; font-weight: bold;">:being</span> the hash-keys <span style="color: #DCDCCC; font-weight: bold;">:of</span> *zh-hash-table*
+        <span style="color: #DCDCCC; font-weight: bold;">:for</span> val <span style="color: #DCDCCC; font-weight: bold;">:being</span> the hash-value <span style="color: #DCDCCC; font-weight: bold;">:of</span> *zh-hash-table*
+        <span style="color: #DCDCCC; font-weight: bold;">:when</span> <span style="color: #D0BF8F;">(</span>element-of-truth
+               <span style="color: #93E0E3;">(</span>mapcar <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>s<span style="color: #94BFF3;">)</span>
+                         <span style="color: #94BFF3;">(</span>scan en-string s<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+                       <span style="color: #9FC59F;">(</span>vocab-entry-english val<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+          <span style="color: #DCDCCC; font-weight: bold;">:collect</span> <span style="color: #D0BF8F;">(</span>list key val<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -733,15 +721,15 @@ either side, or at either end of the whole sequence.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">en-apropos-word</span> (en-word)
-  (<span style="color: #f9b529; font-weight: bold;">declare</span> (string en-word))
-  (<span style="color: #f9b529; font-weight: bold;">loop</span> <span style="color: #f9b529;">:for</span> key <span style="color: #f9b529;">:being</span> the hash-keys <span style="color: #f9b529;">:of</span> *zh-hash-table*
-        <span style="color: #f9b529;">:for</span> val <span style="color: #f9b529;">:being</span> the hash-value <span style="color: #f9b529;">:of</span> *zh-hash-table*
-        <span style="color: #f9b529;">:when</span> (element-of-truth
-               (mapcar (<span style="color: #f9b529; font-weight: bold;">lambda</span> (s)
-                         (find-word-in-string en-word s))
-                       (vocab-entry-english val)))
-          <span style="color: #f9b529;">:collect</span> (list key val)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">en-apropos-word</span> <span style="color: #BFEBBF;">(</span>en-word<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">declare</span> <span style="color: #D0BF8F;">(</span>string en-word<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">loop</span> <span style="color: #DCDCCC; font-weight: bold;">:for</span> key <span style="color: #DCDCCC; font-weight: bold;">:being</span> the hash-keys <span style="color: #DCDCCC; font-weight: bold;">:of</span> *zh-hash-table*
+        <span style="color: #DCDCCC; font-weight: bold;">:for</span> val <span style="color: #DCDCCC; font-weight: bold;">:being</span> the hash-value <span style="color: #DCDCCC; font-weight: bold;">:of</span> *zh-hash-table*
+        <span style="color: #DCDCCC; font-weight: bold;">:when</span> <span style="color: #D0BF8F;">(</span>element-of-truth
+               <span style="color: #93E0E3;">(</span>mapcar <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #94BFF3;">(</span>s<span style="color: #94BFF3;">)</span>
+                         <span style="color: #94BFF3;">(</span>find-word-in-string en-word s<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+                       <span style="color: #9FC59F;">(</span>vocab-entry-english val<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+          <span style="color: #DCDCCC; font-weight: bold;">:collect</span> <span style="color: #D0BF8F;">(</span>list key val<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -753,16 +741,16 @@ Find a whole word within a provided string, delineated by an end of the
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">find-word-in-string</span> (word target-string)
-  (<span style="color: #f9b529; font-weight: bold;">declare</span> (string word target-string))
-  (<span style="color: #f9b529; font-weight: bold;">multiple-value-bind</span> (word-begin word-end) (scan word target-string)
-    (<span style="color: #f9b529; font-weight: bold;">when</span> (and word-begin word-end)
-      (<span style="color: #f9b529; font-weight: bold;">cond</span> ((string= word target-string) word)
-            ((and (or (zerop word-begin)
-                      (punctuation-p (char target-string (- word-begin 1))))
-                  (or (= (length target-string) word-end)
-                      (punctuation-p (char target-string word-end))))
-             word)))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">find-word-in-string</span> <span style="color: #BFEBBF;">(</span>word target-string<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">declare</span> <span style="color: #D0BF8F;">(</span>string word target-string<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">multiple-value-bind</span> <span style="color: #D0BF8F;">(</span>word-begin word-end<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>scan word target-string<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #93E0E3;">(</span>and word-begin word-end<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>string= word target-string<span style="color: #94BFF3;">)</span> word<span style="color: #9FC59F;">)</span>
+            <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>and <span style="color: #E0CF9F;">(</span>or <span style="color: #8FB28F;">(</span>zerop word-begin<span style="color: #8FB28F;">)</span>
+                      <span style="color: #8FB28F;">(</span>punctuation-p <span style="color: #6CA0A3;">(</span>char target-string <span style="color: #DCDCCC;">(</span>- word-begin 1<span style="color: #DCDCCC;">)</span><span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span>
+                  <span style="color: #E0CF9F;">(</span>or <span style="color: #8FB28F;">(</span>= <span style="color: #6CA0A3;">(</span>length target-string<span style="color: #6CA0A3;">)</span> word-end<span style="color: #8FB28F;">)</span>
+                      <span style="color: #8FB28F;">(</span>punctuation-p <span style="color: #6CA0A3;">(</span>char target-string word-end<span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+             word<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -774,34 +762,34 @@ punctuation-marks and white-space characters.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">let</span> ((punctuations '(#\SPACE #\Tab
-                      #\.     #\,
-                      #\;     #\:
-                      #\/     #\\
-                      #\|     #\!
-                      #\-     #\_
-                      #\(     #\) 
-                      #\{     #\}
-                      #\[     #\]
-                      #\~     #\`
-                      #\&lt;     #\&gt;
-                      #\?     #\&amp;
-                      #\"     #\+
-                      #\=)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>punctuations <span style="color: #93E0E3;">(</span>list #\SPACE #\Tab
+                          #\.     #\,
+                          #\;     #\:
+                          #\/     #\\
+                          #\|     #\!
+                          #\-     #\_
+                          #\(     #\) 
+                          #\{     #\}
+                          #\[     #\]
+                          #\~     #\`
+                          #\&lt;     #\&gt;
+                          #\?     #\&amp;
+                          #\"     #\+
+                          #\=<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
 
-  (<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">punctuation-p</span> (chr)
-    (member chr punctuations))
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">punctuation-p</span> <span style="color: #D0BF8F;">(</span>chr<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>member chr punctuations<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
 
-  (<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">defpunct</span> (chr)
-    (<span style="color: #f9b529; font-weight: bold;">unless</span> (punctuation-p chr)
-      (push chr punctuations)))
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">defpunct</span> <span style="color: #D0BF8F;">(</span>chr<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">unless</span> <span style="color: #93E0E3;">(</span>punctuation-p chr<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>push chr punctuations<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
 
-  (<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">rempunct</span> (chr)
-    (<span style="color: #f9b529; font-weight: bold;">when</span> (punctuation-p chr)
-      (setf punctuations (delete chr punctuations))))
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">rempunct</span> <span style="color: #D0BF8F;">(</span>chr<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #93E0E3;">(</span>punctuation-p chr<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>setf punctuations <span style="color: #9FC59F;">(</span>delete chr punctuations<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
 
-  (<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">get-punctuation</span> ()
-    punctuations))
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">get-punctuation</span> <span style="color: #D0BF8F;">()</span>
+    punctuations<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -809,152 +797,130 @@ punctuation-marks and white-space characters.
 </div>
 </div>
 <div id="outline-container-sec-4-6" class="outline-3">
-<h3 id="sec-4-6"><span class="section-number-3">4.6</span> count-spaces</h3>
+<h3 id="sec-4-6"><span class="section-number-3">4.6</span> add-entry</h3>
 <div class="outline-text-3" id="text-4-6">
-<p>
-Determine the complexity of an example by counting the spaces in a string. This
-is used to determine if one should be expected to enter the english equivalent
-of a selected Chinese text sample.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">count-spaces</span> (str)
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((space-count 0))
-    (iterate (for chr in-string str)
-      (<span style="color: #f9b529; font-weight: bold;">when</span> (char= chr #\SPACE)
-        (incf space-count))
-      (finally (<span style="color: #f9b529; font-weight: bold;">return</span> space-count)))))
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Entry manipulation</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> add-entry</h3>
-<div class="outline-text-3" id="text-5-1">
 <p>
 Create a new instance of <code>vocab-entry</code> and install it into the primary
 hash-table with a unique key.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">add-entry</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> hanzi pinyin english (hsk 0) (hash-table *zh-hash-table*))
-  (puthash (gen-ht-key 'zh-index)
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">add-entry</span> <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">&amp;key</span> hanzi pinyin english <span style="color: #D0BF8F;">(</span>hsk 0<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>hash-table *zh-hash-table*<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>puthash <span style="color: #D0BF8F;">(</span>gen-ht-key 'zh-index<span style="color: #D0BF8F;">)</span>
            hash-table
-           (make-vocab-entry <span style="color: #f9b529;">:hanzi</span>   hanzi
-                             <span style="color: #f9b529;">:pinyin</span>  pinyin
-                             <span style="color: #f9b529;">:english</span> english
-                             <span style="color: #f9b529;">:hsk</span>     hsk)))
+           <span style="color: #D0BF8F;">(</span>make-vocab-entry <span style="color: #DCDCCC; font-weight: bold;">:hanzi</span>   hanzi
+                             <span style="color: #DCDCCC; font-weight: bold;">:pinyin</span>  pinyin
+                             <span style="color: #DCDCCC; font-weight: bold;">:english</span> english
+                             <span style="color: #DCDCCC; font-weight: bold;">:hsk</span>     hsk<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2"><span class="section-number-3">5.2</span> revise-entry</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-sec-4-7" class="outline-3">
+<h3 id="sec-4-7"><span class="section-number-3">4.7</span> revise-entry</h3>
+<div class="outline-text-3" id="text-4-7">
 <p>
 Modify an entry by accepting a field parameter, and a replacement value.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">revise-entry</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> key field new-data (hash-table *zh-hash-table*))
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((the-object (gethash key hash-table)))
-    (<span style="color: #f9b529; font-weight: bold;">case</span> field
-      ((hanzi)   (setf (vocab-entry-hanzi   the-object) new-data))
-      ((pinyin)  (setf (vocab-entry-pinyin  the-object) new-data))
-      ((english) (setf (vocab-entry-english the-object) new-data)))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">revise-entry</span> <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">&amp;key</span> key field new-data <span style="color: #D0BF8F;">(</span>hash-table *zh-hash-table*<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>the-object <span style="color: #9FC59F;">(</span>gethash key hash-table<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">case</span> field
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>hanzi<span style="color: #9FC59F;">)</span>   <span style="color: #9FC59F;">(</span>setf <span style="color: #94BFF3;">(</span>vocab-entry-hanzi   the-object<span style="color: #94BFF3;">)</span> new-data<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>pinyin<span style="color: #9FC59F;">)</span>  <span style="color: #9FC59F;">(</span>setf <span style="color: #94BFF3;">(</span>vocab-entry-pinyin  the-object<span style="color: #94BFF3;">)</span> new-data<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>english<span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">(</span>setf <span style="color: #94BFF3;">(</span>vocab-entry-english the-object<span style="color: #94BFF3;">)</span> new-data<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-3" class="outline-3">
-<h3 id="sec-5-3"><span class="section-number-3">5.3</span> append-english</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-sec-4-8" class="outline-3">
+<h3 id="sec-4-8"><span class="section-number-3">4.8</span> append-english</h3>
+<div class="outline-text-3" id="text-4-8">
 <p>
 Append additional English terms to the <code>:english</code> slot in a <code>vocab-entry</code>
 instance.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">append-english</span> (english-strings <span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> key (hash-table *zh-hash-table*))
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((the-object (gethash key hash-table)))
-    (revise-entry (append (vocab-entry-english the-object) english-strings)
-                  <span style="color: #f9b529;">:key</span> key
-                  <span style="color: #f9b529;">:field</span> 'english)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">append-english</span> <span style="color: #BFEBBF;">(</span>english-strings <span style="color: #7CB8BB;">&amp;key</span> key <span style="color: #D0BF8F;">(</span>hash-table *zh-hash-table*<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>the-object <span style="color: #9FC59F;">(</span>gethash key hash-table<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>revise-entry <span style="color: #93E0E3;">(</span>append <span style="color: #9FC59F;">(</span>vocab-entry-english the-object<span style="color: #9FC59F;">)</span> english-strings<span style="color: #93E0E3;">)</span>
+                  <span style="color: #DCDCCC; font-weight: bold;">:key</span> key
+                  <span style="color: #DCDCCC; font-weight: bold;">:field</span> 'english<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-4" class="outline-3">
-<h3 id="sec-5-4"><span class="section-number-3">5.4</span> update-score</h3>
-<div class="outline-text-3" id="text-5-4">
+<div id="outline-container-sec-4-9" class="outline-3">
+<h3 id="sec-4-9"><span class="section-number-3">4.9</span> update-score</h3>
+<div class="outline-text-3" id="text-4-9">
 <p>
 Update the score stored in a <code>vocab-entry</code> instance based on the results of
 <code>check-answer</code> and <code>score-result</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">update-score</span> (answer hash-key test-type <span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (hash-table *zh-hash-table*))
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((vocab-entry (gethash hash-key hash-table)))
-    (setf (vocab-entry-score vocab-entry)
-          (+ (vocab-entry-score vocab-entry)
-             (score-result (<span style="color: #ea8673; font-weight: bold;">check-answer</span> answer vocab-entry test-type))))
-    (setf (vocab-entry-date vocab-entry)
-          (get-universal-time))
-    (incf (vocab-entry-reps vocab-entry))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">update-score</span> <span style="color: #BFEBBF;">(</span>answer hash-key test-type <span style="color: #7CB8BB;">&amp;key</span> <span style="color: #D0BF8F;">(</span>hash-table *zh-hash-table*<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>vocab-entry <span style="color: #9FC59F;">(</span>gethash hash-key hash-table<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>setf <span style="color: #93E0E3;">(</span>vocab-entry-score vocab-entry<span style="color: #93E0E3;">)</span>
+          <span style="color: #93E0E3;">(</span>+ <span style="color: #9FC59F;">(</span>vocab-entry-score vocab-entry<span style="color: #9FC59F;">)</span>
+             <span style="color: #9FC59F;">(</span>score-result <span style="color: #94BFF3;">(</span><span style="color: #D0BF8F; font-weight: bold;">check-answer</span> answer vocab-entry test-type<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>setf <span style="color: #93E0E3;">(</span>vocab-entry-date vocab-entry<span style="color: #93E0E3;">)</span>
+          <span style="color: #93E0E3;">(</span>get-universal-time<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>incf <span style="color: #93E0E3;">(</span>vocab-entry-reps vocab-entry<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Storage</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Saving and Loading</h3>
-<div class="outline-text-3" id="text-6-1">
-</div><div id="outline-container-sec-6-1-1" class="outline-4">
-<h4 id="sec-6-1-1">export-vocab</h4>
-<div class="outline-text-4" id="text-6-1-1">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Storage</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Saving and Loading</h3>
+<div class="outline-text-3" id="text-5-1">
+</div><div id="outline-container-sec-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1">export-vocab</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <p>
 The <code>export-vocab</code> function arose out of a finding that hash-table objects
 differ slightly between Common Lisp implementations.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">export-vocab</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (vocab-table *zh-hash-table*) (filename <span style="color: #a9dc69;">"zh-portable.raw"</span>)) 
-  (<span style="color: #f9b529; font-weight: bold;">let</span> (the-alist)
-    (<span style="color: #f9b529; font-weight: bold;">labels</span> ((destructure-vocab (x y)
-               (push (list x y) the-alist)))
-      (maphash #'destructure-vocab vocab-table)
-      (<span style="color: #f9b529; font-weight: bold;">with-open-file</span> (out filename
-                           <span style="color: #f9b529;">:direction</span> <span style="color: #f9b529;">:output</span>
-                           <span style="color: #f9b529;">:if-exists</span> <span style="color: #f9b529;">:supersede</span>)
-        (<span style="color: #f9b529; font-weight: bold;">with-standard-io-syntax</span>
-          (pprint the-alist out))))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">export-vocab</span> <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">&amp;key</span> <span style="color: #D0BF8F;">(</span>vocab-table *zh-hash-table*<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>filename <span style="color: #CC9393;">"zh-portable.raw"</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span> 
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>the-alist<span style="color: #93E0E3;">)</span> <span style="color: #93E0E3;">(</span>count 0<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">labels</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>destructure-vocab <span style="color: #94BFF3;">(</span>x y<span style="color: #94BFF3;">)</span>
+               <span style="color: #94BFF3;">(</span>push <span style="color: #E0CF9F;">(</span>list x y<span style="color: #E0CF9F;">)</span> the-alist<span style="color: #94BFF3;">)</span>
+               <span style="color: #94BFF3;">(</span>incf count<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>maphash #'destructure-vocab vocab-table<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">with-open-file</span> <span style="color: #9FC59F;">(</span>out filename
+                           <span style="color: #DCDCCC; font-weight: bold;">:direction</span> <span style="color: #DCDCCC; font-weight: bold;">:output</span>
+                           <span style="color: #DCDCCC; font-weight: bold;">:if-exists</span> <span style="color: #DCDCCC; font-weight: bold;">:supersede</span><span style="color: #9FC59F;">)</span>
+        <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">with-standard-io-syntax</span>
+          <span style="color: #94BFF3;">(</span>pprint the-alist out<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    count<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-1-2" class="outline-4">
-<h4 id="sec-6-1-2">import-vocab</h4>
-<div class="outline-text-4" id="text-6-1-2">
+<div id="outline-container-sec-5-1-2" class="outline-4">
+<h4 id="sec-5-1-2">import-vocab</h4>
+<div class="outline-text-4" id="text-5-1-2">
 <p>
 The obvious counterpart to <code>export-vocab</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">import-vocab</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (vocab-table *zh-hash-table*) (filename <span style="color: #a9dc69;">"zh-portable.raw"</span>))
-  (<span style="color: #f9b529; font-weight: bold;">labels</span> ((structure-vocab (l)
-             (puthash (car l) vocab-table (cadr l))))
-    (<span style="color: #f9b529; font-weight: bold;">with-open-file</span> (in filename)
-      (<span style="color: #f9b529; font-weight: bold;">declare</span> (dynamic-extent in))
-      (<span style="color: #f9b529; font-weight: bold;">with-standard-io-syntax</span>
-        (mapcar #'structure-vocab (read in))))
-    (setf *vocab-key-count* (hash-table-count *zh-hash-table*))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">import-vocab</span> <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">&amp;key</span> <span style="color: #D0BF8F;">(</span>vocab-table *zh-hash-table*<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>filename <span style="color: #CC9393;">"zh-portable.raw"</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">labels</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>structure-vocab <span style="color: #9FC59F;">(</span>l<span style="color: #9FC59F;">)</span>
+             <span style="color: #9FC59F;">(</span>puthash <span style="color: #94BFF3;">(</span>car l<span style="color: #94BFF3;">)</span> vocab-table <span style="color: #94BFF3;">(</span>cadr l<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">with-open-file</span> <span style="color: #93E0E3;">(</span>in filename<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">declare</span> <span style="color: #9FC59F;">(</span>dynamic-extent in<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">with-standard-io-syntax</span>
+        <span style="color: #9FC59F;">(</span>mapcar #'structure-vocab <span style="color: #94BFF3;">(</span>read in<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>setf *vocab-key-count* <span style="color: #93E0E3;">(</span>hash-table-count *zh-hash-table*<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <p>
@@ -964,158 +930,143 @@ MP3s and the original data-set were provided by <i>lingomi</i>.
 </div>
 </div>
 
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> fill-mp3-paths</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> fill-mp3-paths</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 Set the variable <code>*mp3dir*</code> to be a list of paths to each of the MP3s for the
 vocab tests.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">fill-mp3-paths</span> ()
-  (setf *mp3dir* (directory #P<span style="color: #a9dc69;">"~/chinese/hsk_mp3/*.mp3"</span>))
-  nil)
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">fill-mp3-paths</span> <span style="color: #BFEBBF;">()</span>
+  <span style="color: #BFEBBF;">(</span>setf *mp3dir* <span style="color: #D0BF8F;">(</span>directory #P<span style="color: #CC9393;">"~/chinese/hsk_mp3/*.mp3"</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  nil<span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-3" class="outline-3">
-<h3 id="sec-6-3"><span class="section-number-3">6.3</span> matching vocab entries to mp3s</h3>
-<div class="outline-text-3" id="text-6-3">
-</div><div id="outline-container-sec-6-3-1" class="outline-4">
-<h4 id="sec-6-3-1">find-mp3-path</h4>
-<div class="outline-text-4" id="text-6-3-1">
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> matching vocab entries to mp3s</h3>
+<div class="outline-text-3" id="text-5-3">
+</div><div id="outline-container-sec-5-3-1" class="outline-4">
+<h4 id="sec-5-3-1">find-mp3-path</h4>
+<div class="outline-text-4" id="text-5-3-1">
 <p>
 Search a list of mp3 files for a match with a predefined pinyin string.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">find-mp3-path</span> (match-name)
-  (iterate (for elt in *mp3dir*)
-    (finding elt such-that (scan match-name (namestring elt)))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">find-mp3-path</span> <span style="color: #BFEBBF;">(</span>match-name<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>iterate <span style="color: #D0BF8F;">(</span>for elt in *mp3dir*<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>finding elt such-that <span style="color: #93E0E3;">(</span>scan match-name <span style="color: #9FC59F;">(</span>namestring elt<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-3-2" class="outline-4">
-<h4 id="sec-6-3-2">find-matching-mp3</h4>
-<div class="outline-text-4" id="text-6-3-2">
+<div id="outline-container-sec-5-3-2" class="outline-4">
+<h4 id="sec-5-3-2">find-matching-mp3</h4>
+<div class="outline-text-4" id="text-5-3-2">
 <p>
 Match a given vocabulary key to a list of mp3 files
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">find-matching-mp3</span> (vocab-key)
-  (<span style="color: #f9b529; font-weight: bold;">let*</span> ((vocab-entry (gethash vocab-key *zh-hash-table*))
-         (pinyin (vocab-entry-pinyin vocab-entry))
-         (nospace (regex-replace <span style="color: #a9dc69;">" "</span> pinyin <span style="color: #a9dc69;">""</span>))
-         (match-name (concatenate 'string <span style="color: #a9dc69;">"-"</span> nospace <span style="color: #a9dc69;">"-"</span>))
-         (mp3-path (find-mp3-path match-name)))
-    (<span style="color: #f9b529; font-weight: bold;">when</span> mp3-path
-      (push (list vocab-key
-                  (namestring mp3-path))
-            *mp3-alist*))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">find-matching-mp3</span> <span style="color: #BFEBBF;">(</span>vocab-key<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let*</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>vocab-entry <span style="color: #9FC59F;">(</span>gethash vocab-key *zh-hash-table*<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span>pinyin <span style="color: #9FC59F;">(</span>vocab-entry-pinyin vocab-entry<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span>nospace <span style="color: #9FC59F;">(</span>regex-replace <span style="color: #CC9393;">" "</span> pinyin <span style="color: #CC9393;">""</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span>match-name <span style="color: #9FC59F;">(</span>concatenate 'string <span style="color: #CC9393;">"-"</span> nospace <span style="color: #CC9393;">"-"</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span>mp3-path <span style="color: #9FC59F;">(</span>find-mp3-path match-name<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> mp3-path
+      <span style="color: #93E0E3;">(</span>push <span style="color: #9FC59F;">(</span>list vocab-key
+                  <span style="color: #94BFF3;">(</span>namestring mp3-path<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+            *mp3-alist*<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-3-3" class="outline-4">
-<h4 id="sec-6-3-3">find-active-vocab-mp3s</h4>
-<div class="outline-text-4" id="text-6-3-3">
+<div id="outline-container-sec-5-3-3" class="outline-4">
+<h4 id="sec-5-3-3">find-active-vocab-mp3s</h4>
+<div class="outline-text-4" id="text-5-3-3">
 <p>
 Look for mp3s which match the contents of the <code>*mp3dir*</code> variable, if it is not
 already in the <code>*mp3-alist*</code>, add it in the form of <code>(KEY PATH-TO-MP3)</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">find-active-vocab-mp3s</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;optional</span> (source-list *mp3dir*))
-  (mapcar (<span style="color: #f9b529; font-weight: bold;">lambda</span> (key)
-            (<span style="color: #f9b529; font-weight: bold;">unless</span> (assoc key *mp3-alist*)
-              (find-matching-mp3 key)))
-          source-list))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">find-active-vocab-mp3s</span> <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">&amp;optional</span> <span style="color: #D0BF8F;">(</span>source-list *mp3dir*<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>mapcar <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>key<span style="color: #93E0E3;">)</span>
+            <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">unless</span> <span style="color: #9FC59F;">(</span>assoc key *mp3-alist*<span style="color: #9FC59F;">)</span>
+              <span style="color: #9FC59F;">(</span>find-matching-mp3 key<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+          source-list<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-3-4" class="outline-4">
-<h4 id="sec-6-3-4">play-mp3</h4>
-<div class="outline-text-4" id="text-6-3-4">
+<div id="outline-container-sec-5-3-4" class="outline-4">
+<h4 id="sec-5-3-4">play-mp3</h4>
+<div class="outline-text-4" id="text-5-3-4">
 <p>
 Launch a thread that runs a program with the appropriate filename as returned by
 an association list lookup.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">play-mp3</span> (key)
-  (bordeaux-threads:make-thread (<span style="color: #f9b529; font-weight: bold;">lambda</span> ()
-                                  (run <span style="color: #a9dc69;">"/usr/bin/mpg123"</span>
-                                       (cdr (assoc key *mp3-alist*))))
-                                <span style="color: #f9b529;">:name</span> <span style="color: #a9dc69;">"mp3 playback thread"</span>))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">play-mp3</span> <span style="color: #BFEBBF;">(</span>key<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>bordeaux-threads:make-thread <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">()</span>
+                                  <span style="color: #93E0E3;">(</span>run <span style="color: #CC9393;">"/usr/bin/mpg123"</span>
+                                       <span style="color: #9FC59F;">(</span>cdr <span style="color: #94BFF3;">(</span>assoc key *mp3-alist*<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+                                <span style="color: #DCDCCC; font-weight: bold;">:name</span> <span style="color: #CC9393;">"mp3 playback thread"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> Testing Facilities</h2>
-<div class="outline-text-2" id="text-7">
-</div><div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1"><span class="section-number-3">7.1</span> set comparisons</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Testing Facilities</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> set comparisons</h3>
+<div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">my-subset?</span> (set-x set-y)
-  (not (set-difference set-x set-y)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">my-subset?</span> <span style="color: #BFEBBF;">(</span>set-x set-y<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>not <span style="color: #D0BF8F;">(</span>set-difference set-x set-y<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">set-equal?</span> (set-x set-y)
-  (and (my-subset? set-x set-y)
-       (my-subset? set-y set-x)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">set-equal?</span> <span style="color: #BFEBBF;">(</span>set-x set-y<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>and <span style="color: #D0BF8F;">(</span>my-subset? set-x set-y<span style="color: #D0BF8F;">)</span>
+       <span style="color: #D0BF8F;">(</span>my-subset? set-y set-x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-2" class="outline-3">
-<h3 id="sec-7-2"><span class="section-number-3">7.2</span> load-from-hsk</h3>
-<div class="outline-text-3" id="text-7-2">
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> load-from-hsk</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 Useful for bootstrapping vocab-element selection.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">load-from-hsk</span> (hsk-val <span style="color: #9dbbd3; font-weight: bold;">&amp;optional</span> (n 10))
-  (setf *test-pool*
-        (subseq (reverse (hsk-apropos hsk-val))
-                0
-                n)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">load-from-hsk</span> <span style="color: #BFEBBF;">(</span>hsk-val <span style="color: #7CB8BB;">&amp;optional</span> <span style="color: #D0BF8F;">(</span>n 10<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>base <span style="color: #9FC59F;">(</span>length *test-pool*<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>setf *test-pool*
+          <span style="color: #93E0E3;">(</span>nconc *test-pool*
+                 <span style="color: #9FC59F;">(</span>subseq <span style="color: #94BFF3;">(</span>reverse <span style="color: #E0CF9F;">(</span>hsk-apropos hsk-val<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+                         base
+                         <span style="color: #94BFF3;">(</span>+ n base<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-3" class="outline-3">
-<h3 id="sec-7-3"><span class="section-number-3">7.3</span> add-vocabs</h3>
-<div class="outline-text-3" id="text-7-3">
-<div class="org-src-container">
-
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">add-vocabs</span> (hsk <span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (count 5))
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((pool     (reverse (hsk-apropos hsk)))
-        (p-length (length *test-pool*)))
-    (iterate (for elt in pool)
-      (<span style="color: #f9b529; font-weight: bold;">unless</span> (member elt *test-pool*)
-        (<span style="color: #f9b529; font-weight: bold;">when</span> (&lt;= (length *test-pool*)
-                  (+ p-length count))
-          (push elt *test-pool*))))))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-7-4" class="outline-3">
-<h3 id="sec-7-4"><span class="section-number-3">7.4</span> enumerate-qualified-elements</h3>
-<div class="outline-text-3" id="text-7-4">
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> enumerate-qualified-elements</h3>
+<div class="outline-text-3" id="text-6-3">
 <p>
 Check the number of elements that have qualified since the last test occurred,
 This is used to check to see if the minimal number of elements required for a
@@ -1123,48 +1074,68 @@ test can be called in without overlapping cooldown-times.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">enumerate-qualified-elements</span> ()
-  (length (remove-if-not #'qualified-p *test-pool*)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">enumerate-qualified-elements</span> <span style="color: #BFEBBF;">()</span>
+  <span style="color: #BFEBBF;">(</span>length <span style="color: #D0BF8F;">(</span>remove-if-not #'qualified-p *test-pool*<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-5" class="outline-3">
-<h3 id="sec-7-5"><span class="section-number-3">7.5</span> refil-testing-pool</h3>
-<div class="outline-text-3" id="text-7-5">
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> refil-testing-pool</h3>
+<div class="outline-text-3" id="text-6-4">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">refil-testing-pool</span> (hsk upper-bound)
-  (add-vocabs hsk (- upper-bound (enumerate-qualified-elements))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">refil-testing-pool</span> <span style="color: #BFEBBF;">(</span>hsk upper-bound<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>load-from-hsk hsk <span style="color: #D0BF8F;">(</span>- upper-bound <span style="color: #93E0E3;">(</span>enumerate-qualified-elements<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-7-6" class="outline-3">
-<h3 id="sec-7-6"><span class="section-number-3">7.6</span> hsk-spillover</h3>
-<div class="outline-text-3" id="text-7-6">
+<div id="outline-container-sec-6-5" class="outline-3">
+<h3 id="sec-6-5"><span class="section-number-3">6.5</span> hsk-spillover</h3>
+<div class="outline-text-3" id="text-6-5">
 <p>
 When a testing level is exhausted, pull more from the next level up.
 If there are no more levels, don't increment.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">hsk-spillover</span> ()
-  (<span style="color: #f9b529; font-weight: bold;">if</span> (and (hsk-apropos (+ *current-hsk-level* 1))
-           (set-equal-p *test-pool* (hsk-apropos *current-hsk-level*)))
-      (incf *current-hsk-level*)
-      (format nil <span style="color: #a9dc69;">"Takeshi: ``</span><span style="color: #ffffff; font-weight: bold; font-style: italic;">Amazing!</span><span style="color: #a9dc69;">''"</span>)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">hsk-spillover</span> <span style="color: #BFEBBF;">()</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>and <span style="color: #93E0E3;">(</span>hsk-apropos <span style="color: #9FC59F;">(</span>+ *current-hsk-level* 1<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+           <span style="color: #93E0E3;">(</span>set-equal-p *test-pool* <span style="color: #9FC59F;">(</span>hsk-apropos *current-hsk-level*<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+      <span style="color: #D0BF8F;">(</span>incf *current-hsk-level*<span style="color: #D0BF8F;">)</span>
+      <span style="color: #D0BF8F;">(</span>format nil <span style="color: #CC9393;">"Takeshi: ``</span><span style="color: #BFEBBF;">Amazing!</span><span style="color: #CC9393;">''"</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-7" class="outline-3">
-<h3 id="sec-7-7"><span class="section-number-3">7.7</span> Vocab element qualification</h3>
-<div class="outline-text-3" id="text-7-7">
-</div><div id="outline-container-sec-7-7-1" class="outline-4">
-<h4 id="sec-7-7-1">english-sensible-p</h4>
-<div class="outline-text-4" id="text-7-7-1">
+<div id="outline-container-sec-6-6" class="outline-3">
+<h3 id="sec-6-6"><span class="section-number-3">6.6</span> Vocab element qualification</h3>
+<div class="outline-text-3" id="text-6-6">
+</div><div id="outline-container-sec-6-6-1" class="outline-4">
+<h4 id="sec-6-6-1">count-spaces</h4>
+<div class="outline-text-4" id="text-6-6-1">
+<p>
+Determine the complexity of an example by counting the spaces in a string. This
+is used to determine if one should be expected to enter the english equivalent
+of a selected Chinese text sample.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">count-spaces</span> <span style="color: #BFEBBF;">(</span>str<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>space-count 0<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>iterate <span style="color: #93E0E3;">(</span>for chr in-string str<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #9FC59F;">(</span>char= chr #\SPACE<span style="color: #9FC59F;">)</span>
+        <span style="color: #9FC59F;">(</span>incf space-count<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>finally <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">return</span> space-count<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-6-2" class="outline-4">
+<h4 id="sec-6-6-2">english-sensible-p</h4>
+<div class="outline-text-4" id="text-6-6-2">
 <p>
 Check to see if any constituents of the english parameter of a particular entry
 can be expected to be remembered verbatim and entered when prompted for an
@@ -1173,70 +1144,70 @@ thesaurus.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">english-sensible-p</span> (vocab-entry)
-  (element-of-truth (mapcar (<span style="color: #f9b529; font-weight: bold;">lambda</span> (s)
-                              (&lt; (count-spaces s) 2))
-                            (vocab-entry-english vocab-entry))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">english-sensible-p</span> <span style="color: #BFEBBF;">(</span>vocab-entry<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>element-of-truth <span style="color: #D0BF8F;">(</span>mapcar <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #9FC59F;">(</span>s<span style="color: #9FC59F;">)</span>
+                              <span style="color: #9FC59F;">(</span>&lt; <span style="color: #94BFF3;">(</span>count-spaces s<span style="color: #94BFF3;">)</span> 2<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+                            <span style="color: #93E0E3;">(</span>vocab-entry-english vocab-entry<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-7-2" class="outline-4">
-<h4 id="sec-7-7-2">sensible-tests</h4>
-<div class="outline-text-4" id="text-7-7-2">
+<div id="outline-container-sec-6-6-3" class="outline-4">
+<h4 id="sec-6-6-3">sensible-tests</h4>
+<div class="outline-text-4" id="text-6-6-3">
 <p>
 A bit crude, but return a list of appropriate tests based on the response of
 <code>english-sensible-p</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">sensible-tests</span> (vocab-element)
-  (<span style="color: #f9b529; font-weight: bold;">if</span> (english-qualified-p vocab-element)
-      (list 'english 'hanzi 'pinyin)
-      (list 'hanzi 'pinyin)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">sensible-tests</span> <span style="color: #BFEBBF;">(</span>vocab-element<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>english-qualified-p vocab-element<span style="color: #D0BF8F;">)</span>
+      <span style="color: #D0BF8F;">(</span>list 'english 'hanzi 'pinyin<span style="color: #D0BF8F;">)</span>
+      <span style="color: #D0BF8F;">(</span>list 'hanzi 'pinyin<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-7-3" class="outline-4">
-<h4 id="sec-7-7-3">qualified-p</h4>
-<div class="outline-text-4" id="text-7-7-3">
+<div id="outline-container-sec-6-6-4" class="outline-4">
+<h4 id="sec-6-6-4">qualified-p</h4>
+<div class="outline-text-4" id="text-6-6-4">
 <p>
 Test to see which vocabulary elements qualify for testing at a given time.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">qualified-p</span> (vocab-struct)
-  (and (&gt; 10 (vocab-entry-reps vocab-struct))
-       (&gt; (get-universal-time)
-          (vocab-entry-date vocab-struct))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">qualified-p</span> <span style="color: #BFEBBF;">(</span>vocab-struct<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>and <span style="color: #D0BF8F;">(</span>&gt; 10 <span style="color: #93E0E3;">(</span>vocab-entry-reps vocab-struct<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+       <span style="color: #D0BF8F;">(</span>&gt; <span style="color: #93E0E3;">(</span>get-universal-time<span style="color: #93E0E3;">)</span>
+          <span style="color: #93E0E3;">(</span>vocab-entry-date vocab-struct<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-7-4" class="outline-4">
-<h4 id="sec-7-7-4">set-next-test</h4>
-<div class="outline-text-4" id="text-7-7-4">
+<div id="outline-container-sec-6-6-5" class="outline-4">
+<h4 id="sec-6-6-5">set-next-test</h4>
+<div class="outline-text-4" id="text-6-6-5">
 <p>
 Set the <code>:date</code> slot in a given vocab structure to the next scheduled test based
 upon the number of times it has been correctly answered.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">set-next-test</span> (vocab-struct)
-  (setf (vocab-entry-date vocab-struct)
-        (schedule-next-test (vocab-entry-reps vocab-struct))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">set-next-test</span> <span style="color: #BFEBBF;">(</span>vocab-struct<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>setf <span style="color: #D0BF8F;">(</span>vocab-entry-date vocab-struct<span style="color: #D0BF8F;">)</span>
+        <span style="color: #D0BF8F;">(</span>schedule-next-test vocab-struct<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-8" class="outline-3">
-<h3 id="sec-7-8"><span class="section-number-3">7.8</span> Presentation</h3>
-<div class="outline-text-3" id="text-7-8">
-</div><div id="outline-container-sec-7-8-1" class="outline-4">
-<h4 id="sec-7-8-1">show-challenge</h4>
-<div class="outline-text-4" id="text-7-8-1">
+<div id="outline-container-sec-6-7" class="outline-3">
+<h3 id="sec-6-7"><span class="section-number-3">6.7</span> Presentation</h3>
+<div class="outline-text-3" id="text-6-7">
+</div><div id="outline-container-sec-6-7-1" class="outline-4">
+<h4 id="sec-6-7-1">show-challenge</h4>
+<div class="outline-text-4" id="text-6-7-1">
 <p>
 Take a <code>field</code> and <code>key</code>, and respond with a string from the requested
 field. A field value of <code>english</code> will return a random string from the list
@@ -1247,121 +1218,121 @@ ideographs.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">show-challenge</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> field key (hash-table *zh-hash-table*))
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((the-object (gethash key hash-table)))
-    (<span style="color: #f9b529; font-weight: bold;">case</span> field
-      ((english)     (nth (random (length (vocab-entry-english the-object)))
-                          (vocab-entry-english the-object)))
-      ((english-all) (format nil <span style="color: #a9dc69;">"~{~A~^, ~}."</span> (vocab-entry-english the-object)))
-      ((pinyin)      (vocab-entry-pinyin the-object))
-      ((hanzi)       (vocab-entry-hanzi the-object)))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">show-challenge</span> <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">&amp;key</span> field key <span style="color: #D0BF8F;">(</span>hash-table *zh-hash-table*<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>the-object <span style="color: #9FC59F;">(</span>gethash key hash-table<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">case</span> field
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>english<span style="color: #9FC59F;">)</span>     <span style="color: #9FC59F;">(</span>nth <span style="color: #94BFF3;">(</span>random <span style="color: #E0CF9F;">(</span>length <span style="color: #8FB28F;">(</span>vocab-entry-english the-object<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+                          <span style="color: #94BFF3;">(</span>vocab-entry-english the-object<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>english-all<span style="color: #9FC59F;">)</span> <span style="color: #9FC59F;">(</span>format nil <span style="color: #CC9393;">"~{~A~^, ~}."</span> <span style="color: #94BFF3;">(</span>vocab-entry-english the-object<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>pinyin<span style="color: #9FC59F;">)</span>      <span style="color: #9FC59F;">(</span>vocab-entry-pinyin the-object<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>hanzi<span style="color: #9FC59F;">)</span>       <span style="color: #9FC59F;">(</span>vocab-entry-hanzi the-object<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-8-2" class="outline-4">
-<h4 id="sec-7-8-2">take-answer</h4>
-<div class="outline-text-4" id="text-7-8-2">
+<div id="outline-container-sec-6-7-2" class="outline-4">
+<h4 id="sec-6-7-2">take-answer</h4>
+<div class="outline-text-4" id="text-6-7-2">
 <p>
 A simple silly test.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">take-answer</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> test)
-  (format t <span style="color: #a9dc69;">"~D&gt; "</span> test)
-  (read-line))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">take-answer</span> <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">&amp;key</span> test<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>format t <span style="color: #CC9393;">"~D&gt; "</span> test<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>read-line<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-9" class="outline-3">
-<h3 id="sec-7-9"><span class="section-number-3">7.9</span> List construction</h3>
-<div class="outline-text-3" id="text-7-9">
-</div><div id="outline-container-sec-7-9-1" class="outline-4">
-<h4 id="sec-7-9-1">construct-test-list</h4>
-<div class="outline-text-4" id="text-7-9-1">
+<div id="outline-container-sec-6-8" class="outline-3">
+<h3 id="sec-6-8"><span class="section-number-3">6.8</span> List construction</h3>
+<div class="outline-text-3" id="text-6-8">
+</div><div id="outline-container-sec-6-8-1" class="outline-4">
+<h4 id="sec-6-8-1">construct-test-list</h4>
+<div class="outline-text-4" id="text-6-8-1">
 <p>
 Build up a sample of vocab items for a test battery.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">construct-test-list</span> (length <span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> (test-pool *test-pool*) (vocab *zh-hash-table*))
-  <span style="color: #9c71a5; font-style: italic;">"Construct a test list of LENGTH members"</span>
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((repeat 0)
-        (result))
-    (iterate (for key in test-pool)
-      (<span style="color: #f9b529; font-weight: bold;">if</span> (= repeat length)
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">construct-test-list</span> <span style="color: #BFEBBF;">(</span>length <span style="color: #7CB8BB;">&amp;key</span> <span style="color: #D0BF8F;">(</span>test-pool *test-pool*<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>vocab *zh-hash-table*<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #9FC59F;">"Construct a test list of LENGTH members"</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>repeat 0<span style="color: #93E0E3;">)</span>
+        <span style="color: #93E0E3;">(</span>result<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>iterate <span style="color: #93E0E3;">(</span>for key in test-pool<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #9FC59F;">(</span>= repeat length<span style="color: #9FC59F;">)</span>
           result
-          (<span style="color: #f9b529; font-weight: bold;">when</span> (qualified-p (gethash key vocab))
-            (incf repeat)
-            (collect key into result at beginning))))))
+          <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #94BFF3;">(</span>qualified-p <span style="color: #E0CF9F;">(</span>gethash key vocab<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+            <span style="color: #94BFF3;">(</span>incf repeat<span style="color: #94BFF3;">)</span>
+            <span style="color: #94BFF3;">(</span>collect key into result at beginning<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-9-2" class="outline-4">
-<h4 id="sec-7-9-2">reconstruct-test-pool</h4>
-<div class="outline-text-4" id="text-7-9-2">
+<div id="outline-container-sec-6-8-2" class="outline-4">
+<h4 id="sec-6-8-2">reconstruct-test-pool</h4>
+<div class="outline-text-4" id="text-6-8-2">
 <p>
 Rebuild the testing pool from the base vocab library by searching for items that
 have already been seen in practice.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">reconstruct-test-pool</span> ()
-  (maphash (<span style="color: #f9b529; font-weight: bold;">lambda</span> (key val)
-             (<span style="color: #f9b529; font-weight: bold;">when</span> (&lt; 1 (vocab-entry-reps val))
-               (push key *test-pool*)))
-           *zh-hash-table*))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">reconstruct-test-pool</span> <span style="color: #BFEBBF;">()</span>
+  <span style="color: #BFEBBF;">(</span>maphash <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">lambda</span> <span style="color: #93E0E3;">(</span>key val<span style="color: #93E0E3;">)</span>
+             <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #9FC59F;">(</span>&lt; 1 <span style="color: #94BFF3;">(</span>vocab-entry-reps val<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+               <span style="color: #9FC59F;">(</span>push key *test-pool*<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+           *zh-hash-table*<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-10" class="outline-3">
-<h3 id="sec-7-10"><span class="section-number-3">7.10</span> Scoring</h3>
-<div class="outline-text-3" id="text-7-10">
-</div><div id="outline-container-sec-7-10-1" class="outline-4">
-<h4 id="sec-7-10-1">string-in-list-p</h4>
-<div class="outline-text-4" id="text-7-10-1">
+<div id="outline-container-sec-6-9" class="outline-3">
+<h3 id="sec-6-9"><span class="section-number-3">6.9</span> Scoring</h3>
+<div class="outline-text-3" id="text-6-9">
+</div><div id="outline-container-sec-6-9-1" class="outline-4">
+<h4 id="sec-6-9-1">string-in-list-p</h4>
+<div class="outline-text-4" id="text-6-9-1">
 <p>
 Test to see if a list contains a specified string.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">string-in-list-p</span> (string l)
-  (iterate (for s in l)
-    (<span style="color: #f9b529; font-weight: bold;">when</span> (string= s string)
-      l)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">string-in-list-p</span> <span style="color: #BFEBBF;">(</span>string l<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>iterate <span style="color: #D0BF8F;">(</span>for s in l<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #93E0E3;">(</span>string= s string<span style="color: #93E0E3;">)</span>
+      l<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-10-2" class="outline-4">
-<h4 id="sec-7-10-2">check-answer</h4>
-<div class="outline-text-4" id="text-7-10-2">
+<div id="outline-container-sec-6-9-2" class="outline-4">
+<h4 id="sec-6-9-2">check-answer</h4>
+<div class="outline-text-4" id="text-6-9-2">
 <p>
 Test a provided answer for correctness against data stored in a vocab-entry instance.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">check-answer</span> (answer vocab-entry test-type)
-  (<span style="color: #f9b529; font-weight: bold;">cond</span> ((and (equalp test-type 'english)
-              (string-in-list-p answer (vocab-entry-english vocab-entry))))
-        ((and (equalp test-type 'hanzi)
-              (string= answer (vocab-entry-hanzi vocab-entry))))
-        ((and (equalp test-type 'pinyin)
-              (string= answer (vocab-entry-pinyin vocab-entry))))
-        ((not (member test-type '(english hanzi pinyin)))
-         (<span style="color: #ea8673; font-weight: bold;">error</span> <span style="color: #a9dc69;">"Unknown test-type"</span>))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">check-answer</span> <span style="color: #BFEBBF;">(</span>answer vocab-entry test-type<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>not <span style="color: #9FC59F;">(</span>member test-type '<span style="color: #94BFF3;">(</span>english hanzi pinyin<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span><span style="color: #D0BF8F; font-weight: bold;">error</span> <span style="color: #CC9393;">"Unknown test-type"</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+        <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>and <span style="color: #9FC59F;">(</span>equalp test-type 'english<span style="color: #9FC59F;">)</span>
+              <span style="color: #9FC59F;">(</span>string-in-list-p answer <span style="color: #94BFF3;">(</span>vocab-entry-english vocab-entry<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+        <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>and <span style="color: #9FC59F;">(</span>equalp test-type 'hanzi<span style="color: #9FC59F;">)</span>
+              <span style="color: #9FC59F;">(</span>string= answer <span style="color: #94BFF3;">(</span>vocab-entry-hanzi vocab-entry<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+        <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>and <span style="color: #9FC59F;">(</span>equalp test-type 'pinyin<span style="color: #9FC59F;">)</span>
+              <span style="color: #9FC59F;">(</span>string= answer <span style="color: #94BFF3;">(</span>vocab-entry-pinyin vocab-entry<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-10-3" class="outline-4">
-<h4 id="sec-7-10-3">score-result</h4>
-<div class="outline-text-4" id="text-7-10-3">
+<div id="outline-container-sec-6-9-3" class="outline-4">
+<h4 id="sec-6-9-3">score-result</h4>
+<div class="outline-text-4" id="text-6-9-3">
 <p>
 Return a complex number, depending the state of <code>result</code>, that is added to the
 score stored in a specific <code>vocab-entry</code> structure. The left side of the complex
@@ -1369,17 +1340,17 @@ is Correct, the right is Incorrect.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">score-result</span> (result)
-  (<span style="color: #f9b529; font-weight: bold;">if</span> result
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">score-result</span> <span style="color: #BFEBBF;">(</span>result<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> result
       1
-      #C(0 1)))
+      #C<span style="color: #D0BF8F;">(</span>0 1<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-10-4" class="outline-4">
-<h4 id="sec-7-10-4">determine-offset</h4>
-<div class="outline-text-4" id="text-7-10-4">
+<div id="outline-container-sec-6-9-4" class="outline-4">
+<h4 id="sec-6-9-4">determine-offset</h4>
+<div class="outline-text-4" id="text-6-9-4">
 <p>
 ,Determine the offset for scheduling from anywhere between minutes to weeks based
 on the ratio between the real and imaginary components of the complex number
@@ -1388,45 +1359,39 @@ least four categories: unknown, poorly known, somewhat known, and known.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">determine-offset</span> (c)
-    (<span style="color: #f9b529; font-weight: bold;">let</span> ((ratio (/ (realpart c) (imagpart c))))
-      (<span style="color: #f9b529; font-weight: bold;">cond</span> ((&lt;= ratio 1)  'unknown)
-            ((&lt;= ratio 2)  'poor)
-            ((&lt;= ratio 5)  'medium)
-            ((&lt;= ratio 10) 'good))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">determine-offset</span> <span style="color: #BFEBBF;">(</span>c<span style="color: #BFEBBF;">)</span>
+    <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>ratio <span style="color: #9FC59F;">(</span>/ <span style="color: #94BFF3;">(</span>realpart c<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>imagpart c<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+      <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>&lt;= ratio 1<span style="color: #9FC59F;">)</span>  3600<span style="color: #93E0E3;">)</span>
+            <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>&lt;= ratio 2<span style="color: #9FC59F;">)</span>  7200<span style="color: #93E0E3;">)</span>
+            <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>&lt;= ratio 5<span style="color: #9FC59F;">)</span>  10800<span style="color: #93E0E3;">)</span>
+            <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>&lt;= ratio 10<span style="color: #9FC59F;">)</span> 28000<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-10-5" class="outline-4">
-<h4 id="sec-7-10-5">schedule-next-test</h4>
-<div class="outline-text-4" id="text-7-10-5">
+<div id="outline-container-sec-6-9-5" class="outline-4">
+<h4 id="sec-6-9-5">schedule-next-test</h4>
+<div class="outline-text-4" id="text-6-9-5">
 <p>
 Determine when a word should be tested next based on the number of repetitions,
 and adjust this based on the score.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">schedule-next-test</span> (reps score)
-  (round
-   (+ (get-universal-time)
-      (* (+ 7200                          <span style="color: #232533;">; </span><span style="color: #696e92;">two hours in seconds</span>
-            (<span style="color: #f9b529; font-weight: bold;">case</span> (determine-offset score)
-              ((unknown) 3600)            <span style="color: #232533;">; </span><span style="color: #696e92;">one hour in seconds</span>
-              ((poor)    7200)            <span style="color: #232533;">; </span><span style="color: #696e92;">two hours in seconds</span>
-              ((medium)  10800)           <span style="color: #232533;">; </span><span style="color: #696e92;">three hours in seconds</span>
-              ((good)    18000)           <span style="color: #232533;">; </span><span style="color: #696e92;">Five hours in seconds</span>
-              ((t)       28800)           <span style="color: #232533;">; </span><span style="color: #696e92;">Eight hours in seconds;</span>
-              ((nil)     28800))          <span style="color: #232533;">; </span><span style="color: #696e92;">for compiler optimization.</span>
-            (expt phi (/ reps 3)))))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">schedule-next-test</span> <span style="color: #BFEBBF;">(</span>reps score<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>round
+   <span style="color: #D0BF8F;">(</span>+ <span style="color: #93E0E3;">(</span>get-universal-time<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>* <span style="color: #9FC59F;">(</span>+ 7200
+            <span style="color: #94BFF3;">(</span>determine-offset score<span style="color: #94BFF3;">)</span> 
+            <span style="color: #94BFF3;">(</span>expt phi <span style="color: #E0CF9F;">(</span>/ reps 2<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-11" class="outline-3">
-<h3 id="sec-7-11"><span class="section-number-3">7.11</span> display-and-play</h3>
-<div class="outline-text-3" id="text-7-11">
+<div id="outline-container-sec-6-10" class="outline-3">
+<h3 id="sec-6-10"><span class="section-number-3">6.10</span> display-and-play</h3>
+<div class="outline-text-3" id="text-6-10">
 <p>
 Print the Challenge to the screen, then prompt the user for the selected test,
 and play the sound file associated with the vocab entry. Update the score stored
@@ -1434,92 +1399,92 @@ in the vocab-entry structure to reflect the correctness of the answer.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">display-and-play</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;key</span> key from for)
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((goal      (show-challenge <span style="color: #f9b529;">:field</span> for <span style="color: #f9b529;">:key</span> key))
-        (challenge (show-challenge <span style="color: #f9b529;">:field</span> from <span style="color: #f9b529;">:key</span> key)))
-    (play-mp3 key)
-    (format t <span style="color: #a9dc69;">"~D~%~D&gt; "</span> challenge for)
-    (<span style="color: #f9b529; font-weight: bold;">let*</span> ((vocab-entry (gethash key *zh-hash-table*))
-           (results     (<span style="color: #ea8673; font-weight: bold;">check-answer</span> (get-answer) vocab-entry for))
-           (reps        (vocab-entry-reps vocab-entry)))
-      (setf (vocab-entry-score vocab-entry)
-            (+ (score-result results)
-               (vocab-entry-score vocab-entry)))
-      (<span style="color: #f9b529; font-weight: bold;">if</span> results
-          (<span style="color: #f9b529; font-weight: bold;">progn</span> (setf (vocab-entry-date vocab-entry)
-                       (schedule-next-test reps
-                                           (vocab-entry-score vocab-entry)))
-                 (incf reps))
-          (<span style="color: #f9b529; font-weight: bold;">progn</span> (setf *test-pool*
-                       (reverse (cons key (reverse *test-pool*))))
-                 goal)))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">display-and-play</span> <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">&amp;key</span> key from for<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>goal      <span style="color: #9FC59F;">(</span>show-challenge <span style="color: #DCDCCC; font-weight: bold;">:field</span> for <span style="color: #DCDCCC; font-weight: bold;">:key</span> key<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+        <span style="color: #93E0E3;">(</span>challenge <span style="color: #9FC59F;">(</span>show-challenge <span style="color: #DCDCCC; font-weight: bold;">:field</span> from <span style="color: #DCDCCC; font-weight: bold;">:key</span> key<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>play-mp3 key<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>format t <span style="color: #CC9393;">"~D~%~D&gt; "</span> challenge for<span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">let*</span> <span style="color: #93E0E3;">(</span><span style="color: #9FC59F;">(</span>vocab-entry <span style="color: #94BFF3;">(</span>gethash key *zh-hash-table*<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+           <span style="color: #9FC59F;">(</span>results     <span style="color: #94BFF3;">(</span><span style="color: #D0BF8F; font-weight: bold;">check-answer</span> <span style="color: #E0CF9F;">(</span>get-answer<span style="color: #E0CF9F;">)</span> vocab-entry for<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+           <span style="color: #9FC59F;">(</span>reps        <span style="color: #94BFF3;">(</span>vocab-entry-reps vocab-entry<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span>setf <span style="color: #9FC59F;">(</span>vocab-entry-score vocab-entry<span style="color: #9FC59F;">)</span>
+            <span style="color: #9FC59F;">(</span>+ <span style="color: #94BFF3;">(</span>score-result results<span style="color: #94BFF3;">)</span>
+               <span style="color: #94BFF3;">(</span>vocab-entry-score vocab-entry<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> results
+          <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">progn</span> <span style="color: #94BFF3;">(</span>setf <span style="color: #E0CF9F;">(</span>vocab-entry-date vocab-entry<span style="color: #E0CF9F;">)</span>
+                       <span style="color: #E0CF9F;">(</span>schedule-next-test reps
+                                           <span style="color: #8FB28F;">(</span>vocab-entry-score vocab-entry<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+                 <span style="color: #94BFF3;">(</span>incf reps<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+          <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">progn</span> <span style="color: #94BFF3;">(</span>setf *test-pool*
+                       <span style="color: #E0CF9F;">(</span>reverse <span style="color: #8FB28F;">(</span>cons key <span style="color: #6CA0A3;">(</span>reverse *test-pool*<span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+                 goal<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
-<ul class="org-ul"><li><a id="sec-7-11-0-1" name="sec-7-11-0-1"></a>get-answer<br  /><div class="outline-text-5" id="text-7-11-0-1">
+<ul class="org-ul"><li><a id="sec-6-10-0-1" name="sec-6-10-0-1"></a>get-answer<br  /><div class="outline-text-5" id="text-6-10-0-1">
 <p>
 Just having a call to <code>read-line</code> has some strange effects on program flow, so
 I'm wrapping it in a function.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">get-answer</span> ()
-  (read-line))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">get-answer</span> <span style="color: #BFEBBF;">()</span>
+  <span style="color: #BFEBBF;">(</span>read-line<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </li></ul>
 </div>
-<div id="outline-container-sec-7-12" class="outline-3">
-<h3 id="sec-7-12"><span class="section-number-3">7.12</span> test-loop</h3>
-<div class="outline-text-3" id="text-7-12">
+<div id="outline-container-sec-6-11" class="outline-3">
+<h3 id="sec-6-11"><span class="section-number-3">6.11</span> test-loop</h3>
+<div class="outline-text-3" id="text-6-11">
 <p>
 Loop through a set of tests where the test type is indeterminate.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">test-loop</span> (<span style="color: #9dbbd3; font-weight: bold;">&amp;optional</span> (n 10) (type 'random))
-  (<span style="color: #f9b529; font-weight: bold;">let</span> ((test-list (construct-test-list n)))
-    (iterate (for elt in test-list)
-      (<span style="color: #f9b529; font-weight: bold;">when</span> (&gt; n 0)
-        (1- n)
-        (<span style="color: #f9b529; font-weight: bold;">case</span> type
-          ((random) (random-test elt))
-          ((t) (display-and-play <span style="color: #f9b529;">:key</span> elt <span style="color: #f9b529;">:from</span> 'pinyin <span style="color: #f9b529;">:for</span> 'hanzi)))))))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">test-loop</span> <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">&amp;optional</span> <span style="color: #D0BF8F;">(</span>n 10<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>type 'random<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>test-list <span style="color: #9FC59F;">(</span>construct-test-list n<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>iterate <span style="color: #93E0E3;">(</span>for elt in test-list<span style="color: #93E0E3;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #9FC59F;">(</span>&gt; n 0<span style="color: #9FC59F;">)</span>
+        <span style="color: #9FC59F;">(</span>1- n<span style="color: #9FC59F;">)</span>
+        <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">case</span> type
+          <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>random<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>random-test elt<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+          <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>t<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>display-and-play <span style="color: #DCDCCC; font-weight: bold;">:key</span> elt <span style="color: #DCDCCC; font-weight: bold;">:from</span> 'pinyin <span style="color: #DCDCCC; font-weight: bold;">:for</span> 'hanzi<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7-13" class="outline-3">
-<h3 id="sec-7-13"><span class="section-number-3">7.13</span> random-test</h3>
-<div class="outline-text-3" id="text-7-13">
+<div id="outline-container-sec-6-12" class="outline-3">
+<h3 id="sec-6-12"><span class="section-number-3">6.12</span> random-test</h3>
+<div class="outline-text-3" id="text-6-12">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #f9b529; font-weight: bold;">defun</span> <span style="color: #8aa6bc;">random-test</span> (key)
-  (<span style="color: #f9b529; font-weight: bold;">let*</span> ((test-list (list 'hanzi 'pinyin 'english))
-         (crazy-english (list 'hanzi 'pinyin))
-         (sane-for (<span style="color: #f9b529; font-weight: bold;">if</span> (english-sensible-p (gethash key *zh-hash-table*))
-                       (nth (random (length test-list)) test-list)
-                       (nth (random (length crazy-english)) crazy-english)))
-         (rest-tests (delete sane-for test-list))
-         (from (nth (random (length rest-tests)) rest-tests)))
-    (display-and-play <span style="color: #f9b529;">:key</span> key <span style="color: #f9b529;">:from</span> from <span style="color: #f9b529;">:for</span> sane-for)))
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">random-test</span> <span style="color: #BFEBBF;">(</span>key<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let*</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>test-list <span style="color: #9FC59F;">(</span>list 'hanzi 'pinyin 'english<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span>crazy-english <span style="color: #9FC59F;">(</span>list 'hanzi 'pinyin<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span>sane-for <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #94BFF3;">(</span>english-sensible-p <span style="color: #E0CF9F;">(</span>gethash key *zh-hash-table*<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+                       <span style="color: #94BFF3;">(</span>nth <span style="color: #E0CF9F;">(</span>random <span style="color: #8FB28F;">(</span>length test-list<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span> test-list<span style="color: #94BFF3;">)</span>
+                       <span style="color: #94BFF3;">(</span>nth <span style="color: #E0CF9F;">(</span>random <span style="color: #8FB28F;">(</span>length crazy-english<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span> crazy-english<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span>rest-tests <span style="color: #9FC59F;">(</span>delete sane-for test-list<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span>from <span style="color: #9FC59F;">(</span>nth <span style="color: #94BFF3;">(</span>random <span style="color: #E0CF9F;">(</span>length rest-tests<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span> rest-tests<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>display-and-play <span style="color: #DCDCCC; font-weight: bold;">:key</span> key <span style="color: #DCDCCC; font-weight: bold;">:from</span> from <span style="color: #DCDCCC; font-weight: bold;">:for</span> sane-for<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> User Interface</h2>
-<div class="outline-text-2" id="text-8">
-</div><div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1"><span class="section-number-3">8.1</span> Header</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> User Interface</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Header</h3>
+<div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 
-<pre class="src src-lisp"><span style="color: #232533;">;; </span><span style="color: #696e92;">This is the source for the GUI front-end of the Chinese Vocab Drill</span>
-<span style="color: #232533;">;; </span><span style="color: #696e92;">package. It uses GTK+ 3.x via CFFI.</span>
-(<span style="color: #f9b529; font-weight: bold;">in-package</span> <span style="color: #f9b529;">:cl-cvd</span>)
+<pre class="src src-lisp"><span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">This is the source for the GUI front-end of the Chinese Vocab Drill</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">package. It uses GTK+ 3.x via CFFI.</span>
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">in-package</span> <span style="color: #DCDCCC; font-weight: bold;">:cl-cvd</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -1528,7 +1493,7 @@ Loop through a set of tests where the test type is indeterminate.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Riley E.</p>
-<p class="date">Created: 2014-11-14 Fri 11:04</p>
+<p class="date">Created: 2014-11-19 Wed 23:44</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
