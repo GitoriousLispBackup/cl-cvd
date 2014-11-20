@@ -822,7 +822,7 @@ is Correct, the right is Incorrect.
 : SCORE-RESULT
 
 *** determine-offset
-,Determine the offset for scheduling from anywhere between minutes to weeks based
+Determine the offset for scheduling from anywhere between minutes to weeks based
 on the ratio between the real and imaginary components of the complex number
 stored in the =:score= slot. This is used to grade understanding between at
 least four categories: unknown, poorly known, somewhat known, and known.
