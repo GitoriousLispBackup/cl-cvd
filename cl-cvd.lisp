@@ -17,6 +17,8 @@
 
 (in-package :cl-cvd)
 
+(declaim (optimize (speed 3) (debug 3) (safety 3)))
+
   ;;; The constant PHI is used for spaced-repetition timing
 (defconstant phi 1.618033988749895d0
   "The constant PHI, The golden ratio.")
@@ -40,6 +42,23 @@
 
 (defvar *current-hsk-level* 1)
 
+(defvar *punctuation* (list #\.     #\,
+                            #\;     #\:
+                            #\/     #\\
+                            #\|     #\!
+                            #\-     #\_
+                            #\(     #\) 
+                            #\{     #\}
+                            #\[     #\]
+                            #\~     #\`
+                            #\<     #\>
+                            #\?     #\&
+                            #\"     #\+
+                            #\=))
+
+(defvar *whitespace* (list #\SPACE   #\Tab
+                           #\NEWLINE #\BACKSPACE))
+
 (defstruct vocab-entry
   (hsk     1                    :type integer)
   (hanzi   ""                   :type string)
@@ -60,9 +79,8 @@
     (intern the-sym-name :cl-cvd)))
 
 (defun key-exists-p (key table)
-  (if (gethash key table)
-      t
-      nil))
+  (let ((target (gethash key table)))
+    (when target key)))
 
 (defun puthash (key table object)
   (setf (gethash key table) object))
@@ -114,39 +132,14 @@
     (when (and word-begin word-end)
       (cond ((string= word target-string) word)
             ((and (or (zerop word-begin)
-                      (punctuation-p (char target-string (- word-begin 1))))
+                      (delimiter-p (char target-string (- word-begin 1))))
                   (or (= (length target-string) word-end)
-                      (punctuation-p (char target-string word-end))))
+                      (delimiter-p (char target-string word-end))))
              word)))))
 
-(let ((punctuations (list #\SPACE #\Tab
-                          #\.     #\,
-                          #\;     #\:
-                          #\/     #\\
-                          #\|     #\!
-                          #\-     #\_
-                          #\(     #\) 
-                          #\{     #\}
-                          #\[     #\]
-                          #\~     #\`
-                          #\<     #\>
-                          #\?     #\&
-                          #\"     #\+
-                          #\=)))
-  
-  (defun punctuation-p (chr)
-    (member chr punctuations))
-  
-  (defun defpunct (chr)
-    (unless (punctuation-p chr)
-      (push chr punctuations)))
-  
-  (defun rempunct (chr)
-    (when (punctuation-p chr)
-      (setf punctuations (delete chr punctuations))))
-  
-  (defun get-punctuation ()
-    punctuations))
+(defun delimiter-p (chr)
+  (or (member chr *punctuations*)
+      (member chr *whitespace*)))
 
 (defun add-entry (&key hanzi pinyin english (hsk 0) (hash-table *zh-hash-table*))
   (puthash (gen-ht-key 'zh-index)
@@ -231,12 +224,11 @@
                                        (cdr (assoc key *mp3-alist*))))
                                 :name "mp3 playback thread"))
 
-(defun my-subset? (set-x set-y)
-  (not (set-difference set-x set-y)))
-
-(defun set-equal? (set-x set-y)
-  (and (my-subset? set-x set-y)
-       (my-subset? set-y set-x)))
+(defun is-subset-p (set-x set-y)
+  (labels ((subset-p (set-x set-y)
+             (not (set-difference set-x set-y))))
+    (and (subset-p set-x set-y)
+         (subset-p set-y set-x))))
 
 (defun load-from-hsk (hsk-val &optional (n 10))
   (let ((base (length *test-pool*)))
@@ -302,7 +294,7 @@
   (let ((repeat 0)
         (result))
     (iterate (for key in test-pool)
-      (if (= repeat length)
+      (if (>= repeat length)
           result
           (when (qualified-p (gethash key vocab))
             (incf repeat)

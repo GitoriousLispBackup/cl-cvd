@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Common Lisp Chinese Vocabulary Drill.</title>
-<!-- 2014-11-20 Thu 13:34 -->
+<!-- 2014-12-03 Wed 20:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Riley E." />
@@ -155,7 +155,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-3-1">3.1. Pre-parsing</a></li>
 <li><a href="#sec-3-2">3.2. Separating components</a></li>
-<li><a href="#sec-3-3">3.3. Final structuring of data</a></li>
+<li><a href="#sec-3-3">3.3. Final restructuring of data</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">4. Data-store utility functions</a>
@@ -165,38 +165,42 @@ for the JavaScript code in this tag.
 <li><a href="#sec-4-3">4.3. key-exists-p</a></li>
 <li><a href="#sec-4-4">4.4. puthash</a></li>
 <li><a href="#sec-4-5">4.5. hash-table searching functions</a></li>
-<li><a href="#sec-4-6">4.6. add-entry</a></li>
-<li><a href="#sec-4-7">4.7. revise-entry</a></li>
-<li><a href="#sec-4-8">4.8. append-english</a></li>
-<li><a href="#sec-4-9">4.9. update-score</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. Storage</a>
+<li><a href="#sec-5">5. Entry manipulation</a>
 <ul>
-<li><a href="#sec-5-1">5.1. Saving and Loading</a></li>
-<li><a href="#sec-5-2">5.2. fill-mp3-paths</a></li>
-<li><a href="#sec-5-3">5.3. matching vocab entries to mp3s</a></li>
+<li><a href="#sec-5-1">5.1. add-entry</a></li>
+<li><a href="#sec-5-2">5.2. revise-entry</a></li>
+<li><a href="#sec-5-3">5.3. append-english</a></li>
+<li><a href="#sec-5-4">5.4. update-score</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. Testing Facilities</a>
+<li><a href="#sec-6">6. Storage</a>
 <ul>
-<li><a href="#sec-6-1">6.1. set comparisons</a></li>
-<li><a href="#sec-6-2">6.2. load-from-hsk</a></li>
-<li><a href="#sec-6-3">6.3. enumerate-qualified-elements</a></li>
-<li><a href="#sec-6-4">6.4. refil-testing-pool</a></li>
-<li><a href="#sec-6-5">6.5. hsk-spillover</a></li>
-<li><a href="#sec-6-6">6.6. Vocab element qualification</a></li>
-<li><a href="#sec-6-7">6.7. Presentation</a></li>
-<li><a href="#sec-6-8">6.8. List construction</a></li>
-<li><a href="#sec-6-9">6.9. Scoring</a></li>
-<li><a href="#sec-6-10">6.10. display-and-play</a></li>
-<li><a href="#sec-6-11">6.11. test-loop</a></li>
-<li><a href="#sec-6-12">6.12. random-test</a></li>
+<li><a href="#sec-6-1">6.1. Saving and Loading</a></li>
+<li><a href="#sec-6-2">6.2. fill-mp3-paths</a></li>
+<li><a href="#sec-6-3">6.3. matching vocab entries to mp3s</a></li>
 </ul>
 </li>
-<li><a href="#sec-7">7. User Interface</a>
+<li><a href="#sec-7">7. Testing Facilities</a>
 <ul>
-<li><a href="#sec-7-1">7.1. Header</a></li>
+<li><a href="#sec-7-1">7.1. set comparisons</a></li>
+<li><a href="#sec-7-2">7.2. load-from-hsk</a></li>
+<li><a href="#sec-7-3">7.3. enumerate-qualified-elements</a></li>
+<li><a href="#sec-7-4">7.4. refil-testing-pool</a></li>
+<li><a href="#sec-7-5">7.5. hsk-spillover</a></li>
+<li><a href="#sec-7-6">7.6. Vocab element qualification</a></li>
+<li><a href="#sec-7-7">7.7. Presentation</a></li>
+<li><a href="#sec-7-8">7.8. List construction</a></li>
+<li><a href="#sec-7-9">7.9. Scoring</a></li>
+<li><a href="#sec-7-10">7.10. display-and-play</a></li>
+<li><a href="#sec-7-11">7.11. test-loop</a></li>
+<li><a href="#sec-7-12">7.12. random-test</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8. User Interface</a>
+<ul>
+<li><a href="#sec-8-1">8.1. Header</a></li>
 </ul>
 </li>
 </ul>
@@ -318,6 +322,8 @@ generating the keys used to identify hash-table entries.
 
 <pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">in-package</span> <span style="color: #DCDCCC; font-weight: bold;">:cl-cvd</span><span style="color: #DCDCCC;">)</span>
 
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">declaim</span> <span style="color: #BFEBBF;">(</span>optimize <span style="color: #D0BF8F;">(</span>speed 3<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>debug 3<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>safety 3<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+
   <span style="color: #5F7F5F;">;;; </span><span style="color: #7F9F7F;">The constant PHI is used for spaced-repetition timing</span>
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defconstant</span> <span style="color: #DFAF8F;">phi</span> 1.618033988749895d0
   <span style="color: #CC9393;">"The constant PHI, The golden ratio."</span><span style="color: #DCDCCC;">)</span>
@@ -340,6 +346,23 @@ generating the keys used to identify hash-table entries.
   <span style="color: #9FC59F;">"Words that have been seen during a practice session"</span><span style="color: #DCDCCC;">)</span>
 
 <span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">*current-hsk-level*</span> 1<span style="color: #DCDCCC;">)</span>
+
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">*punctuation*</span> <span style="color: #BFEBBF;">(</span>list #\.     #\,
+                            #\;     #\:
+                            #\/     #\\
+                            #\|     #\!
+                            #\-     #\_
+                            #\(     #\) 
+                            #\{     #\}
+                            #\[     #\]
+                            #\~     #\`
+                            #\&lt;     #\&gt;
+                            #\?     #\&amp;
+                            #\"     #\+
+                            #\=<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+
+<span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defvar</span> <span style="color: #DFAF8F;">*whitespace*</span> <span style="color: #BFEBBF;">(</span>list #\SPACE   #\Tab
+                           #\NEWLINE #\BACKSPACE<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -434,27 +457,40 @@ Prune the "CL:" from the head of measures to make displaying nicer.
 </div>
 </div>
 <div id="outline-container-sec-3-1-4" class="outline-4">
-<h4 id="sec-3-1-4">flatten</h4>
+<h4 id="sec-3-1-4">mapcaf</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <p>
-Flatten nested lists. Pulled from <a href="http://letoverlambda.com">Let Over Lambda</a> Credit goes to Doug Hoyte.
+Functional mapcan
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">flatten</span> <span style="color: #BFEBBF;">(</span>x<span style="color: #BFEBBF;">)</span>
-  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">labels</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>rec <span style="color: #9FC59F;">(</span>x acc<span style="color: #9FC59F;">)</span>
-             <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>null x<span style="color: #E0CF9F;">)</span> acc<span style="color: #94BFF3;">)</span>
-                   <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>atom x<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>cons x acc<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
-                   <span style="color: #94BFF3;">(</span>t <span style="color: #E0CF9F;">(</span>rec <span style="color: #8FB28F;">(</span>car x<span style="color: #8FB28F;">)</span>
-                           <span style="color: #8FB28F;">(</span>rec <span style="color: #6CA0A3;">(</span>cdr x<span style="color: #6CA0A3;">)</span> acc<span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
-    <span style="color: #D0BF8F;">(</span>rec x nil<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">mapcaf</span> <span style="color: #BFEBBF;">(</span>f list<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>apply #'append <span style="color: #D0BF8F;">(</span>mapcar f list<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
 <div id="outline-container-sec-3-1-5" class="outline-4">
-<h4 id="sec-3-1-5">finalize-measures</h4>
+<h4 id="sec-3-1-5">flatten</h4>
 <div class="outline-text-4" id="text-3-1-5">
+<p>
+Flatten nested lists.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">flatten</span> <span style="color: #BFEBBF;">(</span>tree<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">declare</span> <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">inline</span> mapcaf<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> tree
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>atom tree<span style="color: #93E0E3;">)</span>
+        <span style="color: #93E0E3;">(</span>list tree<span style="color: #93E0E3;">)</span>
+        <span style="color: #93E0E3;">(</span>mapcaf #'flatten tree<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-1-6" class="outline-4">
+<h4 id="sec-3-1-6">finalize-measures</h4>
+<div class="outline-text-4" id="text-3-1-6">
 <p>
 Take the collected measures, split them by commas into separate
 strings, and flatten the resulting structure.
@@ -471,9 +507,9 @@ strings, and flatten the resulting structure.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-1-6" class="outline-4">
-<h4 id="sec-3-1-6">clean-english</h4>
-<div class="outline-text-4" id="text-3-1-6">
+<div id="outline-container-sec-3-1-7" class="outline-4">
+<h4 id="sec-3-1-7">clean-english</h4>
+<div class="outline-text-4" id="text-3-1-7">
 <p>
 Remove all entries that are not themselves translations of the term,
 but relate to either units of measurement, or hint to related terms.
@@ -494,7 +530,6 @@ but relate to either units of measurement, or hint to related terms.
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2"><span class="section-number-3">3.2</span> Separating components</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -519,7 +554,7 @@ also".
 </div>
 </div>
 <div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Final structuring of data</h3>
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Final restructuring of data</h3>
 <div class="outline-text-3" id="text-3-3">
 </div><div id="outline-container-sec-3-3-1" class="outline-4">
 <h4 id="sec-3-3-1">eleml-to-struct</h4>
@@ -574,7 +609,7 @@ predefined functions above.
 <h3 id="sec-4-1"><span class="section-number-3">4.1</span> element-of-truth</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
-Check a list for any non-nil values.
+Check a list for any non-nil values. 
 </p>
 <div class="org-src-container">
 
@@ -589,7 +624,9 @@ Check a list for any non-nil values.
 <h3 id="sec-4-2"><span class="section-number-3">4.2</span> gen-ht-key</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
-<code>gen-ht-key</code> creates the keys used for labeling objects in the hash table.
+Create keys used for labeling objects in a hash table. This is needed because
+attempting to use any of the more "meaningful" values contained within the
+hash-value itself ends up causing more difficulty than anything else.
 </p>
 <div class="org-src-container">
 
@@ -609,9 +646,8 @@ Test to see if a key is already assigned within a hash-table
 <div class="org-src-container">
 
 <pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">key-exists-p</span> <span style="color: #BFEBBF;">(</span>key table<span style="color: #BFEBBF;">)</span>
-  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>gethash key table<span style="color: #D0BF8F;">)</span>
-      t
-      nil<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>target <span style="color: #9FC59F;">(</span>gethash key table<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> target key<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -737,7 +773,7 @@ either side, or at either end of the whole sequence.
 <p>
 Find a whole word within a provided string, delineated by an end of the
 <code>target-string</code> or any predefined punctuation mark as defined within the
-<code>punctuation-p</code> enclosed functions.
+<code>delimiter-p</code> enclosed functions.
 </p>
 <div class="org-src-container">
 
@@ -747,58 +783,37 @@ Find a whole word within a provided string, delineated by an end of the
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #93E0E3;">(</span>and word-begin word-end<span style="color: #93E0E3;">)</span>
       <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">cond</span> <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>string= word target-string<span style="color: #94BFF3;">)</span> word<span style="color: #9FC59F;">)</span>
             <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>and <span style="color: #E0CF9F;">(</span>or <span style="color: #8FB28F;">(</span>zerop word-begin<span style="color: #8FB28F;">)</span>
-                      <span style="color: #8FB28F;">(</span>punctuation-p <span style="color: #6CA0A3;">(</span>char target-string <span style="color: #DCDCCC;">(</span>- word-begin 1<span style="color: #DCDCCC;">)</span><span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span>
+                      <span style="color: #8FB28F;">(</span>delimiter-p <span style="color: #6CA0A3;">(</span>char target-string <span style="color: #DCDCCC;">(</span>- word-begin 1<span style="color: #DCDCCC;">)</span><span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span>
                   <span style="color: #E0CF9F;">(</span>or <span style="color: #8FB28F;">(</span>= <span style="color: #6CA0A3;">(</span>length target-string<span style="color: #6CA0A3;">)</span> word-end<span style="color: #8FB28F;">)</span>
-                      <span style="color: #8FB28F;">(</span>punctuation-p <span style="color: #6CA0A3;">(</span>char target-string word-end<span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
+                      <span style="color: #8FB28F;">(</span>delimiter-p <span style="color: #6CA0A3;">(</span>char target-string word-end<span style="color: #6CA0A3;">)</span><span style="color: #8FB28F;">)</span><span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
              word<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </li>
-<li><a id="sec-4-5-5-2" name="sec-4-5-5-2"></a>punctuation-p<br  /><div class="outline-text-5" id="text-4-5-5-2">
+<li><a id="sec-4-5-5-2" name="sec-4-5-5-2"></a>delimiter-p<br  /><div class="outline-text-5" id="text-4-5-5-2">
 <p>
 Define a set of functions for retrieving and manipulating a stored list of
 punctuation-marks and white-space characters.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #BFEBBF;">(</span><span style="color: #D0BF8F;">(</span>punctuations <span style="color: #93E0E3;">(</span>list #\SPACE #\Tab
-                          #\.     #\,
-                          #\;     #\:
-                          #\/     #\\
-                          #\|     #\!
-                          #\-     #\_
-                          #\(     #\) 
-                          #\{     #\}
-                          #\[     #\]
-                          #\~     #\`
-                          #\&lt;     #\&gt;
-                          #\?     #\&amp;
-                          #\"     #\+
-                          #\=<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
-
-  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">punctuation-p</span> <span style="color: #D0BF8F;">(</span>chr<span style="color: #D0BF8F;">)</span>
-    <span style="color: #D0BF8F;">(</span>member chr punctuations<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
-
-  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">defpunct</span> <span style="color: #D0BF8F;">(</span>chr<span style="color: #D0BF8F;">)</span>
-    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">unless</span> <span style="color: #93E0E3;">(</span>punctuation-p chr<span style="color: #93E0E3;">)</span>
-      <span style="color: #93E0E3;">(</span>push chr punctuations<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
-
-  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">rempunct</span> <span style="color: #D0BF8F;">(</span>chr<span style="color: #D0BF8F;">)</span>
-    <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #93E0E3;">(</span>punctuation-p chr<span style="color: #93E0E3;">)</span>
-      <span style="color: #93E0E3;">(</span>setf punctuations <span style="color: #9FC59F;">(</span>delete chr punctuations<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
-
-  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">get-punctuation</span> <span style="color: #D0BF8F;">()</span>
-    punctuations<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">delimiter-p</span> <span style="color: #BFEBBF;">(</span>chr<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span>or <span style="color: #D0BF8F;">(</span>member chr *punctuations*<span style="color: #D0BF8F;">)</span>
+      <span style="color: #D0BF8F;">(</span>member chr *whitespace*<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </li></ul>
 </div>
 </div>
-<div id="outline-container-sec-4-6" class="outline-3">
-<h3 id="sec-4-6"><span class="section-number-3">4.6</span> add-entry</h3>
-<div class="outline-text-3" id="text-4-6">
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Entry manipulation</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> add-entry</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 Create a new instance of <code>vocab-entry</code> and install it into the primary
 hash-table with a unique key.
@@ -816,9 +831,9 @@ hash-table with a unique key.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4-7" class="outline-3">
-<h3 id="sec-4-7"><span class="section-number-3">4.7</span> revise-entry</h3>
-<div class="outline-text-3" id="text-4-7">
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> revise-entry</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 Modify an entry by accepting a field parameter, and a replacement value.
 </p>
@@ -834,9 +849,9 @@ Modify an entry by accepting a field parameter, and a replacement value.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4-8" class="outline-3">
-<h3 id="sec-4-8"><span class="section-number-3">4.8</span> append-english</h3>
-<div class="outline-text-3" id="text-4-8">
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> append-english</h3>
+<div class="outline-text-3" id="text-5-3">
 <p>
 Append additional English terms to the <code>:english</code> slot in a <code>vocab-entry</code>
 instance.
@@ -852,9 +867,9 @@ instance.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4-9" class="outline-3">
-<h3 id="sec-4-9"><span class="section-number-3">4.9</span> update-score</h3>
-<div class="outline-text-3" id="text-4-9">
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> update-score</h3>
+<div class="outline-text-3" id="text-5-4">
 <p>
 Update the score stored in a <code>vocab-entry</code> instance based on the results of
 <code>check-answer</code> and <code>score-result</code>.
@@ -874,15 +889,15 @@ Update the score stored in a <code>vocab-entry</code> instance based on the resu
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Storage</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Saving and Loading</h3>
-<div class="outline-text-3" id="text-5-1">
-</div><div id="outline-container-sec-5-1-1" class="outline-4">
-<h4 id="sec-5-1-1">export-vocab</h4>
-<div class="outline-text-4" id="text-5-1-1">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Storage</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Saving and Loading</h3>
+<div class="outline-text-3" id="text-6-1">
+</div><div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1">export-vocab</h4>
+<div class="outline-text-4" id="text-6-1-1">
 <p>
 The <code>export-vocab</code> function arose out of a finding that hash-table objects
 differ slightly between Common Lisp implementations.
@@ -905,9 +920,9 @@ differ slightly between Common Lisp implementations.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-1-2" class="outline-4">
-<h4 id="sec-5-1-2">import-vocab</h4>
-<div class="outline-text-4" id="text-5-1-2">
+<div id="outline-container-sec-6-1-2" class="outline-4">
+<h4 id="sec-6-1-2">import-vocab</h4>
+<div class="outline-text-4" id="text-6-1-2">
 <p>
 The obvious counterpart to <code>export-vocab</code>.
 </p>
@@ -930,9 +945,9 @@ MP3s and the original data-set were provided by <i>lingomi</i>.
 </div>
 </div>
 
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2"><span class="section-number-3">5.2</span> fill-mp3-paths</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> fill-mp3-paths</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 Set the variable <code>*mp3dir*</code> to be a list of paths to each of the MP3s for the
 vocab tests.
@@ -946,12 +961,12 @@ vocab tests.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-3" class="outline-3">
-<h3 id="sec-5-3"><span class="section-number-3">5.3</span> matching vocab entries to mp3s</h3>
-<div class="outline-text-3" id="text-5-3">
-</div><div id="outline-container-sec-5-3-1" class="outline-4">
-<h4 id="sec-5-3-1">find-mp3-path</h4>
-<div class="outline-text-4" id="text-5-3-1">
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> matching vocab entries to mp3s</h3>
+<div class="outline-text-3" id="text-6-3">
+</div><div id="outline-container-sec-6-3-1" class="outline-4">
+<h4 id="sec-6-3-1">find-mp3-path</h4>
+<div class="outline-text-4" id="text-6-3-1">
 <p>
 Search a list of mp3 files for a match with a predefined pinyin string.
 </p>
@@ -964,9 +979,9 @@ Search a list of mp3 files for a match with a predefined pinyin string.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-3-2" class="outline-4">
-<h4 id="sec-5-3-2">find-matching-mp3</h4>
-<div class="outline-text-4" id="text-5-3-2">
+<div id="outline-container-sec-6-3-2" class="outline-4">
+<h4 id="sec-6-3-2">find-matching-mp3</h4>
+<div class="outline-text-4" id="text-6-3-2">
 <p>
 Match a given vocabulary key to a list of mp3 files
 </p>
@@ -986,9 +1001,9 @@ Match a given vocabulary key to a list of mp3 files
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-3-3" class="outline-4">
-<h4 id="sec-5-3-3">find-active-vocab-mp3s</h4>
-<div class="outline-text-4" id="text-5-3-3">
+<div id="outline-container-sec-6-3-3" class="outline-4">
+<h4 id="sec-6-3-3">find-active-vocab-mp3s</h4>
+<div class="outline-text-4" id="text-6-3-3">
 <p>
 Look for mp3s which match the contents of the <code>*mp3dir*</code> variable, if it is not
 already in the <code>*mp3-alist*</code>, add it in the form of <code>(KEY PATH-TO-MP3)</code>.
@@ -1004,9 +1019,9 @@ already in the <code>*mp3-alist*</code>, add it in the form of <code>(KEY PATH-T
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5-3-4" class="outline-4">
-<h4 id="sec-5-3-4">play-mp3</h4>
-<div class="outline-text-4" id="text-5-3-4">
+<div id="outline-container-sec-6-3-4" class="outline-4">
+<h4 id="sec-6-3-4">play-mp3</h4>
+<div class="outline-text-4" id="text-6-3-4">
 <p>
 Launch a thread that runs a program with the appropriate filename as returned by
 an association list lookup.
@@ -1024,30 +1039,26 @@ an association list lookup.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Testing Facilities</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> set comparisons</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Testing Facilities</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> set comparisons</h3>
+<div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 
-<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">my-subset?</span> <span style="color: #BFEBBF;">(</span>set-x set-y<span style="color: #BFEBBF;">)</span>
-  <span style="color: #BFEBBF;">(</span>not <span style="color: #D0BF8F;">(</span>set-difference set-x set-y<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
-</pre>
-</div>
-<div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">set-equal?</span> <span style="color: #BFEBBF;">(</span>set-x set-y<span style="color: #BFEBBF;">)</span>
-  <span style="color: #BFEBBF;">(</span>and <span style="color: #D0BF8F;">(</span>my-subset? set-x set-y<span style="color: #D0BF8F;">)</span>
-       <span style="color: #D0BF8F;">(</span>my-subset? set-y set-x<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">is-subset-p</span> <span style="color: #BFEBBF;">(</span>set-x set-y<span style="color: #BFEBBF;">)</span>
+  <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">labels</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>subset-p <span style="color: #9FC59F;">(</span>set-x set-y<span style="color: #9FC59F;">)</span>
+             <span style="color: #9FC59F;">(</span>not <span style="color: #94BFF3;">(</span>set-difference set-x set-y<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
+    <span style="color: #D0BF8F;">(</span>and <span style="color: #93E0E3;">(</span>subset-p set-x set-y<span style="color: #93E0E3;">)</span>
+         <span style="color: #93E0E3;">(</span>subset-p set-y set-x<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> load-from-hsk</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> load-from-hsk</h3>
+<div class="outline-text-3" id="text-7-2">
 <p>
 Useful for bootstrapping vocab-element selection.
 </p>
@@ -1064,9 +1075,9 @@ Useful for bootstrapping vocab-element selection.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-3" class="outline-3">
-<h3 id="sec-6-3"><span class="section-number-3">6.3</span> enumerate-qualified-elements</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> enumerate-qualified-elements</h3>
+<div class="outline-text-3" id="text-7-3">
 <p>
 Check the number of elements that have qualified since the last test occurred,
 This is used to check to see if the minimal number of elements required for a
@@ -1080,9 +1091,9 @@ test can be called in without overlapping cooldown-times.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-4" class="outline-3">
-<h3 id="sec-6-4"><span class="section-number-3">6.4</span> refil-testing-pool</h3>
-<div class="outline-text-3" id="text-6-4">
+<div id="outline-container-sec-7-4" class="outline-3">
+<h3 id="sec-7-4"><span class="section-number-3">7.4</span> refil-testing-pool</h3>
+<div class="outline-text-3" id="text-7-4">
 <div class="org-src-container">
 
 <pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">refil-testing-pool</span> <span style="color: #BFEBBF;">(</span>hsk upper-bound<span style="color: #BFEBBF;">)</span>
@@ -1092,9 +1103,9 @@ test can be called in without overlapping cooldown-times.
 </div>
 </div>
 
-<div id="outline-container-sec-6-5" class="outline-3">
-<h3 id="sec-6-5"><span class="section-number-3">6.5</span> hsk-spillover</h3>
-<div class="outline-text-3" id="text-6-5">
+<div id="outline-container-sec-7-5" class="outline-3">
+<h3 id="sec-7-5"><span class="section-number-3">7.5</span> hsk-spillover</h3>
+<div class="outline-text-3" id="text-7-5">
 <p>
 When a testing level is exhausted, pull more from the next level up.
 If there are no more levels, don't increment.
@@ -1110,12 +1121,12 @@ If there are no more levels, don't increment.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-6" class="outline-3">
-<h3 id="sec-6-6"><span class="section-number-3">6.6</span> Vocab element qualification</h3>
-<div class="outline-text-3" id="text-6-6">
-</div><div id="outline-container-sec-6-6-1" class="outline-4">
-<h4 id="sec-6-6-1">count-spaces</h4>
-<div class="outline-text-4" id="text-6-6-1">
+<div id="outline-container-sec-7-6" class="outline-3">
+<h3 id="sec-7-6"><span class="section-number-3">7.6</span> Vocab element qualification</h3>
+<div class="outline-text-3" id="text-7-6">
+</div><div id="outline-container-sec-7-6-1" class="outline-4">
+<h4 id="sec-7-6-1">count-spaces</h4>
+<div class="outline-text-4" id="text-7-6-1">
 <p>
 Determine the complexity of an example by counting the spaces in a string. This
 is used to determine if one should be expected to enter the english equivalent
@@ -1133,9 +1144,9 @@ of a selected Chinese text sample.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-6-2" class="outline-4">
-<h4 id="sec-6-6-2">english-sensible-p</h4>
-<div class="outline-text-4" id="text-6-6-2">
+<div id="outline-container-sec-7-6-2" class="outline-4">
+<h4 id="sec-7-6-2">english-sensible-p</h4>
+<div class="outline-text-4" id="text-7-6-2">
 <p>
 Check to see if any constituents of the english parameter of a particular entry
 can be expected to be remembered verbatim and entered when prompted for an
@@ -1152,9 +1163,9 @@ thesaurus.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-6-3" class="outline-4">
-<h4 id="sec-6-6-3">sensible-tests</h4>
-<div class="outline-text-4" id="text-6-6-3">
+<div id="outline-container-sec-7-6-3" class="outline-4">
+<h4 id="sec-7-6-3">sensible-tests</h4>
+<div class="outline-text-4" id="text-7-6-3">
 <p>
 A bit crude, but return a list of appropriate tests based on the response of
 <code>english-sensible-p</code>.
@@ -1169,9 +1180,9 @@ A bit crude, but return a list of appropriate tests based on the response of
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-6-4" class="outline-4">
-<h4 id="sec-6-6-4">qualified-p</h4>
-<div class="outline-text-4" id="text-6-6-4">
+<div id="outline-container-sec-7-6-4" class="outline-4">
+<h4 id="sec-7-6-4">qualified-p</h4>
+<div class="outline-text-4" id="text-7-6-4">
 <p>
 Test to see which vocabulary elements qualify for testing at a given time.
 </p>
@@ -1185,9 +1196,9 @@ Test to see which vocabulary elements qualify for testing at a given time.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-6-5" class="outline-4">
-<h4 id="sec-6-6-5">set-next-test</h4>
-<div class="outline-text-4" id="text-6-6-5">
+<div id="outline-container-sec-7-6-5" class="outline-4">
+<h4 id="sec-7-6-5">set-next-test</h4>
+<div class="outline-text-4" id="text-7-6-5">
 <p>
 Set the <code>:date</code> slot in a given vocab structure to the next scheduled test based
 upon the number of times it has been correctly answered.
@@ -1202,12 +1213,12 @@ upon the number of times it has been correctly answered.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-7" class="outline-3">
-<h3 id="sec-6-7"><span class="section-number-3">6.7</span> Presentation</h3>
-<div class="outline-text-3" id="text-6-7">
-</div><div id="outline-container-sec-6-7-1" class="outline-4">
-<h4 id="sec-6-7-1">show-challenge</h4>
-<div class="outline-text-4" id="text-6-7-1">
+<div id="outline-container-sec-7-7" class="outline-3">
+<h3 id="sec-7-7"><span class="section-number-3">7.7</span> Presentation</h3>
+<div class="outline-text-3" id="text-7-7">
+</div><div id="outline-container-sec-7-7-1" class="outline-4">
+<h4 id="sec-7-7-1">show-challenge</h4>
+<div class="outline-text-4" id="text-7-7-1">
 <p>
 Take a <code>field</code> and <code>key</code>, and respond with a string from the requested
 field. A field value of <code>english</code> will return a random string from the list
@@ -1230,9 +1241,9 @@ ideographs.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-7-2" class="outline-4">
-<h4 id="sec-6-7-2">take-answer</h4>
-<div class="outline-text-4" id="text-6-7-2">
+<div id="outline-container-sec-7-7-2" class="outline-4">
+<h4 id="sec-7-7-2">take-answer</h4>
+<div class="outline-text-4" id="text-7-7-2">
 <p>
 A simple silly test.
 </p>
@@ -1246,12 +1257,12 @@ A simple silly test.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-8" class="outline-3">
-<h3 id="sec-6-8"><span class="section-number-3">6.8</span> List construction</h3>
-<div class="outline-text-3" id="text-6-8">
-</div><div id="outline-container-sec-6-8-1" class="outline-4">
-<h4 id="sec-6-8-1">construct-test-list</h4>
-<div class="outline-text-4" id="text-6-8-1">
+<div id="outline-container-sec-7-8" class="outline-3">
+<h3 id="sec-7-8"><span class="section-number-3">7.8</span> List construction</h3>
+<div class="outline-text-3" id="text-7-8">
+</div><div id="outline-container-sec-7-8-1" class="outline-4">
+<h4 id="sec-7-8-1">construct-test-list</h4>
+<div class="outline-text-4" id="text-7-8-1">
 <p>
 Build up a sample of vocab items for a test battery.
 </p>
@@ -1262,7 +1273,7 @@ Build up a sample of vocab items for a test battery.
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>repeat 0<span style="color: #93E0E3;">)</span>
         <span style="color: #93E0E3;">(</span>result<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>iterate <span style="color: #93E0E3;">(</span>for key in test-pool<span style="color: #93E0E3;">)</span>
-      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #9FC59F;">(</span>= repeat length<span style="color: #9FC59F;">)</span>
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #9FC59F;">(</span>&gt;= repeat length<span style="color: #9FC59F;">)</span>
           result
           <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #94BFF3;">(</span>qualified-p <span style="color: #E0CF9F;">(</span>gethash key vocab<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
             <span style="color: #94BFF3;">(</span>incf repeat<span style="color: #94BFF3;">)</span>
@@ -1271,9 +1282,9 @@ Build up a sample of vocab items for a test battery.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-8-2" class="outline-4">
-<h4 id="sec-6-8-2">reconstruct-test-pool</h4>
-<div class="outline-text-4" id="text-6-8-2">
+<div id="outline-container-sec-7-8-2" class="outline-4">
+<h4 id="sec-7-8-2">reconstruct-test-pool</h4>
+<div class="outline-text-4" id="text-7-8-2">
 <p>
 Rebuild the testing pool from the base vocab library by searching for items that
 have already been seen in practice.
@@ -1290,12 +1301,12 @@ have already been seen in practice.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-9" class="outline-3">
-<h3 id="sec-6-9"><span class="section-number-3">6.9</span> Scoring</h3>
-<div class="outline-text-3" id="text-6-9">
-</div><div id="outline-container-sec-6-9-1" class="outline-4">
-<h4 id="sec-6-9-1">string-in-list-p</h4>
-<div class="outline-text-4" id="text-6-9-1">
+<div id="outline-container-sec-7-9" class="outline-3">
+<h3 id="sec-7-9"><span class="section-number-3">7.9</span> Scoring</h3>
+<div class="outline-text-3" id="text-7-9">
+</div><div id="outline-container-sec-7-9-1" class="outline-4">
+<h4 id="sec-7-9-1">string-in-list-p</h4>
+<div class="outline-text-4" id="text-7-9-1">
 <p>
 Test to see if a list contains a specified string.
 </p>
@@ -1309,9 +1320,9 @@ Test to see if a list contains a specified string.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-9-2" class="outline-4">
-<h4 id="sec-6-9-2">check-answer</h4>
-<div class="outline-text-4" id="text-6-9-2">
+<div id="outline-container-sec-7-9-2" class="outline-4">
+<h4 id="sec-7-9-2">check-answer</h4>
+<div class="outline-text-4" id="text-7-9-2">
 <p>
 Test a provided answer for correctness against data stored in a vocab-entry instance.
 </p>
@@ -1330,9 +1341,9 @@ Test a provided answer for correctness against data stored in a vocab-entry inst
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-9-3" class="outline-4">
-<h4 id="sec-6-9-3">score-result</h4>
-<div class="outline-text-4" id="text-6-9-3">
+<div id="outline-container-sec-7-9-3" class="outline-4">
+<h4 id="sec-7-9-3">score-result</h4>
+<div class="outline-text-4" id="text-7-9-3">
 <p>
 Return a complex number, depending the state of <code>result</code>, that is added to the
 score stored in a specific <code>vocab-entry</code> structure. The left side of the complex
@@ -1348,9 +1359,9 @@ is Correct, the right is Incorrect.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-9-4" class="outline-4">
-<h4 id="sec-6-9-4">determine-offset</h4>
-<div class="outline-text-4" id="text-6-9-4">
+<div id="outline-container-sec-7-9-4" class="outline-4">
+<h4 id="sec-7-9-4">determine-offset</h4>
+<div class="outline-text-4" id="text-7-9-4">
 <p>
 Determine the offset for scheduling from anywhere between minutes to weeks based
 on the ratio between the real and imaginary components of the complex number
@@ -1369,9 +1380,9 @@ least four categories: unknown, poorly known, somewhat known, and known.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-9-5" class="outline-4">
-<h4 id="sec-6-9-5">schedule-next-test</h4>
-<div class="outline-text-4" id="text-6-9-5">
+<div id="outline-container-sec-7-9-5" class="outline-4">
+<h4 id="sec-7-9-5">schedule-next-test</h4>
+<div class="outline-text-4" id="text-7-9-5">
 <p>
 Determine when a word should be tested next based on the number of repetitions,
 and adjust this based on the score.
@@ -1389,9 +1400,9 @@ and adjust this based on the score.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-10" class="outline-3">
-<h3 id="sec-6-10"><span class="section-number-3">6.10</span> display-and-play</h3>
-<div class="outline-text-3" id="text-6-10">
+<div id="outline-container-sec-7-10" class="outline-3">
+<h3 id="sec-7-10"><span class="section-number-3">7.10</span> display-and-play</h3>
+<div class="outline-text-3" id="text-7-10">
 <p>
 Print the Challenge to the screen, then prompt the user for the selected test,
 and play the sound file associated with the vocab entry. Update the score stored
@@ -1421,7 +1432,7 @@ in the vocab-entry structure to reflect the correctness of the answer.
 </pre>
 </div>
 </div>
-<ul class="org-ul"><li><a id="sec-6-10-0-1" name="sec-6-10-0-1"></a>get-answer<br  /><div class="outline-text-5" id="text-6-10-0-1">
+<ul class="org-ul"><li><a id="sec-7-10-0-1" name="sec-7-10-0-1"></a>get-answer<br  /><div class="outline-text-5" id="text-7-10-0-1">
 <p>
 Just having a call to <code>read-line</code> has some strange effects on program flow, so
 I'm wrapping it in a function.
@@ -1435,9 +1446,9 @@ I'm wrapping it in a function.
 </div>
 </li></ul>
 </div>
-<div id="outline-container-sec-6-11" class="outline-3">
-<h3 id="sec-6-11"><span class="section-number-3">6.11</span> test-loop</h3>
-<div class="outline-text-3" id="text-6-11">
+<div id="outline-container-sec-7-11" class="outline-3">
+<h3 id="sec-7-11"><span class="section-number-3">7.11</span> test-loop</h3>
+<div class="outline-text-3" id="text-7-11">
 <p>
 Loop through a set of tests where the test type is indeterminate.
 </p>
@@ -1455,9 +1466,9 @@ Loop through a set of tests where the test type is indeterminate.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6-12" class="outline-3">
-<h3 id="sec-6-12"><span class="section-number-3">6.12</span> random-test</h3>
-<div class="outline-text-3" id="text-6-12">
+<div id="outline-container-sec-7-12" class="outline-3">
+<h3 id="sec-7-12"><span class="section-number-3">7.12</span> random-test</h3>
+<div class="outline-text-3" id="text-7-12">
 <div class="org-src-container">
 
 <pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">random-test</span> <span style="color: #BFEBBF;">(</span>key<span style="color: #BFEBBF;">)</span>
@@ -1474,12 +1485,12 @@ Loop through a set of tests where the test type is indeterminate.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> User Interface</h2>
-<div class="outline-text-2" id="text-7">
-</div><div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Header</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> User Interface</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> Header</h3>
+<div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
 
 <pre class="src src-lisp"><span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">This is the source for the GUI front-end of the Chinese Vocab Drill</span>
@@ -1493,7 +1504,7 @@ Loop through a set of tests where the test type is indeterminate.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Riley E.</p>
-<p class="date">Created: 2014-11-20 Thu 13:34</p>
+<p class="date">Created: 2014-12-03 Wed 20:09</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

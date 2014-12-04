@@ -2,6 +2,7 @@
 /cl-cvd.fasl
 /cl-cvd.pdf
 /cl-cvd.tex
+/package.fasl
 /mp3list.txt
 /pinyin-converter.lisp
 /pinyin-converter.fasl

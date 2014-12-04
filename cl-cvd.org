@@ -76,6 +76,8 @@ generating the keys used to identify hash-table entries.
 #+BEGIN_SRC lisp :session :eval no :tangle cl-cvd.lisp
   (in-package :cl-cvd)
 
+  (declaim (optimize (speed 3) (debug 3) (safety 3)))
+
     ;;; The constant PHI is used for spaced-repetition timing
   (defconstant phi 1.618033988749895d0
     "The constant PHI, The golden ratio.")
@@ -98,6 +100,24 @@ generating the keys used to identify hash-table entries.
     "Words that have been seen during a practice session")
 
   (defvar *current-hsk-level* 1)
+
+  (defvar *punctuation* (list #\.     #\,
+                              #\;     #\:
+                              #\/     #\\
+                              #\|     #\!
+                              #\-     #\_
+                              #\(     #\) 
+                              #\{     #\}
+                              #\[     #\]
+                              #\~     #\`
+                              #\<     #\>
+                              #\?     #\&
+                              #\"     #\+
+                              #\=))
+
+  (defvar *whitespace* (list #\SPACE   #\Tab
+                             #\NEWLINE #\BACKSPACE))
+
 #+END_SRC
 
 * Structures
@@ -159,16 +179,24 @@ Prune the "CL:" from the head of measures to make displaying nicer.
 #+RESULTS:
 : CLEAN-MEASURES
 
-*** flatten
-Flatten nested lists. Pulled from [[http://letoverlambda.com][Let Over Lambda]] Credit goes to Doug Hoyte.
+*** mapcaf
+Functional mapcan
 #+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
-  (defun flatten (x)
-    (labels ((rec (x acc)
-               (cond ((null x) acc)
-                     ((atom x) (cons x acc))
-                     (t (rec (car x)
-                             (rec (cdr x) acc))))))
-      (rec x nil)))
+  (defun mapcaf (f list)
+    (apply #'append (mapcar f list)))
+#+END_SRC
+#+RESULTS:
+: MAPCAF
+
+*** flatten
+Flatten nested lists.
+#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
+  (defun flatten (tree)
+    (declare (inline mapcaf))
+    (when tree
+      (if (atom tree)
+          (list tree)
+          (mapcaf #'flatten tree))))
 #+END_SRC
 #+RESULTS:
 : FLATTEN
@@ -204,7 +232,6 @@ but relate to either units of measurement, or hint to related terms.
 #+RESULTS:
 : CLEAN-ENGLISH
 
-
 ** Separating components
 *** collect-see-also
 Collect strings from the results of =preprocess-english= that begin with "see
@@ -220,7 +247,7 @@ also".
 #+RESULTS:
 : COLLECT-SEE-ALSO
 
-** Final structuring of data
+** Final restructuring of data
 *** eleml-to-struct
 Break up the s-expressionized CSV line and name the elements, then perform
 various operations on each of these elements, including further breaking up into
@@ -257,7 +284,7 @@ predefined functions above.
 
 * Data-store utility functions
 ** element-of-truth
-Check a list for any non-nil values.
+Check a list for any non-nil values. 
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun element-of-truth (l)
     (iterate (for i in l)
@@ -267,7 +294,9 @@ Check a list for any non-nil values.
 : ELEMENT-OF-TRUTH
 
 ** gen-ht-key
-=gen-ht-key= creates the keys used for labeling objects in the hash table.
+Create keys used for labeling objects in a hash table. This is needed because
+attempting to use any of the more "meaningful" values contained within the
+hash-value itself ends up causing more difficulty than anything else.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun gen-ht-key (prefix)
     (let ((the-sym-name (format nil "~D-~D" prefix (incf *vocab-key-count*))))
@@ -280,9 +309,8 @@ Check a list for any non-nil values.
 Test to see if a key is already assigned within a hash-table
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun key-exists-p (key table)
-    (if (gethash key table)
-        t
-        nil))
+    (let ((target (gethash key table)))
+      (when target key)))
 #+END_SRC
 #+RESULTS:
 : KEY-EXISTS-P
@@ -376,7 +404,7 @@ either side, or at either end of the whole sequence.
 **** find-word-in-string
 Find a whole word within a provided string, delineated by an end of the
 =target-string= or any predefined punctuation mark as defined within the
-=punctuation-p= enclosed functions.
+=delimiter-p= enclosed functions.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
   (defun find-word-in-string (word target-string)
     (declare (string word target-string))
@@ -384,50 +412,25 @@ Find a whole word within a provided string, delineated by an end of the
       (when (and word-begin word-end)
         (cond ((string= word target-string) word)
               ((and (or (zerop word-begin)
-                        (punctuation-p (char target-string (- word-begin 1))))
+                        (delimiter-p (char target-string (- word-begin 1))))
                     (or (= (length target-string) word-end)
-                        (punctuation-p (char target-string word-end))))
+                        (delimiter-p (char target-string word-end))))
                word)))))
 #+END_SRC
 #+RESULTS:
 : FIND-WORD-IN-STRING
 
-**** punctuation-p
+**** delimiter-p
 Define a set of functions for retrieving and manipulating a stored list of
 punctuation-marks and white-space characters.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (let ((punctuations (list #\SPACE #\Tab
-                            #\.     #\,
-                            #\;     #\:
-                            #\/     #\\
-                            #\|     #\!
-                            #\-     #\_
-                            #\(     #\) 
-                            #\{     #\}
-                            #\[     #\]
-                            #\~     #\`
-                            #\<     #\>
-                            #\?     #\&
-                            #\"     #\+
-                            #\=)))
-    
-    (defun punctuation-p (chr)
-      (member chr punctuations))
-    
-    (defun defpunct (chr)
-      (unless (punctuation-p chr)
-        (push chr punctuations)))
-    
-    (defun rempunct (chr)
-      (when (punctuation-p chr)
-        (setf punctuations (delete chr punctuations))))
-    
-    (defun get-punctuation ()
-      punctuations))
-
+  (defun delimiter-p (chr)
+    (or (member chr *punctuations*)
+        (member chr *whitespace*)))
 #+END_SRC
 #+RESULTS:
-: *PUNCTUATIONS*
+: DELIMITER-P
+
 * Entry manipulation
 ** add-entry
 Create a new instance of =vocab-entry= and install it into the primary
@@ -593,19 +596,14 @@ an association list lookup.
 * Testing Facilities
 ** set comparisons
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (defun my-subset? (set-x set-y)
-    (not (set-difference set-x set-y)))
+  (defun is-subset-p (set-x set-y)
+    (labels ((subset-p (set-x set-y)
+               (not (set-difference set-x set-y))))
+      (and (subset-p set-x set-y)
+           (subset-p set-y set-x))))
 #+END_SRC
 #+RESULTS:
-: MY-SUBSET\?
-
-#+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (defun set-equal? (set-x set-y)
-    (and (my-subset? set-x set-y)
-         (my-subset? set-y set-x)))
-#+END_SRC
-#+RESULTS:
-: SET-EQUAL\?
+: SET-EQUAL-P
 
 ** load-from-hsk
 Useful for bootstrapping vocab-element selection.
@@ -758,7 +756,7 @@ Build up a sample of vocab items for a test battery.
     (let ((repeat 0)
           (result))
       (iterate (for key in test-pool)
-        (if (= repeat length)
+        (if (>= repeat length)
             result
             (when (qualified-p (gethash key vocab))
               (incf repeat)
@@ -895,11 +893,11 @@ Loop through a set of tests where the test type is indeterminate.
   (defun test-loop (&optional (n 10) (type 'random))
     (let ((test-list (construct-test-list n)))
       (iterate (for elt in test-list)
-        (when (> n 0)
-          (1- n)
-          (case type
-            ((random) (random-test elt))
-            ((t) (display-and-play :key elt :from 'pinyin :for 'hanzi)))))))
+        (for i from n downto 0)
+        
+        (case type
+          ((random) (random-test elt))
+          ((t) (display-and-play :key elt :from 'pinyin :for 'hanzi))))))
 #+END_SRC
 #+RESULTS:
 : TEST-LOOP
