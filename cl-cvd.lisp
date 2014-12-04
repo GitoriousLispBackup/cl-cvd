@@ -366,11 +366,11 @@
 (defun test-loop (&optional (n 10) (type 'random))
   (let ((test-list (construct-test-list n)))
     (iterate (for elt in test-list)
-      (when (> n 0)
-        (1- n)
-        (case type
-          ((random) (random-test elt))
-          ((t) (display-and-play :key elt :from 'pinyin :for 'hanzi)))))))
+      (for i from n downto 0)
+      
+      (case type
+        ((random) (random-test elt))
+        ((t) (display-and-play :key elt :from 'pinyin :for 'hanzi))))))
 
 (defun random-test (key)
   (let* ((test-list (list 'hanzi 'pinyin 'english))

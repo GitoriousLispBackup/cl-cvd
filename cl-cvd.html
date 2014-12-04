@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Common Lisp Chinese Vocabulary Drill.</title>
-<!-- 2014-12-03 Wed 20:09 -->
+<!-- 2014-12-04 Thu 15:27 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Riley E." />
@@ -457,22 +457,8 @@ Prune the "CL:" from the head of measures to make displaying nicer.
 </div>
 </div>
 <div id="outline-container-sec-3-1-4" class="outline-4">
-<h4 id="sec-3-1-4">mapcaf</h4>
+<h4 id="sec-3-1-4">flatten</h4>
 <div class="outline-text-4" id="text-3-1-4">
-<p>
-Functional mapcan
-</p>
-<div class="org-src-container">
-
-<pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">mapcaf</span> <span style="color: #BFEBBF;">(</span>f list<span style="color: #BFEBBF;">)</span>
-  <span style="color: #BFEBBF;">(</span>apply #'append <span style="color: #D0BF8F;">(</span>mapcar f list<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-3-1-5" class="outline-4">
-<h4 id="sec-3-1-5">flatten</h4>
-<div class="outline-text-4" id="text-3-1-5">
 <p>
 Flatten nested lists.
 </p>
@@ -483,14 +469,16 @@ Flatten nested lists.
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> tree
     <span style="color: #D0BF8F;">(</span><span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #93E0E3;">(</span>atom tree<span style="color: #93E0E3;">)</span>
         <span style="color: #93E0E3;">(</span>list tree<span style="color: #93E0E3;">)</span>
-        <span style="color: #93E0E3;">(</span>mapcaf #'flatten tree<span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+        <span style="color: #93E0E3;">(</span>reduce #'append
+                <span style="color: #9FC59F;">(</span>mapcar #'flatten
+                        tree<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-1-6" class="outline-4">
-<h4 id="sec-3-1-6">finalize-measures</h4>
-<div class="outline-text-4" id="text-3-1-6">
+<div id="outline-container-sec-3-1-5" class="outline-4">
+<h4 id="sec-3-1-5">finalize-measures</h4>
+<div class="outline-text-4" id="text-3-1-5">
 <p>
 Take the collected measures, split them by commas into separate
 strings, and flatten the resulting structure.
@@ -507,9 +495,9 @@ strings, and flatten the resulting structure.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-1-7" class="outline-4">
-<h4 id="sec-3-1-7">clean-english</h4>
-<div class="outline-text-4" id="text-3-1-7">
+<div id="outline-container-sec-3-1-6" class="outline-4">
+<h4 id="sec-3-1-6">clean-english</h4>
+<div class="outline-text-4" id="text-3-1-6">
 <p>
 Remove all entries that are not themselves translations of the term,
 but relate to either units of measurement, or hint to related terms.
@@ -1457,11 +1445,11 @@ Loop through a set of tests where the test type is indeterminate.
 <pre class="src src-lisp"><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">defun</span> <span style="color: #93E0E3;">test-loop</span> <span style="color: #BFEBBF;">(</span><span style="color: #7CB8BB;">&amp;optional</span> <span style="color: #D0BF8F;">(</span>n 10<span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">(</span>type 'random<span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span>
   <span style="color: #BFEBBF;">(</span><span style="color: #F0DFAF; font-weight: bold;">let</span> <span style="color: #D0BF8F;">(</span><span style="color: #93E0E3;">(</span>test-list <span style="color: #9FC59F;">(</span>construct-test-list n<span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span>
     <span style="color: #D0BF8F;">(</span>iterate <span style="color: #93E0E3;">(</span>for elt in test-list<span style="color: #93E0E3;">)</span>
-      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">when</span> <span style="color: #9FC59F;">(</span>&gt; n 0<span style="color: #9FC59F;">)</span>
-        <span style="color: #9FC59F;">(</span>1- n<span style="color: #9FC59F;">)</span>
-        <span style="color: #9FC59F;">(</span><span style="color: #F0DFAF; font-weight: bold;">case</span> type
-          <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>random<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>random-test elt<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span>
-          <span style="color: #94BFF3;">(</span><span style="color: #E0CF9F;">(</span>t<span style="color: #E0CF9F;">)</span> <span style="color: #E0CF9F;">(</span>display-and-play <span style="color: #DCDCCC; font-weight: bold;">:key</span> elt <span style="color: #DCDCCC; font-weight: bold;">:from</span> 'pinyin <span style="color: #DCDCCC; font-weight: bold;">:for</span> 'hanzi<span style="color: #E0CF9F;">)</span><span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+      <span style="color: #93E0E3;">(</span>for i from n downto 0<span style="color: #93E0E3;">)</span>
+
+      <span style="color: #93E0E3;">(</span><span style="color: #F0DFAF; font-weight: bold;">case</span> type
+        <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>random<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>random-test elt<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span>
+        <span style="color: #9FC59F;">(</span><span style="color: #94BFF3;">(</span>t<span style="color: #94BFF3;">)</span> <span style="color: #94BFF3;">(</span>display-and-play <span style="color: #DCDCCC; font-weight: bold;">:key</span> elt <span style="color: #DCDCCC; font-weight: bold;">:from</span> 'pinyin <span style="color: #DCDCCC; font-weight: bold;">:for</span> 'hanzi<span style="color: #94BFF3;">)</span><span style="color: #9FC59F;">)</span><span style="color: #93E0E3;">)</span><span style="color: #D0BF8F;">)</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
 </pre>
 </div>
 </div>
@@ -1504,7 +1492,7 @@ Loop through a set of tests where the test type is indeterminate.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Riley E.</p>
-<p class="date">Created: 2014-12-03 Wed 20:09</p>
+<p class="date">Created: 2014-12-04 Thu 15:27</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

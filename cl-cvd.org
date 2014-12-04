@@ -179,15 +179,6 @@ Prune the "CL:" from the head of measures to make displaying nicer.
 #+RESULTS:
 : CLEAN-MEASURES
 
-*** mapcaf
-Functional mapcan
-#+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
-  (defun mapcaf (f list)
-    (apply #'append (mapcar f list)))
-#+END_SRC
-#+RESULTS:
-: MAPCAF
-
 *** flatten
 Flatten nested lists.
 #+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
@@ -196,7 +187,9 @@ Flatten nested lists.
     (when tree
       (if (atom tree)
           (list tree)
-          (mapcaf #'flatten tree))))
+          (reduce #'append
+                  (mapcar #'flatten
+                          tree)))))
 #+END_SRC
 #+RESULTS:
 : FLATTEN
