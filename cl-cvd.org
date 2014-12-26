@@ -182,14 +182,11 @@ Prune the "CL:" from the head of measures to make displaying nicer.
 *** flatten
 Flatten nested lists.
 #+BEGIN_SRC lisp :session :eval yes :tangle csv-import.lisp
-  (defun flatten (tree)
-    (declare (inline mapcaf))
+  (defun flatten (tree) 
     (when tree
       (if (atom tree)
           (list tree)
-          (reduce #'append
-                  (mapcar #'flatten
-                          tree)))))
+          (reduce #'append (mapcar #'flatten tree)))))
 #+END_SRC
 #+RESULTS:
 : FLATTEN
@@ -488,18 +485,14 @@ Update the score stored in a =vocab-entry= instance based on the results of
 The =export-vocab= function arose out of a finding that hash-table objects
 differ slightly between Common Lisp implementations.
 #+BEGIN_SRC lisp :session :eval yes :tangle cl-cvd.lisp
-  (defun export-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw")) 
-    (let ((the-alist) (count 0))
-      (labels ((destructure-vocab (x y)
-                 (push (list x y) the-alist)
-                 (incf count)))
-        (maphash #'destructure-vocab vocab-table)
-        (with-open-file (out filename
-                             :direction :output
-                             :if-exists :supersede)
-          (with-standard-io-syntax
-            (pprint the-alist out))))
-      count))
+  (defun export-vocab (&key (vocab-table *zh-hash-table*) (filename "zh-portable.raw"))    
+    (with-open-file (out filename
+                         :direction :output
+                         :if-exists :supersede)
+      (with-standard-io-syntax
+        (pprint (maphash (lambda (a b)
+                           (list a b))
+                         vocab-table) out))))
 #+END_SRC
 #+RESULTS:
 : EXPORT-VOCAB
@@ -916,4 +909,8 @@ Loop through a set of tests where the test type is indeterminate.
   ;; This is the source for the GUI front-end of the Chinese Vocab Drill
   ;; package. It uses GTK+ 3.x via CFFI.
   (in-package :cl-cvd)
+
+  ()
 #+END_SRC
+
+** 

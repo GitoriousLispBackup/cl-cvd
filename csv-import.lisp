@@ -12,14 +12,11 @@
 (defun clean-measures (s)
   (regex-replace "CL:" s ""))
 
-(defun flatten (tree)
-  (declare (inline mapcaf))
+(defun flatten (tree) 
   (when tree
     (if (atom tree)
         (list tree)
-        (reduce #'append
-                (mapcar #'flatten
-                        tree)))))
+        (reduce #'append (mapcar #'flatten tree)))))
 
 (defun finalize-measures (l)
   (let ((objet-petit-a (collect-measures l)))
